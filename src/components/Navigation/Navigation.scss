@@ -1,0 +1,47 @@
+nav {
+  height: 70px;
+
+  ul {
+    display: flex;
+
+    li {
+      display: flex;
+      align-items: flex-end;
+      margin-right: 10px;
+      height: 70px;
+
+      a {
+        position: relative;
+        display: block;
+        margin-bottom: 10px;
+        padding: 15px 25px 5px 25px;
+        color: #cccccc;
+        transition: color 0.3s;
+
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          border-bottom: 1px solid white;
+          left: 50%;
+          width: 0%;
+          transition: all 0.3s;
+        }
+
+        &:hover {
+          cursor: pointer;
+          color: white;
+        }
+
+        &:hover::before {
+          width: 100%;
+          left: 0%;
+        }
+
+        &.active {
+          color: #818181;
+        }
+      }
+    }
+  }
+}
