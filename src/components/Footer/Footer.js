@@ -8,7 +8,7 @@ const Footer = () => {
   const socialMediaLinks = socialMedia.map(
     ({ title, className, url }) => {
       return (
-        <li>
+        <li key={title}>
           <a
             href={url}
             target="_blank"

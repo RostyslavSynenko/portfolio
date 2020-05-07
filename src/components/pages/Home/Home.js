@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import './Home.scss';
@@ -12,8 +12,12 @@ const Home = () => {
     history.push('/about');
   };
 
+  useEffect(() => {
+    document.title = 'Rostyslav Synenko Portfolio';
+  }, []);
+
   return (
-    <section className="home">
+    <div className="home-page">
       <div className="start-logo">
         <div>
           <h1 className="quote">
@@ -38,7 +42,11 @@ const Home = () => {
             I'm on vacation every single day 'cause I love
             my occupation.
           </p>
-          <button type="button" onClick={handleClick}>
+          <button
+            type="button"
+            className="button-primary"
+            onClick={handleClick}
+          >
             About
           </button>
         </div>
@@ -52,7 +60,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

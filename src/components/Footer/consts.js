@@ -18,5 +18,10 @@ export const socialMedia = [
     title: 'Instagram',
     className: 'fa-instagram',
     url: 'https://www.instagram.com/rsynenko/'
+  },
+  {
+    title: 'Telegram',
+    className: 'fa-telegram-plane',
+    url: 'https://t.me/rsynenko'
   }
 ];
