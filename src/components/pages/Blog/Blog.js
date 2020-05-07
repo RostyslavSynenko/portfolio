@@ -3,7 +3,7 @@ import React from 'react';
 import './Blog.scss';
 
 const Blog = () => {
-  return <div>Blog</div>;
+  return <section>Blog</section>;
 };
 
 export default Blog;

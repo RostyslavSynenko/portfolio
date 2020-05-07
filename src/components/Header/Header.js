@@ -8,8 +8,11 @@ import './Header.scss';
 const Header = () => {
   return (
     <header>
-      <div>
-        <Link to="/">Rostyslav Synenko Portfolio</Link>
+      <div className="logo">
+        <Link to="/">
+          <i className="fab fa-connectdevelop"></i>Rostyslav
+          Synenko
+        </Link>
       </div>
       <Navigation />
     </header>
