@@ -2,7 +2,18 @@ import React, { useEffect } from 'react';
 
 import './About.scss';
 
+import { skills } from './const';
+
 const About = () => {
+  const skillsList = skills.map(({ title, url }) => {
+    return (
+      <li key={title}>
+        <img src={url} alt={title} />
+        {title}
+      </li>
+    );
+  });
+
   useEffect(() => {
     document.title = 'About';
     window.scrollTo(0, 0);
@@ -61,8 +72,17 @@ const About = () => {
       </section>
       <section>
         <h2>Skills</h2>
+        <div className="skills-container">
+          <ul className="skills-list">{skillsList}</ul>
+        </div>
         <button type="button" className="button-primary">
-          Download CV
+          <a
+            href="https://drive.google.com/file/d/1oTZ6Zdk7SnT8xYrXkzD0xJWbBUMDobI2/view"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Check CV
+          </a>
         </button>
       </section>
     </div>
