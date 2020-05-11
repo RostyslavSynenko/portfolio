@@ -1,0 +1,36 @@
+.project-item {
+  margin: 30px 0;
+  padding: 50px;
+  background-color: #f5f5f7;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .flex-container {
+    display: flex;
+
+    .project-description-container {
+      width: 70%;
+      padding: 10px;
+
+      .project-title {
+        font-size: 1.75rem;
+      }
+
+      p {
+        margin: 20px 0;
+      }
+    }
+
+    .image-container img {
+      width: 400px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  a {
+    display: inline-block;
+  }
+}

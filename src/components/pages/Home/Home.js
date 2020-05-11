@@ -18,8 +18,8 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <div className="start-logo">
-        <div>
+      <div className="start-page">
+        <div className="start-logo-container">
           <h1 className="quote">
             Everything you can imagine is real.
           </h1>

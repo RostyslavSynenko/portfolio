@@ -4,6 +4,22 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.home-page .start-page .start-logo-container,
+.about-page,
+.projects-page,
+.contacts-page,
+.blog-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-page,
+.projects-page,
+.contacts-page,
+.blog-page {
+  padding: 40px;
+}
+
 .button-primary {
   padding: 10px 25px;
   background-color: transparent;

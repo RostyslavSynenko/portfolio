@@ -1,11 +1,11 @@
 .about-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px 40px;
-
   h2 {
-    margin-top: 2.5rem;
     font-size: 2.5rem;
+  }
+
+  .hobbies-section,
+  .skills-section {
+    margin-top: 40px;
   }
 
   .about-me-container,

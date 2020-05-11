@@ -60,3 +60,6 @@ export const skills = [
       'https://img.icons8.com/color/48/000000/bootstrap.png'
   }
 ];
+
+export const cvUrl =
+  'https://drive.google.com/file/d/1oTZ6Zdk7SnT8xYrXkzD0xJWbBUMDobI2/view';

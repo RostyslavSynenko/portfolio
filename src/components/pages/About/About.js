@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import './About.scss';
 
-import { skills } from './const';
+import { skills, cvUrl } from './const';
 
 const About = () => {
   const skillsList = skills.map(({ title, url }) => {
@@ -21,7 +21,7 @@ const About = () => {
 
   return (
     <div className="about-page">
-      <section>
+      <section className="about-section">
         <h2>About me</h2>
         <div className="about-me-container">
           <p>
@@ -51,7 +51,7 @@ const About = () => {
           </p>
         </div>
       </section>
-      <section>
+      <section className="hobbies-section">
         <h2>Hobbies</h2>
         <div className="hobbies-container">
           <p>
@@ -70,20 +70,21 @@ const About = () => {
           </p>
         </div>
       </section>
-      <section>
+      <section className="skills-section">
         <h2>Skills</h2>
         <div className="skills-container">
           <ul className="skills-list">{skillsList}</ul>
         </div>
-        <button type="button" className="button-primary">
-          <a
-            href="https://drive.google.com/file/d/1oTZ6Zdk7SnT8xYrXkzD0xJWbBUMDobI2/view"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+
+        <a
+          href={cvUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button type="button" className="button-primary">
             Check CV
-          </a>
-        </button>
+          </button>
+        </a>
       </section>
     </div>
   );

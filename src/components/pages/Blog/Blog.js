@@ -7,7 +7,11 @@ const Blog = () => {
     document.title = 'Blog';
   }, []);
 
-  return <section>Blog</section>;
+  return (
+    <section className="blog-page">
+      <h2>Blog</h2>
+    </section>
+  );
 };
 
 export default Blog;
