@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 
 import './Contacts.scss';
 
+import Form from './Form';
+
 const Contacts = () => {
   useEffect(() => {
     document.title = 'Contacts';
@@ -14,6 +16,9 @@ const Contacts = () => {
         For any enquiries, or just to say hello, get in
         touch and contact me.
       </p>
+      <div className="flex-container">
+        <Form />
+      </div>
     </section>
   );
 };

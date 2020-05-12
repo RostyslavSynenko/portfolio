@@ -30,7 +30,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="copyright">
-        Copyright © 2020 Rostyslav Synenko
+        © 2020 Rostyslav Synenko
       </div>
     </footer>
   );

@@ -1,0 +1,41 @@
+.contact-form {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 5px 15px;
+    border: 1px solid black;
+
+    &:focus {
+      box-shadow: 0 0 3px black;
+      outline: none;
+    }
+  }
+
+  .field-wrapper {
+    margin-bottom: 20px;
+
+    .message-field {
+      height: 36px;
+      resize: none;
+      transition: height 0.3s;
+
+      &:focus {
+        height: 150px;
+      }
+    }
+  }
+
+  .error-status {
+    margin-bottom: 20px;
+    color: red;
+  }
+
+  .success-status {
+    padding: 10px 25px;
+    font-weight: 700;
+  }
+}

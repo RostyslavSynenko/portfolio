@@ -13,7 +13,7 @@
 
     .project-description-container {
       width: 70%;
-      padding: 10px;
+      padding-right: 20px;
 
       .project-title {
         font-size: 1.75rem;
@@ -24,13 +24,48 @@
       }
     }
 
-    .image-container img {
-      width: 400px;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      img {
+        width: 400px;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+        transition: transform 1s;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
     }
   }
 
-  a {
-    display: inline-block;
+  .links-container {
+    display: flex;
+
+    .link {
+      display: flex;
+      padding: 10px 25px;
+      font-weight: 700;
+
+      .link-title:hover {
+        text-decoration: underline;
+      }
+
+      &:hover {
+        .link-arrow {
+          transform: translateX(10px);
+        }
+      }
+
+      .link-arrow {
+        display: inline-block;
+        width: 20px;
+        margin-left: 10px;
+        transition: all 0.3s;
+      }
+    }
   }
 }

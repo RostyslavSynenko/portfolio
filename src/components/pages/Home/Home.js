@@ -27,36 +27,38 @@ const Home = () => {
           <span className="author">– Pablo Picasso</span>
         </div>
       </div>
-      <div className="intro-container">
-        <div className="intro">
-          <p>
-            Hello
-            <br />
-            <span className="name">
-              I'm Rostyslav Synenko
-            </span>
-            <br />
-            Front-End Developer
-          </p>
-          <p className="briefly-about">
-            I'm on vacation every single day 'cause I love
-            my occupation.
-          </p>
-          <button
-            type="button"
-            className="button-primary"
-            onClick={handleClick}
-          >
-            About
-          </button>
-        </div>
-        <div className="photo-container">
-          <div>
-            <img
-              className="photo"
-              src={avatarImage}
-              alt="Rostyslav Synenko"
-            />
+      <div className="container">
+        <div className="intro-container">
+          <div className="intro">
+            <p>
+              Hello
+              <br />
+              <span className="name">
+                I'm Rostyslav Synenko
+              </span>
+              <br />
+              Front-End Developer
+            </p>
+            <p className="briefly-about">
+              I'm on vacation every single day 'cause I love
+              my occupation.
+            </p>
+            <button
+              type="button"
+              className="button-primary"
+              onClick={handleClick}
+            >
+              About
+            </button>
+          </div>
+          <div className="photo-container">
+            <div>
+              <img
+                className="photo"
+                src={avatarImage}
+                alt="Rostyslav Synenko"
+              />
+            </div>
           </div>
         </div>
       </div>

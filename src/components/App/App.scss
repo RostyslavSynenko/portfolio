@@ -35,4 +35,17 @@ body {
     background-color: black;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   }
+
+  &:disabled {
+    color: #86868b;
+    background-color: transparent;
+    border: 1px solid #86868b;
+
+    &:hover {
+      color: #86868b;
+      border: 1px solid #86868b;
+      box-shadow: none;
+      cursor: default;
+    }
+  }
 }

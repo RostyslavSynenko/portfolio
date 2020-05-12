@@ -22,10 +22,6 @@ const Projects = () => {
           {projectsElements}
         </div>
       </section>
-      <section className="accomplishments">
-        <h2>Accomplishments</h2>
-        <div className="accomplishment-item"></div>
-      </section>
     </div>
   );
 };
