@@ -10,6 +10,7 @@ import Projects from '../pages/Projects';
 import Contacts from '../pages/Contacts';
 import Blog from '../pages/Blog';
 import Footer from '../Footer';
+import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/blog" exact>
             <Blog />
+          </Route>
+          <Route path="*">
+            <PageNotFound />
           </Route>
         </Switch>
       </main>

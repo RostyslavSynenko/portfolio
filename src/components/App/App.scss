@@ -2,13 +2,19 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+
+  main {
+    /* 70px - header, 169px - footer */
+    min-height: calc(100vh - 70px - 169px);
+  }
 }
 
 .home-page .start-page .start-logo-container,
 .about-page,
 .projects-page,
 .contacts-page,
-.blog-page {
+.blog-page,
+.page-not-found {
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -16,7 +22,8 @@ body {
 .about-page,
 .projects-page,
 .contacts-page,
-.blog-page {
+.blog-page,
+.page-not-found {
   padding: 40px;
 }
 

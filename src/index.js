@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import './index.css';
+import './index.scss';
 
 import ErrorBoundry from './components/ErrorBoundry';
 import App from './components/App';
@@ -10,7 +10,7 @@ import App from './components/App';
 ReactDOM.render(
   <React.StrictMode>
     <ErrorBoundry>
-      <Router>
+      <Router basename="/portfolio/">
         <App />
       </Router>
     </ErrorBoundry>

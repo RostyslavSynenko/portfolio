@@ -24,7 +24,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="container">
+      <div className="footer-container">
         <div className="links">
           <ul>{socialMediaLinks}</ul>
         </div>
