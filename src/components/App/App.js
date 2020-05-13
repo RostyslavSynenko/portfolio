@@ -12,7 +12,7 @@ import Blog from '../pages/Blog';
 import Footer from '../Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
-function App() {
+const App = () => {
   return (
     <div>
       <Header />
@@ -41,6 +41,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;

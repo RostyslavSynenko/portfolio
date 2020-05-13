@@ -14,6 +14,25 @@ const Home = () => {
 
   useEffect(() => {
     document.title = 'Rostyslav Synenko Portfolio';
+
+    const horizontalParalax = () => {
+      const logo = document.querySelector(
+        '.start-logo-container'
+      );
+      const { scrollTop } = document.documentElement;
+
+      logo.style.transform = `translate(${
+        scrollTop / 20
+      }%, 0)`;
+    };
+
+    window.addEventListener('scroll', horizontalParalax);
+
+    return () =>
+      window.removeEventListener(
+        'scroll',
+        horizontalParalax
+      );
   }, []);
 
   return (

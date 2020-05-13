@@ -1,0 +1,27 @@
+.links-container {
+  display: flex;
+  margin-top: 10px;
+
+  .link {
+    display: flex;
+    padding: 10px 25px;
+    font-weight: 700;
+
+    .link-title:hover {
+      text-decoration: underline;
+    }
+
+    &:hover {
+      .link-arrow {
+        transform: translateX(10px);
+      }
+    }
+
+    .link-arrow {
+      display: inline-block;
+      width: 20px;
+      margin-left: 10px;
+      transition: all 0.3s;
+    }
+  }
+}

@@ -1,15 +1,23 @@
 import React from 'react';
 
 import './ProjectItem.scss';
-import linkArrow from '../../../../assets/link-arrow-right.svg';
+
+import ItemLinks from './ItemLinks';
 
 const ProjectItem = ({
   title,
   description,
   imgUrl,
   gitHubUrl,
-  link
+  link,
+  technologies
 }) => {
+  const techList = technologies.map(tech => (
+    <li key={tech} className="technology-item">
+      {tech}
+    </li>
+  ));
+
   return (
     <div className="project-item" key={title}>
       <div className="flex-container">
@@ -18,6 +26,11 @@ const ProjectItem = ({
           <p className="project-description">
             {description}
           </p>
+          <div className="technologies">
+            <ul className="technologies-list">
+              {techList}
+            </ul>
+          </div>
         </div>
         <div className="image-container">
           <a
@@ -25,42 +38,15 @@ const ProjectItem = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={imgUrl} alt={title} />
+            <img
+              className="project-image"
+              src={imgUrl}
+              alt={title}
+            />
           </a>
         </div>
       </div>
-      <div className="links-container">
-        <a
-          href={gitHubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="link"
-        >
-          <span className="link-title">GitHub</span>
-          <img
-            src={linkArrow}
-            alt="Link arrow right"
-            className="link-arrow"
-          />
-        </a>
-        {link && (
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link"
-          >
-            <span className="link-title">
-              To the project
-            </span>
-            <img
-              src={linkArrow}
-              alt="Link arrow right"
-              className="link-arrow"
-            />
-          </a>
-        )}
-      </div>
+      <ItemLinks gitHubUrl={gitHubUrl} link={link} />
     </div>
   );
 };

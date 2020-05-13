@@ -50,7 +50,8 @@ export const projects = [
   },
   {
     title: 'RS Portfolio',
-    description: "My first site I've ever made.",
+    description:
+      "My first site I've ever made. Remember where you started",
     imgUrl: portfolioVer1Url,
     gitHubUrl:
       'https://github.com/RostyslavSynenko/my-project-portfolio',

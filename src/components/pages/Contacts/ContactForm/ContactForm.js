@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import './Form.scss';
+import './ContactForm.scss';
 
 import { INITIAL_VALUES /*, formspreeUrl*/ } from './const';
 
-const Form = () => {
+const ContactForm = () => {
   const [formValues, setFormValues] = useState(
     INITIAL_VALUES
   );
@@ -125,4 +125,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default ContactForm;
