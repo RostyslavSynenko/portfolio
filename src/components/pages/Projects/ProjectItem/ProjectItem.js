@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './ProjectItem.scss';
-
 import ItemLinks from './ItemLinks';
 
 const ProjectItem = ({

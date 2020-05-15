@@ -1,20 +1,18 @@
 import React from 'react';
 
-import './Footer.scss';
-
 import { socialMedia } from './consts';
 
 const Footer = () => {
   const socialMediaLinks = socialMedia.map(
-    ({ title, className, url }) => {
+    ({ title, iconClass, url }) => {
       return (
-        <li key={title}>
+        <li key={title} className="link-item">
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className={`fab ${className}`}></i>
+            <i className={`fab ${iconClass}`}></i>
             {title}
           </a>
         </li>
@@ -26,7 +24,7 @@ const Footer = () => {
     <footer>
       <div className="footer-container">
         <div className="links">
-          <ul>{socialMediaLinks}</ul>
+          <ul className="links-list">{socialMediaLinks}</ul>
         </div>
       </div>
       <div className="copyright">

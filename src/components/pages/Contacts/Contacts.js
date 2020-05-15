@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 
-import './Contacts.scss';
-
 import ContactForm from './ContactForm';
 // import ContactLinks from './ContactLinks';
 

@@ -1,7 +1,7 @@
 nav {
   height: 70px;
 
-  ul {
+  .navigation-links {
     display: flex;
 
     li {
@@ -39,7 +39,7 @@ nav {
         }
 
         &.active {
-          color: #818181;
+          color: map-get($colors, secondary-dark);
         }
       }
     }

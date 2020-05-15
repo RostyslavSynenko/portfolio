@@ -1,27 +1,27 @@
 export const socialMedia = [
   {
     title: 'GitHub',
-    className: 'fa-github',
+    iconClass: 'fa-github',
     url: 'https://github.com/RostyslavSynenko'
   },
   {
     title: 'LinkedIn',
-    className: 'fa-linkedin-in',
+    iconClass: 'fa-linkedin-in',
     url: 'https://www.linkedin.com/in/rostyslav-synenko/'
   },
   {
     title: 'Facebook',
-    className: 'fa-facebook-f',
+    iconClass: 'fa-facebook-f',
     url: 'https://www.facebook.com/rostyslav.synenko'
   },
   {
     title: 'Instagram',
-    className: 'fa-instagram',
+    iconClass: 'fa-instagram',
     url: 'https://www.instagram.com/rsynenko/'
   },
   {
     title: 'Telegram',
-    className: 'fa-telegram-plane',
+    iconClass: 'fa-telegram-plane',
     url: 'https://t.me/rsynenko'
   }
 ];

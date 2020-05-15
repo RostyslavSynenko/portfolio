@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 
-import './Blog.scss';
-
 const Blog = () => {
   useEffect(() => {
     document.title = 'Blog';

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import './ContactForm.scss';
-
 import { INITIAL_VALUES /*, formspreeUrl*/ } from './const';
 
 const ContactForm = () => {

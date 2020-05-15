@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import './Home.scss';
-
 import avatarImage from '../../../assets/avatar-photo.jpg';
 
 const Home = () => {

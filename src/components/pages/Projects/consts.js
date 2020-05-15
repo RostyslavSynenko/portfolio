@@ -1,6 +1,6 @@
 import defibrillatorsMapUrl from '../../../assets/projects/defibrillators-map.png';
-import barcelonaUrl from '../../../assets/projects/barcelona-fan-website.png';
-import portfolioVer1Url from '../../../assets/projects/my-portfolio-v1.png';
+import barcelonaUrl from '../../../assets/projects/barcelona-fan-website.jpg';
+import portfolioVer1Url from '../../../assets/projects/my-portfolio-v1.jpg';
 
 export const projects = [
   {

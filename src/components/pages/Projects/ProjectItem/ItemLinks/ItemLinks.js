@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './ItemLinks.scss';
 import linkArrow from '../../../../../assets/link-arrow-right.svg';
 
 const ItemLinks = ({ gitHubUrl, link }) => {

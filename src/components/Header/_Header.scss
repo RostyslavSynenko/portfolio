@@ -3,8 +3,8 @@ header {
   display: flex;
   justify-content: space-between;
   color: #cccccc;
-  background-color: rgba(0, 0, 0, 0.95);
-  box-shadow: 0 3px 15px black;
+  background-color: map-get($colors, primary);
+  box-shadow: 0 3px 15px map-get($colors, primary);
 
   .logo {
     margin-left: 10px;

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 
-import './Projects.scss';
-
 import ProjectItem from './ProjectItem/ProjectItem';
 import { projects } from './consts';
 

@@ -1,5 +1,5 @@
 footer {
-  background-color: #f5f5f7;
+  background-color: map-get($colors, secondary-light);
 
   .footer-container {
     display: flex;
@@ -9,13 +9,13 @@ footer {
       width: 90%;
       margin: 15px auto 0;
       padding: 40px 0;
-      border-top: 1px solid #86868b;
+      border-top: 1px solid map-get($colors, secondary-dark);
 
-      ul {
+      .links-list {
         display: flex;
         justify-content: center;
 
-        li {
+        .link-item {
           margin-right: 30px;
 
           a {
@@ -23,7 +23,8 @@ footer {
             display: block;
 
             &:hover {
-              text-shadow: 1px 1px 3px black;
+              text-shadow: 1px 1px 3px
+                map-get($colors, primary);
 
               &:before {
                 width: 100%;
@@ -35,7 +36,8 @@ footer {
               content: '';
               position: absolute;
               bottom: 0;
-              border-bottom: 1px solid black;
+              border-bottom: 1px solid
+                map-get($colors, primary);
               left: 50%;
               width: 0%;
               transition: all 0.3s;
@@ -52,8 +54,8 @@ footer {
 
   .copyright {
     padding: 15px 0;
-    color: #86868b;
-    background-color: black;
+    color: map-get($colors, secondary-dark);
+    background-color: map-get($colors, primary);
     font-size: 0.8rem;
     text-align: center;
   }

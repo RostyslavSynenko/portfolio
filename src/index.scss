@@ -1,60 +1,16 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  min-height: 100vh;
-  scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
-}
-
-ul,
-ol {
-  padding: 0;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-ul,
-ol,
-li,
-figure,
-figcaption,
-blockquote,
-dl,
-dd {
-  margin: 0;
-}
-
-ul,
-ol {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-article > * + * {
-  margin-top: 1em;
-}
-
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
+@import './assets/styles/reset';
+@import './assets/styles/variables';
+@import './assets/styles/base';
+@import './components/Header/Header';
+@import './components/Header/Navigation/Navigation';
+@import './components/pages/Home/Home';
+@import './components/pages/About/About';
+@import './components/pages/Projects/Projects';
+@import './components/pages/Projects/ProjectItem/ProjectItem';
+@import './components/pages/Projects/ProjectItem/ItemLinks/ItemLinks';
+@import './components/pages/Contacts/Contacts';
+@import './components/pages/Contacts/ContactLinks/ContactLinks';
+@import './components/pages/Contacts/ContactForm/ContactForm';
+@import './components/pages/Blog/Blog';
+@import './components/Footer/Footer';
+@import './components/PageNotFound/PageNotFound';

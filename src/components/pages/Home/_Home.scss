@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 70px);
-    background-image: url('../../../assets/start-logo.png');
+    background-image: url('../../../assets/start-logo.jpg');
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -27,7 +27,7 @@
   .container {
     background: linear-gradient(
       110deg,
-      #f5f5f7 65%,
+      map-get($colors, secondary-light) 65%,
       white 65%
     );
 

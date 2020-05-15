@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 
-import './About.scss';
-
 import { skills, cvUrl } from './const';
 
 const About = () => {
@@ -22,7 +20,7 @@ const About = () => {
   return (
     <div className="about-page">
       <section className="about-section">
-        <h2>About me</h2>
+        <h2 className="title">About me</h2>
         <div className="about-me-container">
           <p>
             I graduated from Drogobych Ivan Franko
@@ -52,7 +50,7 @@ const About = () => {
         </div>
       </section>
       <section className="hobbies-section">
-        <h2>Hobbies</h2>
+        <h2 className="title">Hobbies</h2>
         <div className="hobbies-container">
           <p>
             My hobby is a workout. I like it because when I
@@ -71,7 +69,7 @@ const About = () => {
         </div>
       </section>
       <section className="skills-section">
-        <h2>Skills</h2>
+        <h2 className="title">Skills</h2>
         <div className="skills-container">
           <ul className="skills-list">{skillsList}</ul>
         </div>
