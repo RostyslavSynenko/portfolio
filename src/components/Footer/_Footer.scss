@@ -59,4 +59,31 @@ footer {
     font-size: 0.8rem;
     text-align: center;
   }
+
+  @media screen and (max-width: 768px) {
+    .footer-container {
+      .links {
+        .links-list {
+          .link-item {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .footer-container {
+      .links {
+        .links-list {
+          flex-direction: column;
+          align-items: center;
+
+          .link-item {
+            margin-top: 15px;
+          }
+        }
+      }
+    }
+  }
 }

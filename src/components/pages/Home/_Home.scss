@@ -25,6 +25,7 @@
       }
     }
   }
+
   .container {
     background: linear-gradient(
       110deg,
@@ -34,18 +35,22 @@
 
     .intro-container {
       display: flex;
-      height: 100vh;
+      min-height: 100vh;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px;
-      font-size: 1.5rem;
+      padding: 40px 0 40px 40px;
 
       .intro {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
-        flex-basis: 70vw;
+        width: 100%;
+        padding-right: 20px;
+
+        p {
+          font-size: 1.5rem;
+        }
 
         .name {
           font-size: 3rem;
@@ -66,13 +71,99 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        width: 100%;
 
         .photo {
-          max-width: 80%;
+          max-width: 500px;
+          width: 100%;
           height: auto;
           padding: 15px;
           border-radius: 50%;
           border: 20px solid white;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .start-page {
+      .start-logo-container {
+        .quote {
+          font-size: 3.5rem;
+        }
+      }
+    }
+
+    .container {
+      .intro-container {
+        padding-right: 40px;
+
+        .intro {
+          .name {
+            font-size: 2.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .start-page {
+      .start-logo-container {
+        .quote {
+          font-size: 3rem;
+        }
+      }
+    }
+
+    .container {
+      .intro-container {
+        padding-right: 40px;
+
+        .intro {
+          p {
+            font-size: 1.3rem;
+          }
+
+          .name {
+            font-size: 2rem;
+          }
+        }
+
+        .photo-container {
+          .photo {
+            padding: 0;
+            border-width: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .start-page {
+      .start-logo-container {
+        .quote {
+          font-size: 2.5rem;
+        }
+      }
+    }
+
+    .container {
+      .intro-container {
+        flex-direction: column-reverse;
+
+        .intro {
+          padding: 0;
+          padding-top: 20px;
+        }
+
+        .photo-container {
+          .photo {
+            max-width: 400px;
+            margin: auto;
+            border-width: 15px;
+          }
         }
       }
     }

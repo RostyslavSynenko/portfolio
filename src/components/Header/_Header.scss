@@ -25,4 +25,14 @@ header {
       padding-right: 10px;
     }
   }
+
+  @media screen and (max-width: 576px) {
+    .logo {
+      font-size: 1.2rem;
+
+      i {
+        display: none;
+      }
+    }
+  }
 }
