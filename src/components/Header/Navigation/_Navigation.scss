@@ -1,14 +1,15 @@
 nav {
-  height: 70px;
+  display: flex;
 
   .navigation-links {
+    position: relative;
     display: flex;
+    align-items: flex-end;
 
     li {
       display: flex;
-      align-items: flex-end;
+      position: relative;
       margin-right: 10px;
-      height: 70px;
 
       a {
         position: relative;
@@ -42,6 +43,101 @@ nav {
           color: map-get($colors, secondary-dark);
         }
       }
+    }
+  }
+
+  .burger-menu {
+    position: relative;
+    display: none;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    align-self: center;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: map-get($colors, secondary-light);
+      box-shadow: 0 10px 0 map-get($colors, secondary-light);
+      z-index: 1;
+      transition: all 0.5s;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: map-get($colors, secondary-light);
+      z-index: 1;
+      transition: all 0.5s;
+    }
+  }
+
+  &.open .burger-menu {
+    &::before,
+    &::after {
+      background-color: white;
+    }
+
+    &::before {
+      top: 14px;
+      box-shadow: unset;
+      transform: rotate(-45deg);
+    }
+
+    &::after {
+      bottom: 14px;
+      transform: rotate(45deg);
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .navigation-links {
+      position: absolute;
+      top: -100%;
+      left: 0;
+      height: calc(100vh - 70px);
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+      text-align: center;
+      overflow: auto;
+      background-color: lighten(
+        map-get($colors, primary),
+        5%
+      );
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: all 0.5s;
+
+      li {
+        margin: 0;
+
+        a {
+          margin: 5px 0;
+        }
+      }
+    }
+
+    &.open {
+      .navigation-links {
+        top: 70px;
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .burger-menu {
+      display: block;
     }
   }
 }

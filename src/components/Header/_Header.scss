@@ -1,14 +1,18 @@
 header {
-  position: relative;
+  position: fixed;
   display: flex;
   justify-content: space-between;
+  height: $header-height;
+  width: 100%;
   color: #cccccc;
-  background-color: map-get($colors, primary);
-  box-shadow: 0 3px 15px map-get($colors, primary);
+  background-color: lighten(map-get($colors, primary), 5%);
+  box-shadow: 0 2px 3px map-get($colors, primary);
+  z-index: 1000;
 
   .logo {
-    margin-left: 10px;
-    font-size: 1.5rem;
+    padding-left: 20px;
+    font-size: 1.7rem;
+    font-weight: 700;
     line-height: 70px;
     transition: all 0.5s;
 

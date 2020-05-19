@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,400&display=swap');
 
 *::selection {
   color: white;
@@ -6,11 +7,16 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
+
+  &.overflow-hidden {
+    overflow: hidden;
+  }
 
   main {
-    /* 70px - header, 169px - footer */
-    min-height: calc(100vh - 70px - 169px);
+    /*  169px - footer */
+    min-height: calc(100vh - 169px);
+    padding-top: $header-height;
   }
 }
 
@@ -25,6 +31,7 @@ body {
 }
 
 .about-page,
+.start-page,
 .projects-page,
 .contacts-page,
 .blog-page,
