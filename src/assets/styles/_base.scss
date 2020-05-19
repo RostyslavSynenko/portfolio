@@ -8,6 +8,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
+  font-size: $font-size;
 
   &.overflow-hidden {
     overflow: hidden;
@@ -66,5 +67,16 @@ body {
       box-shadow: none;
       cursor: default;
     }
+  }
+}
+
+@media screen and (max-width: $viewport-small) {
+  .about-page,
+  .start-page,
+  .projects-page,
+  .contacts-page,
+  .blog-page,
+  .page-not-found {
+    padding: 15px;
   }
 }

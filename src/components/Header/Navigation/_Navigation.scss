@@ -99,7 +99,7 @@ nav {
     }
   }
 
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: $viewport-large) {
     .navigation-links {
       position: absolute;
       top: -100%;
@@ -138,6 +138,12 @@ nav {
 
     .burger-menu {
       display: block;
+    }
+  }
+
+  @media screen and (max-width: $viewport-small) {
+    .burger-menu {
+      margin-right: 10px;
     }
   }
 }

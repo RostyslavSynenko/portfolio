@@ -15,7 +15,7 @@ const Projects = () => {
   return (
     <div className="projects-page">
       <section className="projects">
-        <h2>My Projects</h2>
+        <h2>Projects</h2>
         <div className="projects-container">
           {projectsElements}
         </div>

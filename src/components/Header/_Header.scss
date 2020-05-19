@@ -11,10 +11,9 @@ header {
 
   .logo {
     padding-left: 20px;
-    font-size: 1.7rem;
+    font-size: 2rem;
     font-weight: 700;
     line-height: 70px;
-    transition: all 0.5s;
 
     &:hover {
       color: white;
@@ -26,13 +25,18 @@ header {
     }
   }
 
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: $viewport-medium) {
     .logo {
-      font-size: 1.2rem;
-
       i {
         display: none;
       }
+    }
+  }
+
+  @media screen and (max-width: $viewport-small) {
+    .logo {
+      padding-left: 10px;
+      font-size: 1.4rem;
     }
   }
 }

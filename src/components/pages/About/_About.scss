@@ -49,7 +49,43 @@
     }
   }
 
-  .button-primary {
+  .cv-link {
+    display: inline-block;
     margin-top: 50px;
+  }
+
+  @media screen and (max-width: $viewport-medium) {
+    .title {
+      font-size: 2rem;
+    }
+  }
+
+  @media screen and (max-width: $viewport-small) {
+    .title {
+      font-size: 1.5rem;
+    }
+
+    .about-me-container,
+    .hobbies-container,
+    .skills-container {
+      padding: 0;
+
+      p {
+        text-align: justify;
+      }
+    }
+
+    .skills-container {
+      .skills-list {
+        li {
+          min-width: 110px;
+        }
+      }
+    }
+
+    .cv-link {
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }

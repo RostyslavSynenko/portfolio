@@ -73,17 +73,15 @@ const About = () => {
         <div className="skills-container">
           <ul className="skills-list">{skillsList}</ul>
         </div>
-
-        <a
-          href={cvUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <button type="button" className="button-primary">
-            Check CV
-          </button>
-        </a>
       </section>
+      <a
+        href={cvUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="button-primary cv-link"
+      >
+        Check CV
+      </a>
     </div>
   );
 };

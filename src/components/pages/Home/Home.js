@@ -19,9 +19,9 @@ const Home = () => {
       );
       const { scrollTop } = document.documentElement;
 
-      logo.style.transform = `translate(${
-        scrollTop / 20
-      }%, 0)`;
+      logo.style.transform = `translate(0, ${
+        scrollTop / 2.3
+      }%)`;
     };
 
     window.addEventListener('scroll', horizontalParalax);

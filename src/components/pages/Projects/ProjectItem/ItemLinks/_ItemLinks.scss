@@ -24,4 +24,12 @@
       transition: all 0.3s;
     }
   }
+
+  @media screen and (max-width: $viewport-medium) {
+    margin-top: 0;
+  }
+
+  @media screen and (max-width: $viewport-small) {
+    flex-direction: column;
+  }
 }
