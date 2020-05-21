@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import avatarImage from '../../../assets/avatar-photo.jpg';
 
 const Home = () => {
   const history = useHistory();
+  const logo = useRef(null);
 
   const handleClick = () => {
     history.push('/about');
@@ -12,14 +13,12 @@ const Home = () => {
 
   useEffect(() => {
     document.title = 'Rostyslav Synenko Portfolio';
+    window.scrollTo(0, 0);
 
     const horizontalParalax = () => {
-      const logo = document.querySelector(
-        '.start-logo-container'
-      );
       const { scrollTop } = document.documentElement;
 
-      logo.style.transform = `translate(0, ${
+      logo.current.style.transform = `translate(0, ${
         scrollTop / 2.3
       }%)`;
     };
@@ -36,7 +35,7 @@ const Home = () => {
   return (
     <div className="home-page">
       <div className="start-page">
-        <div className="start-logo-container">
+        <div className="start-logo-container" ref={logo}>
           <h1 className="quote">
             Everything you can imagine is real.
           </h1>
@@ -44,10 +43,10 @@ const Home = () => {
           <span className="author">– Pablo Picasso</span>
         </div>
       </div>
-      <div className="container">
+      <div className="gradient-container">
         <div className="intro-container">
           <div className="intro">
-            <p>
+            <p className="text-block">
               Hello
               <br />
               <span className="name">

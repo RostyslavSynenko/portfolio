@@ -1,0 +1,40 @@
+.scroll-down {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+
+  .mouse {
+    width: 3px;
+    height: 18px;
+    margin: 0 auto 10px;
+    padding: 10px 11px;
+    border: 2px solid white;
+    border-radius: 25px;
+    box-sizing: content-box;
+    opacity: 0.7;
+
+    .scroller {
+      width: 3px;
+      height: 10px;
+      background-color: white;
+      border-radius: 25%;
+      animation: scroll 2.2s infinite;
+
+      @keyframes scroll {
+        0% {
+          opacity: 0;
+        }
+        10% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(15px);
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

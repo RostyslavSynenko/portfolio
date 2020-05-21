@@ -7,13 +7,15 @@
     min-height: calc(100vh - 70px);
     background-image: url('../../../assets/start-logo.jpg');
     background-position: center;
-    background-size: cover;
+    background-size: 100% 100%;
     background-attachment: fixed;
     overflow: hidden;
+    animation: backZoomOut 1s ease-out;
 
     .start-logo-container {
       text-align: center;
       color: #cccccc;
+      animation: fadeOut 1.5s ease-out;
 
       .quote {
         font-size: 4rem;
@@ -26,7 +28,7 @@
     }
   }
 
-  .container {
+  .gradient-container {
     background: linear-gradient(
       110deg,
       map-get($colors, secondary-light) 65%,
@@ -48,7 +50,7 @@
         width: 100%;
         padding-right: 20px;
 
-        p {
+        .text-block {
           font-size: 1.5rem;
         }
 
@@ -121,7 +123,7 @@
         padding-right: 40px;
 
         .intro {
-          p {
+          .text-block {
             font-size: 1.3rem;
           }
 
@@ -171,6 +173,26 @@
           }
         }
       }
+    }
+  }
+
+  @keyframes backZoomOut {
+    from {
+      background-size: 120% 120%;
+    }
+
+    to {
+      background-size: 100% 100%;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
     }
   }
 }

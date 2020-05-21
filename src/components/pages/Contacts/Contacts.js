@@ -1,23 +1,64 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import ContactForm from './ContactForm';
-// import ContactLinks from './ContactLinks';
+import ContactInfo from './ContactInfo';
+import ScrollDown from '../../../shared/ScrollDown';
 
 const Contacts = () => {
+  const contactsContainer = useRef(null);
+
   useEffect(() => {
     document.title = 'Contacts';
+    window.scrollTo(0, 0);
+
+    const handleContactsScroll = () => {
+      const scrollTop = document.documentElement.scrollTop;
+
+      if (scrollTop > 0) {
+        contactsContainer.current.style.marginTop =
+          -scrollTop / 1.2 + 'px';
+      }
+    };
+
+    window.addEventListener('scroll', handleContactsScroll);
+
+    return () =>
+      window.removeEventListener(
+        'scroll',
+        handleContactsScroll
+      );
   }, []);
 
   return (
     <section className="contacts-page">
-      <h2>Contacts</h2>
-      <p>
-        For any enquiries, or just to say hello, get in
-        touch and contact me.
-      </p>
-      {/* <ContactLinks /> */}
-      <div className="flex-container">
-        <ContactForm />
+      <div className="photo-wrapper">
+        <div className="container">
+          <div className="contacts-description">
+            <h2 className="contacts-page-title">
+              Contacts
+            </h2>
+            <p className="text-block">
+              For any enquiries, or just to say hello, get
+              in touch and contact me.
+            </p>
+          </div>
+        </div>
+        <ScrollDown />
+      </div>
+      <div className="contacts-wrapper">
+        <div className="container">
+          <div
+            className="contacts-container"
+            ref={contactsContainer}
+          >
+            <div className="contact-form-wrapper">
+              <ContactForm />
+            </div>
+            <div className="contact-links-wrapper">
+              <ContactInfo />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

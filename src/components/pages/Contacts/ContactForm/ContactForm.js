@@ -116,7 +116,7 @@ const ContactForm = () => {
           className="button-primary"
           disabled={isSubmitting}
         >
-          Send
+          Send Message
         </button>
       )}
     </form>

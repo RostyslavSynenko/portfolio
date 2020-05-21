@@ -13,7 +13,7 @@
   .skills-container {
     padding-left: 20px;
 
-    p {
+    .text-block {
       margin-bottom: 10px;
     }
   }
@@ -25,7 +25,7 @@
       align-items: center;
       flex-wrap: wrap;
 
-      li {
+      .skill-item {
         position: relative;
         top: 0;
         display: flex;
@@ -70,14 +70,14 @@
     .skills-container {
       padding: 0;
 
-      p {
+      .text-block {
         text-align: justify;
       }
     }
 
     .skills-container {
       .skills-list {
-        li {
+        .skill-item {
           min-width: 110px;
         }
       }

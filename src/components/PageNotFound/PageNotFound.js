@@ -17,7 +17,7 @@ const PageNotFound = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="gradient-container">
       <section className="page-not-found">
         <div className="flex-container">
           <h1>404</h1>

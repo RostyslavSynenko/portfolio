@@ -1,31 +1,27 @@
 .contact-form {
   width: 100%;
-  max-width: 400px;
-  margin-top: 20px;
 
   input,
   textarea {
     width: 100%;
     padding: 5px 15px;
-    border: 1px solid #cccccc;
-    transition: all 0.5s;
+    border: none;
+    border-bottom: 1px solid #cccccc;
+    outline: none;
+    transition: border 1s;
 
     &:focus {
-      box-shadow: 0 0 3px map-get($colors, primary);
-      outline: none;
+      border-bottom: 1px solid map-get($colors, primary);
     }
   }
 
   .field-wrapper {
+    position: relative;
     margin-bottom: 20px;
 
     .message-field {
-      height: 36px;
+      height: 100px;
       resize: none;
-
-      &:focus {
-        height: 150px;
-      }
     }
   }
 

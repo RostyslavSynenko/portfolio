@@ -1,0 +1,55 @@
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 50px;
+  color: map-get($colors, secondary-dark);
+
+  .contact-info-title {
+    color: white;
+    text-align: center;
+  }
+
+  .info .info-list .info-item .icon,
+  .links .links-list .link-item {
+    min-width: 30px;
+    text-align: center;
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .info {
+    .info-list {
+      .info-item {
+        display: flex;
+        margin: 20px 0;
+
+        span {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .links {
+    margin-top: auto;
+
+    .links-list {
+      display: flex;
+      justify-content: center;
+
+      .link-item {
+        margin-right: 15px;
+        transition: color 0.5s;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
+}

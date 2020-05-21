@@ -10,6 +10,7 @@ const Projects = () => {
 
   useEffect(() => {
     document.title = 'Projects';
+    window.scrollTo(0, 0);
   }, []);
 
   return (

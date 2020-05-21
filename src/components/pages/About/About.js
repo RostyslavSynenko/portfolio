@@ -5,7 +5,7 @@ import { skills, cvUrl } from './const';
 const About = () => {
   const skillsList = skills.map(({ title, url }) => {
     return (
-      <li key={title}>
+      <li key={title} className="skill-item">
         <img src={url} alt={title} />
         {title}
       </li>
@@ -22,25 +22,25 @@ const About = () => {
       <section className="about-section">
         <h2 className="title">About me</h2>
         <div className="about-me-container">
-          <p>
+          <p className="text-block">
             I graduated from Drogobych Ivan Franko
             University in 2014.
           </p>
-          <p>
+          <p className="text-block">
             I’ve always been really interested in tech and
             figured, why not make it my job. IT jobs will
             always be in demand because technological
             innovation never stops and there will always be
             a lot of interesting work.
           </p>
-          <p>
+          <p className="text-block">
             I am a self-motivated person and very good at
             working with other people. I'm learning
             programming at leisure, simply out of a passion
             to learn how to code. I like to learn something
             new.
           </p>
-          <p>
+          <p className="text-block">
             My dream job is to have a workplace that is
             welcoming and friendly. It's a place where I’ll
             have opportunities to develop my skills, take on
@@ -52,7 +52,7 @@ const About = () => {
       <section className="hobbies-section">
         <h2 className="title">Hobbies</h2>
         <div className="hobbies-container">
-          <p>
+          <p className="text-block">
             My hobby is a workout. I like it because when I
             finish my workout I am always with a lot of
             positiveness, clear mind and a smile on my face.
@@ -60,7 +60,7 @@ const About = () => {
             lifestyle. I like to ride on a bicycle and
             swimming as well.
           </p>
-          <p>
+          <p className="text-block">
             Also, I like listen to the music, watch
             interesting movies and spend my free time with
             my friends. And, honestly, I like memes and

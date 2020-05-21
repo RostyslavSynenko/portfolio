@@ -1,4 +1,4 @@
-.container {
+.gradient-container {
   background: linear-gradient(
     110deg,
     map-get($colors, secondary-light) 65%,
@@ -14,16 +14,37 @@
 
       h1 {
         font-size: 10rem;
-        text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.404);
+        text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.4);
       }
 
-      .button-go-home,
-      .button-go-back {
-        margin-top: 30px;
-      }
+      .buttons-container {
+        .button-go-home,
+        .button-go-back {
+          margin-top: 30px;
+        }
 
-      .button-go-home {
-        margin-right: 10px;
+        .button-go-home {
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $viewport-small) {
+    .page-not-found {
+      .flex-container {
+        h1 {
+          font-size: 9rem;
+        }
+
+        .buttons-container {
+          display: flex;
+          flex-direction: column;
+
+          .button-go-home {
+            margin-right: 0;
+          }
+        }
       }
     }
   }
