@@ -58,9 +58,8 @@ const ContactForm = () => {
 
   return (
     <form className="contact-form" onSubmit={handleSubmit}>
+      <h2 className="contact-form-title">Send Message</h2>
       <div className="field-wrapper">
-        <label htmlFor="name">Name *</label>
-        <br />
         <input
           type="text"
           name="name"
@@ -69,10 +68,9 @@ const ContactForm = () => {
           onChange={handleChange}
           required
         />
+        <label htmlFor="name">Name *</label>
       </div>
       <div className="field-wrapper">
-        <label htmlFor="email">Email *</label>
-        <br />
         <input
           type="email"
           name="email"
@@ -81,21 +79,20 @@ const ContactForm = () => {
           onChange={handleChange}
           required
         />
+        <label htmlFor="email">Email *</label>
       </div>
       <div className="field-wrapper">
-        <label htmlFor="phone">Phone (optional)</label>
-        <br />
         <input
           type="tel"
           name="phone"
           id="phone"
           value={formValues.phone}
           onChange={handleChange}
+          required
         />
+        <label htmlFor="phone">Phone *</label>
       </div>
       <div className="field-wrapper">
-        <label htmlFor="message">Message *</label>
-        <br />
         <textarea
           id="message"
           name="message"
@@ -104,6 +101,7 @@ const ContactForm = () => {
           onChange={handleChange}
           required
         />
+        <label htmlFor="message">Message *</label>
       </div>
       {status.status === 'error' && (
         <p className="error-status">status.message</p>
@@ -116,7 +114,7 @@ const ContactForm = () => {
           className="button-primary"
           disabled={isSubmitting}
         >
-          Send Message
+          Send
         </button>
       )}
     </form>

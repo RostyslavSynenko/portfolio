@@ -37,4 +37,8 @@
       }
     }
   }
+
+  @include sm-screen {
+    display: none;
+  }
 }

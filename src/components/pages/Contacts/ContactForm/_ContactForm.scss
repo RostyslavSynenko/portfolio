@@ -1,6 +1,10 @@
 .contact-form {
   width: 100%;
 
+  .contact-form-title {
+    margin-bottom: 35px;
+  }
+
   input,
   textarea {
     width: 100%;
@@ -13,11 +17,29 @@
     &:focus {
       border-bottom: 1px solid map-get($colors, primary);
     }
+
+    &:focus,
+    &:valid,
+    &[type='email']:not([value='']) {
+      ~ label {
+        transform: translateY(-20px);
+        color: map-get($colors, secondary-dark);
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+      }
+    }
   }
 
   .field-wrapper {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
+
+    label {
+      position: absolute;
+      left: 0;
+      padding: 5px 0;
+      transition: all 0.5s;
+    }
 
     .message-field {
       height: 100px;
@@ -33,5 +55,25 @@
   .success-status {
     padding: 10px 25px;
     font-weight: 700;
+  }
+
+  @include md-screen {
+    .contact-form-title {
+      text-align: center;
+    }
+
+    button[type='submit'] {
+      display: block;
+      margin: auto;
+      min-width: 50%;
+    }
+  }
+
+  @include sm-screen {
+    button[type='submit'] {
+      display: block;
+      margin: auto;
+      width: 100%;
+    }
   }
 }

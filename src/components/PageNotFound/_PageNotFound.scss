@@ -30,7 +30,7 @@
     }
   }
 
-  @media screen and (max-width: $viewport-small) {
+  @include sm-screen {
     .page-not-found {
       .flex-container {
         h1 {

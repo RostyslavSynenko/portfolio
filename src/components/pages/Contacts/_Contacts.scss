@@ -1,12 +1,11 @@
 .contacts-page {
-  .photo-wrapper {
+  .photo-container {
     position: relative;
     height: calc(100vh - 70px);
     background-image: url('../../../assets/skyscrapers_photo.jpeg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
-    z-index: -1;
     color: white;
 
     &:before {
@@ -23,6 +22,8 @@
     .contacts-description {
       position: absolute;
       top: 25%;
+      left: 40px;
+      right: 40px;
       z-index: 1;
 
       .contacts-page-title {
@@ -46,23 +47,109 @@
       width: 90%;
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
 
-      &.slide-bottom {
-        margin-top: -300px;
-      }
-
       .contact-form-wrapper {
         width: 60%;
         padding: 50px;
         background-color: white;
+        z-index: 2;
       }
 
-      .contact-links-wrapper {
+      .contact-info-wrapper {
         width: 40.5%;
         background-color: rgba(
           map-get($colors, primary),
           0.7
         );
         backdrop-filter: blur(15px);
+        z-index: 2;
+      }
+    }
+  }
+
+  @include lg-screen {
+    .photo-container {
+      .contacts-description {
+        .contacts-page-title {
+          font-size: 3.5rem;
+        }
+
+        .text-block {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .contacts-wrapper {
+      .contacts-container {
+        width: 100%;
+      }
+    }
+  }
+
+  @include md-screen {
+    .photo-container {
+      .contacts-description {
+        .contacts-page-title {
+          font-size: 3rem;
+        }
+
+        .text-block {
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    .contacts-wrapper {
+      .contacts-container {
+        flex-direction: column;
+        width: 90%;
+
+        .contact-form-wrapper {
+          width: 100%;
+        }
+
+        .contact-info-wrapper {
+          width: 100%;
+          background-color: rgba(0, 0, 0, 0.9);
+          backdrop-filter: unset;
+        }
+      }
+    }
+  }
+
+  @include md-screen {
+    .photo-container {
+      .contacts-description {
+        top: 35%;
+
+        .contacts-page-title {
+          font-size: 2.5rem;
+        }
+
+        .text-block {
+          margin-top: 15px;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  @include sm-screen {
+    .photo-container {
+      .contacts-description {
+        left: 15px;
+        right: 15px;
+      }
+    }
+
+    .contacts-wrapper {
+      .contacts-container {
+        width: 100%;
+        box-shadow: 0 0 13px black;
+
+        .contact-form-wrapper {
+          padding: 30px;
+        }
       }
     }
   }

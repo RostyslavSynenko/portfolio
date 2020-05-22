@@ -60,7 +60,7 @@
     }
   }
 
-  @media screen and (max-width: $viewport-large) {
+  @include lg-screen {
     .flex-container {
       .project-description-container {
         .project-title {
@@ -82,7 +82,7 @@
     }
   }
 
-  @media screen and (max-width: $viewport-medium) {
+  @include md-screen {
     .flex-container {
       flex-direction: column;
 
@@ -101,7 +101,7 @@
     }
   }
 
-  @media screen and (max-width: $viewport-small) {
+  @include sm-screen {
     padding: 20px;
 
     .flex-container {

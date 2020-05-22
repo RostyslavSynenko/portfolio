@@ -26,7 +26,7 @@ header {
     }
   }
 
-  @media screen and (max-width: $viewport-medium) {
+  @include md-screen {
     .logo {
       i {
         display: none;
@@ -34,7 +34,7 @@ header {
     }
   }
 
-  @media screen and (max-width: $viewport-small) {
+  @include sm-screen {
     .logo {
       padding-left: 10px;
       font-size: 1.4rem;

@@ -70,7 +70,7 @@ body {
   }
 }
 
-@media screen and (max-width: $viewport-small) {
+@include sm-screen {
   .about-page,
   .start-page,
   .projects-page,

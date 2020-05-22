@@ -31,7 +31,7 @@ const Contacts = () => {
 
   return (
     <section className="contacts-page">
-      <div className="photo-wrapper">
+      <div className="photo-container">
         <div className="container">
           <div className="contacts-description">
             <h2 className="contacts-page-title">
@@ -54,7 +54,7 @@ const Contacts = () => {
             <div className="contact-form-wrapper">
               <ContactForm />
             </div>
-            <div className="contact-links-wrapper">
+            <div className="contact-info-wrapper">
               <ContactInfo />
             </div>
           </div>

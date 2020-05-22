@@ -1,20 +1,32 @@
 .home-page {
   .start-page {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 70px);
-    background-image: url('../../../assets/start-logo.jpg');
+    background-image: url('../../../assets/start-logo.jpeg');
     background-position: center;
-    background-size: 100% 100%;
+    background-size: cover;
     background-attachment: fixed;
     overflow: hidden;
-    animation: backZoomOut 1s ease-out;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
 
     .start-logo-container {
       text-align: center;
       color: #cccccc;
+      z-index: 1;
       animation: fadeOut 1.5s ease-out;
 
       .quote {
@@ -87,7 +99,7 @@
     }
   }
 
-  @media screen and (max-width: $viewport-large) {
+  @include lg-screen {
     .start-page {
       .start-logo-container {
         .quote {
@@ -96,7 +108,7 @@
       }
     }
 
-    .container {
+    .gradient-container {
       .intro-container {
         padding-right: 40px;
 
@@ -109,7 +121,7 @@
     }
   }
 
-  @media screen and (max-width: $viewport-medium) {
+  @include md-screen {
     .start-page {
       .start-logo-container {
         .quote {
@@ -118,7 +130,7 @@
       }
     }
 
-    .container {
+    .gradient-container {
       .intro-container {
         padding-right: 40px;
 
@@ -142,7 +154,7 @@
     }
   }
 
-  @media screen and (max-width: $viewport-small) {
+  @include sm-screen {
     .start-page {
       .start-logo-container {
         .quote {
@@ -151,7 +163,7 @@
       }
     }
 
-    .container {
+    .gradient-container {
       .intro-container {
         flex-direction: column-reverse;
         padding: 15px;
@@ -159,6 +171,12 @@
         .intro {
           padding: 0;
           padding-top: 20px;
+
+          .text-block,
+          .briefly-about {
+            text-align: center;
+            margin: 0 auto;
+          }
 
           button {
             margin: 50px auto 0;
@@ -173,16 +191,6 @@
           }
         }
       }
-    }
-  }
-
-  @keyframes backZoomOut {
-    from {
-      background-size: 120% 120%;
-    }
-
-    to {
-      background-size: 100% 100%;
     }
   }
 

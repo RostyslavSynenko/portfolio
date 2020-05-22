@@ -99,7 +99,7 @@ nav {
     }
   }
 
-  @media screen and (max-width: $viewport-large) {
+  @include lg-screen {
     .navigation-links {
       position: absolute;
       top: -100%;
@@ -115,6 +115,7 @@ nav {
         map-get($colors, primary),
         5%
       );
+      font-size: 1.3rem;
       opacity: 0;
       transform: translateY(-100%);
       transition: all 0.5s;
@@ -141,7 +142,7 @@ nav {
     }
   }
 
-  @media screen and (max-width: $viewport-small) {
+  @include sm-screen {
     .burger-menu {
       margin-right: 10px;
     }

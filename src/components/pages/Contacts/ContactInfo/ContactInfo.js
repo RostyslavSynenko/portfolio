@@ -12,18 +12,22 @@ const ContactInfo = () => {
         <ul className="info-list">
           <li className="info-item">
             <i className="fas fa-map-marked-alt icon"></i>
-            <span>
+            <span className="info-item-text">
               Lviv, Lviv Oblast, Ukraine
               <br /> 7900
             </span>
           </li>
           <li className="info-item">
             <i className="fas fa-mobile-alt icon"></i>
-            <span>+380967146518</span>
+            <span className="info-item-text">
+              +38(096)7146518
+            </span>
           </li>
           <li className="info-item">
             <i className="fas fa-at icon"></i>
-            <span>rostyslav.synenko@gmail.com</span>
+            <span className="info-item-text">
+              rostyslav.synenko@gmail.com
+            </span>
           </li>
         </ul>
       </div>

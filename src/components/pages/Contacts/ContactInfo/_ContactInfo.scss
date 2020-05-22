@@ -4,10 +4,12 @@
   height: 100%;
   padding: 50px;
   color: map-get($colors, secondary-dark);
+  z-index: 2;
 
   .contact-info-title {
     color: white;
     text-align: center;
+    margin-bottom: 15px;
   }
 
   .info .info-list .info-item .icon,
@@ -24,7 +26,7 @@
         display: flex;
         margin: 20px 0;
 
-        span {
+        .info-item-text {
           margin-left: 10px;
         }
       }
@@ -48,6 +50,70 @@
 
         &:hover {
           color: white;
+        }
+      }
+    }
+  }
+
+  @include lg-screen {
+    padding: 30px;
+
+    .info {
+      .info-list {
+        .info-item {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+
+          .info-item-text {
+            margin: 10px 0 0 0;
+          }
+        }
+      }
+    }
+  }
+
+  @include md-screen {
+    padding: 50px;
+
+    .info {
+      .info-list {
+        .info-item {
+          flex-direction: row;
+          justify-content: center;
+          align-items: initial;
+          text-align: initial;
+
+          .info-item-text {
+            margin: 0 0 0 15px;
+          }
+        }
+      }
+    }
+
+    .links {
+      margin-top: 50px;
+    }
+  }
+
+  @include sm-screen {
+    padding: 30px;
+
+    .info .info-list .info-item .icon,
+    .links .links-list .link-item {
+      font-size: 25px;
+    }
+
+    .info {
+      .info-list {
+        .info-item {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+
+          .info-item-text {
+            margin: 10px 0 0 0;
+          }
         }
       }
     }

@@ -1,0 +1,30 @@
+@mixin sm-screen {
+  @media screen and (max-width: $viewport-small) {
+    @content;
+  }
+}
+
+@mixin md-screen {
+  @media screen and (max-width: $viewport-medium) {
+    @content;
+  }
+}
+
+@mixin lg-screen {
+  @media screen and (max-width: $viewport-large) {
+    @content;
+  }
+}
+
+@mixin lg-screen {
+  @media screen and (max-width: $viewport-large) {
+    @content;
+  }
+}
+
+// Custom screen
+@mixin rwd($screen) {
+  @media (min-width: #{$screen}px) {
+    @content;
+  }
+}

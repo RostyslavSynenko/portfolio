@@ -25,11 +25,11 @@
     }
   }
 
-  @media screen and (max-width: $viewport-medium) {
+  @include md-screen {
     margin-top: 0;
   }
 
-  @media screen and (max-width: $viewport-small) {
+  @include sm-screen {
     flex-direction: column;
   }
 }
