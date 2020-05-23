@@ -1,7 +1,7 @@
 footer {
   background-color: map-get($colors, secondary-light);
 
-  .footer-container {
+  .footer-links-container {
     display: flex;
     justify-content: center;
 
@@ -61,7 +61,7 @@ footer {
   }
 
   @include md-screen {
-    .footer-container {
+    .footer-links-container {
       .links {
         .links-list {
           .link-item {
@@ -73,7 +73,7 @@ footer {
   }
 
   @include sm-screen {
-    .footer-container {
+    .footer-links-container {
       .links {
         .links-list {
           flex-direction: column;

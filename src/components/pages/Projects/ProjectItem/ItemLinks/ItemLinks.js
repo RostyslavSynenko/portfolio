@@ -4,7 +4,7 @@ import linkArrow from '../../../../../assets/link-arrow-right.svg';
 
 const ItemLinks = ({ gitHubUrl, link }) => {
   return (
-    <div className="links-container">
+    <div className="project-links-container">
       <a
         href={gitHubUrl}
         target="_blank"

@@ -5,7 +5,7 @@ import SocialMediaLinks from '../../shared/SocialMediaLinks';
 const Footer = () => {
   return (
     <footer>
-      <div className="footer-container">
+      <div className="footer-links-container">
         <div className="links">
           <SocialMediaLinks />
         </div>
