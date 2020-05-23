@@ -1,21 +1,24 @@
-.projects-page {
-  padding: 40px;
-
-  .projects-title {
-    font-size: 2.5rem;
-  }
-
-  @include md-screen {
+.container {
+  .projects-page {
     .projects-title {
-      font-size: 2rem;
+      font-size: 2.5rem;
+    }
+  }
+  @include md-screen {
+    .projects-page {
+      .projects-title {
+        font-size: 2rem;
+      }
     }
   }
 
   @include sm-screen {
     padding: 15px;
 
-    .projects-title {
-      font-size: 1.5rem;
+    .projects-page {
+      .projects-title {
+        font-size: 1.5rem;
+      }
     }
   }
 }

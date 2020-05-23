@@ -7,9 +7,11 @@ const Blog = () => {
   }, []);
 
   return (
-    <section className="blog-page">
-      <h2>Blog</h2>
-    </section>
+    <div className="container">
+      <section className="blog-page">
+        <h2>Blog</h2>
+      </section>
+    </div>
   );
 };
 

@@ -14,13 +14,15 @@ const Projects = () => {
   }, []);
 
   return (
-    <div className="projects-page">
-      <section className="projects">
-        <h2 className="projects-title">Projects</h2>
-        <div className="projects-container">
-          {projectsElements}
-        </div>
-      </section>
+    <div className="container">
+      <div className="projects-page">
+        <section className="projects">
+          <h2 className="projects-title">Projects</h2>
+          <div className="projects-container">
+            {projectsElements}
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

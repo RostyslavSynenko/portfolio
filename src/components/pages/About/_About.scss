@@ -1,91 +1,170 @@
 .about-page {
-  .title {
-    font-size: 2.5rem;
+  .full-screen-container {
+    &:nth-child(odd) {
+      background-color: map-get($colors, secondary-light);
+      color: map-get($colors, primary);
+
+      .title {
+        color: rgba(map-get($colors, secondary-dark), 0.1);
+      }
+    }
+
+    &:nth-child(even) {
+      background-color: map-get($colors, primary);
+      color: map-get($colors, secondary-light);
+
+      *::selection {
+        color: black;
+        background-color: white;
+      }
+
+      .title {
+        color: rgba(map-get($colors, secondary-light), 0.1);
+      }
+    }
+
+    .container {
+      padding: 0 40px;
+    }
   }
 
+  .title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 11rem;
+    pointer-events: none;
+  }
+
+  .about-section,
   .hobbies-section,
   .skills-section {
-    margin-top: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 70px);
   }
 
-  .about-me-container,
+  .about-container,
   .hobbies-container,
   .skills-container {
-    padding-left: 20px;
+    width: 80%;
+    margin: auto;
 
     .text-block {
       margin-bottom: 10px;
     }
   }
 
-  .skills-container {
-    .skills-list {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-
-      .skill-item {
-        position: relative;
-        top: 0;
+  .skills-section {
+    .skills-container {
+      .skills-list {
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        min-width: 150px;
-        height: 80px;
-        margin: 5px;
-        transition: all 0.3s;
+        flex-wrap: wrap;
 
-        &:hover {
-          top: -3px;
-          background-color: map-get(
-            $colors,
-            secondary-light
-          );
-          box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        .skill-item {
+          position: relative;
+          top: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          min-width: 150px;
+          height: 80px;
+          margin: 5px;
+          transition: all 0.3s;
+
+          &:hover {
+            top: -5px;
+          }
+
+          .skill-image {
+            filter: drop-shadow(2px 4px 6px black);
+          }
         }
+      }
+    }
+
+    .cv-link {
+      display: block;
+      align-self: flex-start;
+      margin: 15px 0;
+    }
+  }
+
+  @include lg-screen {
+    .full-screen-container {
+      .title {
+        font-size: 8rem;
       }
     }
   }
 
-  .cv-link {
-    display: inline-block;
-    margin-top: 50px;
-  }
-
   @include md-screen {
-    .title {
-      font-size: 2rem;
+    .full-screen-container {
+      .title {
+        font-size: 6rem;
+      }
+    }
+
+    .about-container,
+    .hobbies-container,
+    .skills-container {
+      width: 100%;
+    }
+
+    .skills-section {
+      .cv-link {
+        align-self: center;
+      }
     }
   }
 
   @include sm-screen {
-    .title {
-      font-size: 1.5rem;
+    .full-screen-container {
+      .container {
+        padding: 0 10px;
+      }
+
+      .title {
+        font-size: 3.5rem;
+      }
     }
 
-    .about-me-container,
-    .hobbies-container,
-    .skills-container {
-      padding: 0;
+    .about-section,
+    .hobbies-section,
+    .skills-section {
+      padding-top: 60px;
 
       .text-block {
         text-align: justify;
       }
     }
 
-    .skills-container {
-      .skills-list {
-        .skill-item {
-          min-width: 110px;
+    .full-screen-container {
+      .container.skills-section-outer {
+        padding: 20px 0;
+
+        .skills-section {
+          padding-top: 15px;
+
+          .skills-container {
+            .skills-list {
+              .skill-item {
+                min-width: 90px;
+              }
+            }
+          }
+
+          .cv-link {
+            margin-bottom: 0;
+          }
         }
       }
-    }
-
-    .cv-link {
-      margin-left: 50%;
-      transform: translateX(-50%);
     }
   }
 }

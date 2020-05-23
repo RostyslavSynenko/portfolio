@@ -21,22 +21,9 @@ body {
   }
 }
 
-.home-page .start-page .start-logo-container,
-.about-page,
-.projects-page,
-.contacts-page .container,
-.blog-page,
-.page-not-found {
+.container {
   max-width: $max-container-width;
   margin: 0 auto;
-}
-
-.about-page,
-.start-page,
-.projects-page,
-.contacts-page .container,
-.blog-page,
-.page-not-found {
   padding: 40px;
 }
 
@@ -71,12 +58,7 @@ body {
 }
 
 @include sm-screen {
-  .about-page,
-  .start-page,
-  .projects-page,
-  .contacts-page .container,
-  .blog-page,
-  .page-not-found {
+  .container {
     padding: 15px;
   }
 }
