@@ -17,7 +17,7 @@ const Blog = () => {
     <div className="full-screen-container">
       <div className="container">
         <section className="blog-page">
-          <h2>Blog</h2>
+          <h2 className="blog-page-title">Blog</h2>
           {articles}
         </section>
       </div>

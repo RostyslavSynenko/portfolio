@@ -15,37 +15,47 @@ const Article = ({
 
   const tagsList = tags.map((tag, i) => [
     // separate tags with a coma
-    i > 0 && ', ',
-    <a
-      href={`/api/category/${tag}`}
-      rel="category tag"
-      key={tag}
-    >
-      {tag}
-    </a>
+    i > 0 && (
+      <span className="coma" key={`coma-${tag}`}>
+        ,
+      </span>
+    ),
+    <li className="category-tag" key={tag}>
+      <a href={`/api/category/${tag}`} rel="category tag">
+        {tag}
+      </a>
+    </li>
   ]);
 
   return (
     <article className="article">
-      <div className="post-header">
-        <div>
-          {tagsList}
-          <span className="sep">/</span>
-          <time>{formatedDate}</time>
+      <div className="article-container">
+        <div className="post-header">
+          <div className="tags-date">
+            <ul className="tags-list">{tagsList}</ul>
+            <span className="sep">/</span>
+            <time>{formatedDate}</time>
+          </div>
+          <div className="post-title">
+            <h3>
+              <Link to={`/article/${id}`} title={title}>
+                {title}
+              </Link>
+            </h3>
+          </div>
         </div>
-        <div className="post-title">
-          <h3>
-            <Link to={`/article/${id}`} title={title}>
-              {title}
-            </Link>
-          </h3>
+        <div className="post-content">
+          <p className="text-block">{text}</p>
+          <Link to={`/article/${id}`} className="read-more">
+            Read more
+          </Link>
         </div>
       </div>
-      <div className="post-content">
-        <p className="text-block">{text}</p>
-        <Link to={`/article/${id}`}>Read more</Link>
-      </div>
-      <img src={imageUrl} alt="Post background" />
+      <img
+        src={imageUrl}
+        alt="Post background"
+        className="post-backgound-img"
+      />
     </article>
   );
 };

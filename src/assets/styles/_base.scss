@@ -24,7 +24,7 @@ body {
 .container {
   max-width: $max-container-width;
   margin: 0 auto;
-  padding: 40px;
+  padding: 15px;
 }
 
 .button-primary {
@@ -54,6 +54,12 @@ body {
       box-shadow: none;
       cursor: default;
     }
+  }
+}
+
+@include lg-screen {
+  .container {
+    padding: 40px;
   }
 }
 

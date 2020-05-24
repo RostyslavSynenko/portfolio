@@ -1,3 +1,11 @@
 .full-screen-container {
   background-color: map-get($colors, secondary-light);
+
+  .blog-page {
+    min-height: calc(100vh - #{$header-height} - 167px);
+
+    .blog-page-title {
+      font-size: 2.5rem;
+    }
+  }
 }
