@@ -1,7 +1,8 @@
 .contacts-page {
   .photo-container {
     position: relative;
-    height: calc(100vh - #{$header-height});
+    height: 100vh;
+    padding-top: $header-height;
     background-image: url('../../../assets/skyscrapers_photo.jpeg');
     background-attachment: fixed;
     background-size: cover;

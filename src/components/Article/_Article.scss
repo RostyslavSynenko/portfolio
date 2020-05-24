@@ -1,7 +1,7 @@
 .article {
   .article-image-container {
     position: relative;
-    height: 400px;
+    height: calc(400px + #{$header-height});
 
     .article-image {
       position: absolute;

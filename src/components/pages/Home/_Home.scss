@@ -1,6 +1,7 @@
 .home-page {
   .start-page {
-    height: calc(100vh - #{$header-height});
+    height: 100vh;
+    padding-top: $header-height;
     background-image: url('../../../assets/start-logo.jpg');
     background-position: center;
     background-size: cover;
@@ -116,7 +117,7 @@
       }
     }
 
-    .gradient-container {
+    .full-screen-container {
       .container {
         padding-right: 40px;
 
@@ -142,7 +143,7 @@
       }
     }
 
-    .gradient-container {
+    .full-screen-container {
       .container {
         .hero-container {
           .hero {
@@ -177,7 +178,7 @@
       }
     }
 
-    .gradient-container {
+    .full-screen-container {
       .container {
         padding: 30px 15px 25px;
 
