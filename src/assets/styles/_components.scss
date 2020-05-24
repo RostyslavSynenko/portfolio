@@ -10,7 +10,11 @@
 @import '../../components/pages/Contacts/ContactInfo/ContactInfo';
 @import '../../components/pages/Contacts/ContactForm/ContactForm';
 @import '../../components/pages/Blog/Blog';
-@import '../../components/pages/Blog/Article/Article';
+@import '../../components/pages/Blog/PostItem/PostItem';
+@import '../../components/Article/Article';
 @import '../../components/Footer/Footer';
 @import '../../components/PageNotFound/PageNotFound';
-@import '../../shared/ScrollDown/ScrollDown.scss';
+@import '../../components/PageLoader/PageLoader';
+@import '../../shared/ScrollDown/ScrollDown';
+@import '../../shared/TagsList/TagsList';
+@import '../../shared/TagsDate/TagsDate';

@@ -7,6 +7,7 @@ import About from '../pages/About';
 import Projects from '../pages/Projects';
 import Contacts from '../pages/Contacts';
 import Blog from '../pages/Blog';
+import Article from '../Article';
 import Footer from '../Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
@@ -19,17 +20,20 @@ const App = () => {
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/about" exact>
+          <Route path="/about">
             <About />
           </Route>
-          <Route path="/projects" exact>
+          <Route path="/projects">
             <Projects />
           </Route>
-          <Route path="/contacts" exact>
+          <Route path="/contacts">
             <Contacts />
           </Route>
-          <Route path="/blog" exact>
+          <Route path="/blog">
             <Blog />
+          </Route>
+          <Route path="/article/:title/:id">
+            <Article />
           </Route>
           <Route path="*">
             <PageNotFound />

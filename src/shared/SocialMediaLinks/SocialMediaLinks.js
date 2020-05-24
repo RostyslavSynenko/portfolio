@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { socialMedia } from './consts';
+import { socialMedia } from '../../configs';
 
 const SocialMediaLinks = ({ isTitle = true }) => {
   const links = socialMedia.map(

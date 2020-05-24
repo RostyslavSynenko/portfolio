@@ -45,7 +45,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="gradient-container">
+      <div className="full-screen-container">
         <div className="container">
           <div className="hero-container">
             <div className="hero">

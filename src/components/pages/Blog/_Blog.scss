@@ -8,4 +8,10 @@
       font-size: 2.5rem;
     }
   }
+
+  @include sm-screen {
+    .container {
+      padding: 15px 10px;
+    }
+  }
 }

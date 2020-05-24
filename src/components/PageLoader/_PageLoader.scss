@@ -1,0 +1,40 @@
+.wave-loader-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: $header-height;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: lighten(map-get($colors, primary), 5%);
+  z-index: 100;
+
+  .wave-loader {
+    position: relative;
+    -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+    letter-spacing: 10px;
+
+    .wave-letter {
+      position: relative;
+      display: inline-block;
+      color: white;
+      font-size: 2rem;
+      text-transform: uppercase;
+      animation: wave 1s ease-in-out infinite;
+    }
+  }
+
+  @keyframes wave {
+    0% {
+      transform: translateY(0);
+    }
+    20% {
+      transform: translateY(-20px);
+    }
+    40%,
+    100% {
+      transform: translateY(0);
+    }
+  }
+}

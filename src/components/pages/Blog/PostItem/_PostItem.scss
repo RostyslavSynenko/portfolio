@@ -1,38 +1,14 @@
-.article {
+.post {
   position: relative;
   margin-top: 40px;
 
-  .article-container {
+  .post-container {
     position: relative;
     width: 40%;
     height: 100%;
     padding: 70px 60px;
     background-color: rgba(255, 255, 255, 0.9);
     z-index: 1;
-
-    .post-header {
-      .tags-date {
-        display: flex;
-        justify-content: flex-start;
-        text-transform: uppercase;
-
-        .tags-list {
-          display: flex;
-
-          .coma {
-            margin-right: 5px;
-          }
-        }
-
-        .sep {
-          margin: 0 10px;
-        }
-
-        time {
-          color: map-get($colors, secondary-dark);
-        }
-      }
-    }
 
     .post-title {
       a {
@@ -91,7 +67,7 @@
   }
 
   @include lg-screen {
-    .article-container {
+    .post-container {
       width: 65%;
     }
   }
@@ -99,7 +75,7 @@
   @include md-screen {
     padding: 50px;
 
-    .article-container {
+    .post-container {
       width: 100%;
     }
   }
@@ -107,7 +83,7 @@
   @include sm-screen {
     padding: 50px 10px;
 
-    .article-container {
+    .post-container {
       padding: 50px 15px;
 
       .post-header {

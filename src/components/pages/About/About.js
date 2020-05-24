@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { skills, cvUrl } from './const';
+import { skills, cvUrl } from '../../../configs';
 
 const About = () => {
   const skillsList = skills.map(({ title, url }) => {

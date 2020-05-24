@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 
-import Article from './Article';
-import { mockArticles } from './const';
+import PostItem from './PostItem';
+import { mockArticles } from '../../../configs';
 
 const Blog = () => {
   const articles = mockArticles.map(article => (
-    <Article {...article} key={article.id} />
+    <PostItem {...article} key={article.id} />
   ));
 
   useEffect(() => {
