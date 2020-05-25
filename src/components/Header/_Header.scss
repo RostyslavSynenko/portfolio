@@ -8,10 +8,12 @@ header {
   background-color: lighten(map-get($colors, primary), 5%);
   box-shadow: 0 2px 3px map-get($colors, primary);
   z-index: 1000;
+  opacity: 1;
   transition: all 0.5s;
 
   &.hide-header {
     box-shadow: none;
+    opacity: 0;
     transform: translateY(-#{$header-height});
   }
 

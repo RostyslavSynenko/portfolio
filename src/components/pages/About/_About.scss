@@ -150,10 +150,14 @@
 
     .full-screen-container {
       .container.skills-section-outer {
-        padding: 20px 0;
+        padding: 0;
 
         .skills-section {
           padding-top: 15px;
+
+          .title {
+            padding-left: 10px;
+          }
 
           .skills-container {
             .skills-list {
@@ -161,10 +165,6 @@
                 min-width: 90px;
               }
             }
-          }
-
-          .cv-link {
-            margin-bottom: 0;
           }
         }
       }

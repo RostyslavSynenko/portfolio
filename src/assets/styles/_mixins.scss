@@ -16,15 +16,58 @@
   }
 }
 
-@mixin lg-screen {
-  @media screen and (max-width: $viewport-large) {
-    @content;
-  }
-}
-
 // Custom screen
 @mixin rwd($screen) {
   @media (min-width: #{$screen}px) {
     @content;
+  }
+}
+
+@mixin fly-letter($per) {
+  .fly-letter:nth-child(1) {
+    transform: translate(
+      letter-translate(-200px, $per),
+      letter-translate(-200px, $per)
+    );
+  }
+
+  .fly-letter:nth-child(2) {
+    transform: translate(
+      letter-translate(20px, $per),
+      letter-translate(100px, $per)
+    );
+  }
+
+  .fly-letter:nth-child(3) {
+    transform: translate(
+      letter-translate(-150px, $per),
+      letter-translate(-80px, $per)
+    );
+  }
+  .fly-letter:nth-child(4) {
+    transform: translate(
+      letter-translate(10px, $per),
+      letter-translate(-200px, $per)
+    );
+  }
+  .fly-letter:nth-child(5) {
+    transform: translate(
+      letter-translate(-300px, $per),
+      letter-translate(200px, $per)
+    );
+  }
+
+  .fly-letter:nth-child(6) {
+    transform: translate(
+      letter-translate(50px, $per),
+      letter-translate(-50px, $per)
+    );
+  }
+
+  .fly-letter:nth-child(7) {
+    transform: translate(
+      letter-translate(30px, $per),
+      letter-translate(200px, $per)
+    );
   }
 }

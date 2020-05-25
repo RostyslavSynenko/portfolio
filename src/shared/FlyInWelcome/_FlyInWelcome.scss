@@ -1,0 +1,29 @@
+.fly-in-text {
+  .fly-letter {
+    display: inline-block;
+    margin-right: 50px;
+    font-size: 6rem;
+    color: white;
+    text-shadow: 0 0 2px white, 0 0 30px black;
+    opacity: 1;
+    transition: transform 2.5s ease, opacity 2.5s ease;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &.hidden {
+    .fly-letter {
+      opacity: 0;
+    }
+
+    @include fly-letter(1);
+  }
+
+  @include sm-screen {
+    &.hidden {
+      @include fly-letter(0.5);
+    }
+  }
+}

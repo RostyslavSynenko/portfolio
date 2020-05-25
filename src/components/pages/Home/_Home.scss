@@ -18,6 +18,7 @@
       background-color: rgba(0, 0, 0, 0.3);
       z-index: 1;
     }
+
     .container {
       position: relative;
       display: flex;
@@ -26,23 +27,11 @@
       align-items: center;
       height: 100%;
 
-      .start-logo-container {
+      .start-section-container {
         position: relative;
         text-align: center;
         color: #cccccc;
         z-index: 1;
-        animation: fadeOut 1.5s ease-out;
-
-        .quote {
-          font-size: 4rem;
-          letter-spacing: 1px;
-          text-shadow: 0 0 30px black;
-
-          .author {
-            font-size: 1.5rem;
-            text-shadow: 0 0 10px black;
-          }
-        }
       }
     }
   }
@@ -53,6 +42,7 @@
       map-get($colors, secondary-light) 65%,
       white 65%
     );
+
     .container {
       padding-right: 0;
 
@@ -72,13 +62,13 @@
             font-size: 1.5rem;
           }
 
-          .name {
+          .hero-name {
             font-size: 3rem;
             letter-spacing: 1px;
             font-weight: 700;
           }
 
-          .briefly-about {
+          .hero-about {
             font-size: 1rem;
           }
 
@@ -87,13 +77,13 @@
           }
         }
 
-        .photo-container {
+        .hero-photo-container {
           display: flex;
           flex-direction: column;
           justify-content: center;
           width: 100%;
 
-          .photo {
+          .hero-photo {
             max-width: 500px;
             width: 100%;
             height: auto;
@@ -109,9 +99,11 @@
   @include lg-screen {
     .start-page {
       .container {
-        .start-logo-container {
-          .quote {
-            font-size: 3.5rem;
+        .start-section-container {
+          .fly-in-text {
+            .fly-letter {
+              font-size: 4.5rem;
+            }
           }
         }
       }
@@ -123,7 +115,7 @@
 
         .hero-container {
           .hero {
-            .name {
+            .hero-name {
               font-size: 2.5rem;
             }
           }
@@ -135,9 +127,16 @@
   @include md-screen {
     .start-page {
       .container {
-        .start-logo-container {
-          .quote {
-            font-size: 3rem;
+        .start-section-container {
+          .fly-in-text {
+            .fly-letter {
+              margin-right: 30px;
+              font-size: 3.5rem;
+
+              &:last-child {
+                margin-right: 0;
+              }
+            }
           }
         }
       }
@@ -151,13 +150,13 @@
               font-size: 1.3rem;
             }
 
-            .name {
+            .hero-name {
               font-size: 2rem;
             }
           }
 
-          .photo-container {
-            .photo {
+          .hero-photo-container {
+            .hero-photo {
               padding: 0;
               border-width: 5px;
             }
@@ -170,9 +169,16 @@
   @include sm-screen {
     .start-page {
       .container {
-        .start-logo-container {
-          .quote {
-            font-size: 2.5rem;
+        .start-section-container {
+          .fly-in-text {
+            .fly-letter {
+              margin-right: 10px;
+              font-size: 2.5rem;
+
+              &:last-child {
+                margin-right: 0;
+              }
+            }
           }
         }
       }
@@ -190,7 +196,7 @@
             padding-top: 20px;
 
             .text-block,
-            .briefly-about {
+            .hero-about {
               text-align: center;
               margin: 0 auto;
             }
@@ -200,8 +206,8 @@
             }
           }
 
-          .photo-container {
-            .photo {
+          .hero-photo-container {
+            .hero-photo {
               max-width: 400px;
               margin: auto;
               border-width: 15px;
@@ -209,16 +215,6 @@
           }
         }
       }
-    }
-  }
-
-  @keyframes fadeOut {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
     }
   }
 }
