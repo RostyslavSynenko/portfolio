@@ -1,4 +1,15 @@
 import articlePhoto1 from '../assets/blog/article_photo_1.jpeg';
+import defibrillatorsMapUrl from '../assets/projects/defibrillators-map.png';
+import barcelonaUrl from '../assets/projects/barcelona-fan-website.jpg';
+import portfolioVer1Url from '../assets/projects/my-portfolio-v1.jpg';
+
+export const navLinks = [
+  { path: '/', title: 'Home', exact: true },
+  { path: '/about', title: 'About' },
+  { path: '/projects', title: 'Projects' },
+  { path: '/contacts', title: 'Contacts' },
+  { path: '/blog', title: 'Blog' }
+];
 
 export const mockArticles = [
   {
@@ -101,6 +112,65 @@ export const skills = [
     title: 'Bootstrap',
     url:
       'https://img.icons8.com/color/48/000000/bootstrap.png'
+  }
+];
+
+export const projects = [
+  {
+    title: 'Defibrillators Map',
+    description:
+      'This is a volunteer health care project. We developed a service that could help people to find the nearest place with defibrillator.',
+    imgUrl: defibrillatorsMapUrl,
+    gitHubUrl: 'https://github.com/LV-469/defibrillator',
+    projectLink: '',
+    technologies: [
+      'React',
+      'Redux',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'Mapbox',
+      'Material-UI',
+      'JSS',
+      'Formik',
+      'Jest',
+      'Axios',
+      'Passport.js',
+      'JWT',
+      'Bcrypt',
+      'Socket.io',
+      'Git',
+      'GitHub'
+    ]
+  },
+  {
+    title: 'Barcelona Fan Website',
+    description: 'IT course web project with a few pages.',
+    imgUrl: barcelonaUrl,
+    gitHubUrl:
+      'https://github.com/RostyslavSynenko/Lv-469.NodeJS/tree/master/webtasks',
+    projectLink: '',
+    technologies: [
+      'HTML',
+      'CSS',
+      'JavaScript',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'localStorage',
+      'indexedDB'
+    ]
+  },
+  {
+    title: 'RS Portfolio',
+    description:
+      "My first site I've ever made. Remember where you started",
+    imgUrl: portfolioVer1Url,
+    gitHubUrl:
+      'https://github.com/RostyslavSynenko/my-project-portfolio',
+    projectLink:
+      'https://rostyslavsynenko.github.io/my-project-portfolio/',
+    technologies: ['HTML', 'CSS', 'JavaScript']
   }
 ];
 

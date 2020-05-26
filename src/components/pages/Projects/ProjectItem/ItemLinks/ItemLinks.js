@@ -2,7 +2,7 @@ import React from 'react';
 
 import linkArrow from '../../../../../assets/link-arrow-right.svg';
 
-const ItemLinks = ({ gitHubUrl, link }) => {
+const ItemLinks = ({ gitHubUrl, projectLink }) => {
   return (
     <div className="project-links-container">
       <a
@@ -18,9 +18,9 @@ const ItemLinks = ({ gitHubUrl, link }) => {
           className="link-arrow"
         />
       </a>
-      {link && (
+      {projectLink && (
         <a
-          href={link}
+          href={projectLink}
           target="_blank"
           rel="noopener noreferrer"
           className="link"

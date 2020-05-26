@@ -1,3 +1,4 @@
+// Breakpoints
 @mixin sm-screen {
   @media screen and (max-width: $viewport-small) {
     @content;
@@ -21,6 +22,18 @@
   @media (min-width: #{$screen}px) {
     @content;
   }
+}
+
+@mixin overlay-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 @mixin fly-letter($per) {

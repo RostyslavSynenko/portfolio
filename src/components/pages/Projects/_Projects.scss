@@ -2,14 +2,22 @@
   .projects-page {
     padding-top: $header-height;
 
-    .projects-title {
-      font-size: 2.5rem;
+    .projects-page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .projects-title {
+        font-size: 2.5rem;
+      }
     }
   }
   @include md-screen {
     .projects-page {
-      .projects-title {
-        font-size: 2rem;
+      .projects-page-header {
+        .projects-title {
+          font-size: 2rem;
+        }
       }
     }
   }
@@ -18,8 +26,10 @@
     padding: 15px;
 
     .projects-page {
-      .projects-title {
-        font-size: 1.5rem;
+      .projects-page-header {
+        .projects-title {
+          font-size: 1.5rem;
+        }
       }
     }
   }

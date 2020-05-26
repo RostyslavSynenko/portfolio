@@ -1,13 +1,14 @@
 import React from 'react';
 
 import ItemLinks from './ItemLinks';
+import CrudButtons from '../../../../shared/CrudButtons';
 
 const ProjectItem = ({
   title,
   description,
   imgUrl,
   gitHubUrl,
-  link,
+  projectLink,
   technologies
 }) => {
   const techList = technologies.map(tech => (
@@ -32,7 +33,7 @@ const ProjectItem = ({
         </div>
         <div className="image-container">
           <a
-            href={link || gitHubUrl}
+            href={projectLink || gitHubUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -44,7 +45,11 @@ const ProjectItem = ({
           </a>
         </div>
       </div>
-      <ItemLinks gitHubUrl={gitHubUrl} link={link} />
+      <ItemLinks
+        gitHubUrl={gitHubUrl}
+        projectLink={projectLink}
+      />
+      <CrudButtons />
     </div>
   );
 };

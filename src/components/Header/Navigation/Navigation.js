@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import MenuLink from './MenuLink';
-import { links } from './const';
+import { navLinks } from '../../../configs';
 
 const Navigation = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -44,7 +44,7 @@ const Navigation = () => {
   return (
     <nav className={openMenu ? 'open' : ''}>
       <ul className="navigation-links">
-        {links.map(link => (
+        {navLinks.map(link => (
           <MenuLink
             {...link}
             key={link.title}

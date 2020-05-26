@@ -1,12 +1,20 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import ProjectItem from './ProjectItem/ProjectItem';
-import { projects } from './consts';
+import OverlayButton from '../../../shared/OverlayButton';
+import { projects } from '../../../configs';
 
 const Projects = () => {
+  const history = useHistory();
+
   const projectsElements = projects.map(project => (
     <ProjectItem key={project.title} {...project} />
   ));
+
+  const handleClickCreate = () => {
+    history.push('/add-project');
+  };
 
   useEffect(() => {
     document.title = 'Projects';
@@ -17,7 +25,18 @@ const Projects = () => {
     <div className="container">
       <div className="projects-page">
         <section className="projects">
-          <h2 className="projects-title">Projects</h2>
+          <div className="projects-page-header">
+            <h2 className="projects-title">Projects</h2>
+            <div className="add-post">
+              <OverlayButton
+                label="Add project"
+                handleClick={handleClickCreate}
+              >
+                <i className="fas fa-plus add-icon"></i>
+              </OverlayButton>
+            </div>
+          </div>
+
           <div className="projects-container">
             {projectsElements}
           </div>

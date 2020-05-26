@@ -1,0 +1,64 @@
+.overlay-button-container {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  margin: 2px;
+
+  .label-container {
+    pointer-events: none;
+    position: absolute;
+    width: auto;
+    right: 35px;
+    height: 35px;
+    overflow: hidden;
+
+    .overlay-button-label {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 2px 15px;
+      transform: translateX(105%);
+      background-color: black;
+      color: map-get($colors, secondary-light);
+      white-space: nowrap;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  .overlay-button {
+    @include overlay-button;
+
+    background-color: black;
+    color: map-get($colors, secondary-light);
+  }
+
+  &.outlined {
+    .overlay-button {
+      @include overlay-button;
+
+      border: 1px solid map-get($colors, primary);
+      color: map-get($colors, primary);
+    }
+  }
+
+  &:hover {
+    .label-container {
+      pointer-events: all;
+
+      .overlay-button-label {
+        transform: translateX(0);
+      }
+    }
+
+    &.outlined {
+      .overlay-button {
+        color: map-get($colors, secondary-light);
+        background-color: map-get($colors, primary);
+      }
+    }
+  }
+}

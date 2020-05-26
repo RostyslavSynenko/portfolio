@@ -2,10 +2,17 @@
   background-color: map-get($colors, secondary-light);
 
   .blog-page {
+    position: relative;
     padding-top: $header-height;
 
-    .blog-page-title {
-      font-size: 2.5rem;
+    .blog-page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .blog-page-title {
+        font-size: 2.5rem;
+      }
     }
   }
 

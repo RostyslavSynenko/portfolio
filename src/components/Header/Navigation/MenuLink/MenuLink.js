@@ -8,7 +8,7 @@ const MenuLink = ({
   exact = false
 }) => {
   return (
-    <li onClick={handlerClick}>
+    <li onClick={handlerClick} className="nav-link-item">
       <NavLink
         to={path}
         activeClassName="active"

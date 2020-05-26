@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import TagsDate from '../../../../shared/TagsDate';
+import CrudButtons from '../../../../shared/CrudButtons';
 import { createLink } from '../../../../utils/helpers';
 
 const PostItem = ({
@@ -12,8 +13,13 @@ const PostItem = ({
   text,
   imageUrl
 }) => {
+  const history = useHistory();
   const articleLink = createLink(title);
   const postPreviewText = text.split('\n')[0];
+
+  const handleClickEdit = () => {
+    history.push('/edit-post');
+  };
 
   return (
     <article className="post">
@@ -46,6 +52,7 @@ const PostItem = ({
         alt="Post background"
         className="post-backgound-img"
       />
+      <CrudButtons handleEdit={handleClickEdit} />
     </article>
   );
 };

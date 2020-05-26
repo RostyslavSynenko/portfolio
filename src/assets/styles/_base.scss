@@ -27,6 +27,8 @@ body {
 }
 
 .button-primary {
+  display: block;
+  width: max-content;
   padding: 10px 25px;
   background-color: transparent;
   border: 1px solid map-get($colors, primary);

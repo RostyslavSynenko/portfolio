@@ -1,16 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import FlyInWelcome from '../../../shared/FlyInWelcome';
 import avatarImage from '../../../assets/avatar-photo.jpg';
 
 const Home = () => {
-  const history = useHistory();
   const startSection = useRef(null);
-
-  const handleClick = () => {
-    history.push('/about');
-  };
 
   useEffect(() => {
     document.title = 'Rostyslav Synenko Portfolio';
@@ -62,13 +57,9 @@ const Home = () => {
                 I'm on vacation every single day 'cause I
                 love my occupation.
               </p>
-              <button
-                type="button"
-                className="button-primary"
-                onClick={handleClick}
-              >
+              <Link to="/about" className="button-primary">
                 About
-              </button>
+              </Link>
             </div>
             <div className="hero-photo-container">
               <div>

@@ -66,6 +66,21 @@
     z-index: 0;
   }
 
+  .crud-buttons-container {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.5s;
+  }
+
+  &:hover {
+    .crud-buttons-container {
+      opacity: 1;
+    }
+  }
+
   @include lg-screen {
     .post-container {
       width: 65%;
