@@ -12,19 +12,20 @@ import { mockArticles } from '../../../configs';
 const Blog = ({ fetchPosts }) => {
   const history = useHistory();
 
-  const articles = mockArticles.map(article => (
-    <PostItem {...article} key={article.id} />
-  ));
-
   const handleClickCreate = () => {
     history.push('/create-post');
   };
+
+  const articles = mockArticles.map(article => (
+    <PostItem {...article} key={article._id} />
+  ));
 
   useEffect(() => {
     document.title = 'Blog';
     window.scrollTo(0, 0);
 
     fetchPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

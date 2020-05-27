@@ -13,7 +13,7 @@ export const navLinks = [
 
 export const mockArticles = [
   {
-    id: 1,
+    _id: 1,
     tags: ['thoughts', 'about me'],
     date: new Date(2019, 11, 19),
     title: 'My road to the Web Development',

@@ -6,7 +6,7 @@ import CrudButtons from '../../../../shared/CrudButtons';
 import { createLink } from '../../../../utils/helpers';
 
 const PostItem = ({
-  id,
+  _id,
   tags,
   date,
   title,
@@ -29,7 +29,7 @@ const PostItem = ({
           <div className="post-title">
             <h3>
               <Link
-                to={`/article/${articleLink}/${id}`}
+                to={`/article/${articleLink}/${_id}`}
                 title={title}
               >
                 {title}
@@ -40,7 +40,7 @@ const PostItem = ({
         <div className="post-content">
           <p className="text-block">{postPreviewText}</p>
           <Link
-            to={`/article/${articleLink}/${id}`}
+            to={`/article/${articleLink}/${_id}`}
             className="read-more"
           >
             Read more

@@ -56,21 +56,74 @@ const deletePost = id => ({
 
 const fetchPosts = postService => () => async dispatch => {
   dispatch(postsRequest());
-  try {
-    const posts = await postService.getPosts();
 
-    dispatch(postsLoaded(posts));
+  try {
+    const { data } = await postService.getPosts();
+
+    dispatch(postsLoaded(data));
   } catch (error) {
     dispatch(postsError(error));
   }
 };
 
+const fetchPost = postService => id => async dispatch => {
+  dispatch(postRequest());
+
+  try {
+    const { data } = await postService.getPost(id);
+
+    dispatch(postLoaded(data));
+  } catch (error) {
+    dispatch(postError(error));
+  }
+};
+
+const createNewPost = postService => post => async dispatch => {
+  dispatch(createPost(post));
+
+  try {
+    const { data } = await postService.createPost(post);
+
+    console.log(`New post has been created: ${data}`);
+  } catch (error) {
+    dispatch(postError(error));
+  }
+};
+
+const updatePostItem = postService => (
+  id,
+  updatedPost
+) => async dispatch => {
+  try {
+    const { data } = await postService.updatePost(
+      id,
+      updatedPost
+    );
+
+    dispatch(updatePost(data._id, data));
+
+    console.log(`Post has been updated: ${data}`);
+  } catch (error) {
+    dispatch(postError(error));
+  }
+};
+
+const deletePostItem = postService => id => async dispatch => {
+  try {
+    const { data } = await postService.deletePost(id);
+
+    dispatch(deletePost(data._id));
+
+    console.log(`Post has been deleted: ${data}`);
+  } catch (error) {
+    dispatch(postError(error));
+  }
+};
+
 export {
   fetchPosts,
-  postRequest,
-  postLoaded,
-  postError,
-  createPost,
-  updatePost,
-  deletePost
+  fetchPost,
+  createNewPost,
+  updatePostItem,
+  deletePostItem
 };
