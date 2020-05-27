@@ -1,0 +1,35 @@
+{
+  "name": "portfolio-mern",
+  "version": "1.0.0",
+  "description": "Backend for Portfolio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "cd ../client && npm run start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RostyslavSynenko/portfolio.git"
+  },
+  "keywords": [
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "Mongoose",
+    "morgan"
+  ],
+  "author": "Rostyslav Synenko",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.16",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
+  }
+}

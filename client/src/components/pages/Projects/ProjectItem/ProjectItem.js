@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import ItemLinks from './ItemLinks';
 import CrudButtons from '../../../../shared/CrudButtons';
@@ -11,6 +12,12 @@ const ProjectItem = ({
   projectLink,
   technologies
 }) => {
+  const history = useHistory();
+
+  const handleClickEdit = () => {
+    history.push('/edit-project');
+  };
+
   const techList = technologies.map(tech => (
     <li key={tech} className="technology-item">
       {tech}
@@ -49,7 +56,7 @@ const ProjectItem = ({
         gitHubUrl={gitHubUrl}
         projectLink={projectLink}
       />
-      <CrudButtons />
+      <CrudButtons handleEdit={handleClickEdit} />
     </div>
   );
 };
