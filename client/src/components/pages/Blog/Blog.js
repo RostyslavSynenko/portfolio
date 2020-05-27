@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { withPostService } from '../../HOC';
+import { fetchPosts } from '../../../actions';
 import PostItem from './PostItem';
 import OverlayButton from '../../../shared/OverlayButton';
 import { mockArticles } from '../../../configs';
 
-const Blog = () => {
+const Blog = ({ fetchPosts }) => {
   const history = useHistory();
 
   const articles = mockArticles.map(article => (
@@ -19,6 +23,8 @@ const Blog = () => {
   useEffect(() => {
     document.title = 'Blog';
     window.scrollTo(0, 0);
+
+    fetchPosts();
   }, []);
 
   return (
@@ -43,4 +49,16 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+const mapStateToProps = ({
+  posts: { posts, loading, error }
+}) => ({ posts, loading, error });
+
+const mapDispatchToProps = (dispatch, { postService }) =>
+  bindActionCreators(
+    { fetchPosts: fetchPosts(postService) },
+    dispatch
+  );
+
+export default withPostService()(
+  connect(mapStateToProps, mapDispatchToProps)(Blog)
+);

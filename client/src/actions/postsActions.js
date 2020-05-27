@@ -24,9 +24,9 @@ const postsError = error => ({
   payload: error
 });
 
-const postRequest = postId => ({
+const postRequest = id => ({
   type: FETCH_POST_REQUEST,
-  payload: postId
+  payload: id
 });
 
 const postLoaded = post => ({
@@ -44,12 +44,33 @@ const createPost = newPost => ({
   payload: newPost
 });
 
-const updatePost = postId => ({
+const updatePost = (id, data) => ({
   type: UPDATE_POST,
-  payload: postId
+  payload: { id, data }
 });
 
-const deletePost = (postId, newPostData) => ({
+const deletePost = id => ({
   type: DELETE_POST,
-  payload: { postId, newPostData }
+  payload: id
 });
+
+const fetchPosts = postService => () => async dispatch => {
+  dispatch(postsRequest());
+  try {
+    const posts = await postService.getPosts();
+
+    dispatch(postsLoaded(posts));
+  } catch (error) {
+    dispatch(postsError(error));
+  }
+};
+
+export {
+  fetchPosts,
+  postRequest,
+  postLoaded,
+  postError,
+  createPost,
+  updatePost,
+  deletePost
+};

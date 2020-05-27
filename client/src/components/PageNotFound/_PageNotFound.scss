@@ -30,6 +30,8 @@
           }
 
           .buttons-container {
+            display: flex;
+
             .button-go-home,
             .button-go-back {
               margin-top: 30px;
