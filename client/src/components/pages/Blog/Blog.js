@@ -13,7 +13,7 @@ const Blog = ({ fetchPosts }) => {
   const history = useHistory();
 
   const handleClickCreate = () => {
-    history.push('/create-post');
+    history.push('/blog/create-post');
   };
 
   const articles = mockArticles.map(article => (

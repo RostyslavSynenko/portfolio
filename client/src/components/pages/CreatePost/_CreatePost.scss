@@ -1,0 +1,12 @@
+.full-screen-container {
+  .container {
+    .create-post-page {
+      min-height: calc(100vh - #{$header-height});
+      padding-top: $header-height;
+
+      .create-post-page-title {
+        font-size: 2rem;
+      }
+    }
+  }
+}

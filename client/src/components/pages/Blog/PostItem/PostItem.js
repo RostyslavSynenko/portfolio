@@ -17,8 +17,8 @@ const PostItem = ({
   const articleLink = createLink(title);
   const postPreviewText = text.split('\n')[0];
 
-  const handleClickEdit = () => {
-    history.push('/edit-post');
+  const handleClickEdit = id => {
+    history.push(`/blog/edit-post/${id}`);
   };
 
   return (
@@ -29,7 +29,7 @@ const PostItem = ({
           <div className="post-title">
             <h3>
               <Link
-                to={`/article/${articleLink}/${_id}`}
+                to={`/blog/post/${articleLink}/${_id}`}
                 title={title}
               >
                 {title}
@@ -40,7 +40,7 @@ const PostItem = ({
         <div className="post-content">
           <p className="text-block">{postPreviewText}</p>
           <Link
-            to={`/article/${articleLink}/${_id}`}
+            to={`/blog/post/${articleLink}/${_id}`}
             className="read-more"
           >
             Read more

@@ -23,7 +23,7 @@ const Article = ({ match: { params } }) => {
     // Only for test purpose
     const { id } = params;
     const currArticle = mockArticles.find(
-      item => item.id === +id
+      item => item._id === +id
     );
 
     const timeoutId = setTimeout(
