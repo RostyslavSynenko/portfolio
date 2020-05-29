@@ -30,7 +30,7 @@ const App = () => {
           <Route path="/contacts" exact>
             <Contacts />
           </Route>
-          <Route path="/blog/post/:title/:id" exact>
+          <Route path="/blog/:title/:id" exact>
             <Article />
           </Route>
           <Route path="/blog/create-post" exact>

@@ -11,7 +11,6 @@ const QuillEditor = ({
   const reactQuill = useRef(null);
 
   const modules = {
-    // syntax: true,
     toolbar: {
       container: '#toolbar'
     }
@@ -30,15 +29,15 @@ const QuillEditor = ({
   ];
 
   return (
-    <div>
+    <div className="quill-editor-container">
       <div id="toolbar">
         <select
           className="ql-header"
           defaultValue=""
           onChange={event => event.persist()}
         >
-          <option value="1" />
           <option value="2" />
+          <option value="3" />
           <option value="" />
         </select>
         <button className="ql-bold" />
@@ -58,6 +57,7 @@ const QuillEditor = ({
         placeholder={placeholder ? placeholder : ''}
         value={content}
         onChange={handleChange}
+        className="quill-editor"
       />
     </div>
   );

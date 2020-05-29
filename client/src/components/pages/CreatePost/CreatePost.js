@@ -9,13 +9,8 @@ const CreatePost = () => {
 
   return (
     <div className="full-screen-container">
-      <div className="container">
-        <section className="create-post-page">
-          <h2 className="create-post-page-title">
-            Create new post
-          </h2>
-          <PostForm />
-        </section>
+      <div className="create-post-page">
+        <PostForm />
       </div>
     </div>
   );

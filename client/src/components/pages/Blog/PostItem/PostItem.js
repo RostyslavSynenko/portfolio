@@ -29,7 +29,7 @@ const PostItem = ({
           <div className="post-title">
             <h3>
               <Link
-                to={`/blog/post/${articleLink}/${_id}`}
+                to={`/blog/${articleLink}/${_id}`}
                 title={title}
               >
                 {title}
@@ -40,7 +40,7 @@ const PostItem = ({
         <div className="post-content">
           <p className="text-block">{postPreviewText}</p>
           <Link
-            to={`/blog/post/${articleLink}/${_id}`}
+            to={`/blog/${articleLink}/${_id}`}
             className="read-more"
           >
             Read more
