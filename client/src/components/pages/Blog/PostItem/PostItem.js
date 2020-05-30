@@ -11,7 +11,8 @@ const PostItem = ({
   date,
   title,
   text,
-  imageUrl
+  imageUrl,
+  handleDelete
 }) => {
   const history = useHistory();
   const articleLink = createLink(title);
@@ -52,7 +53,10 @@ const PostItem = ({
         alt="Post background"
         className="post-backgound-img"
       />
-      <CrudButtons handleEdit={handleClickEdit} />
+      <CrudButtons
+        handleEdit={() => handleClickEdit(_id)}
+        handleDelete={() => handleDelete(_id)}
+      />
     </article>
   );
 };

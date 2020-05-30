@@ -9,7 +9,10 @@ const PostSchema = new mongoose.Schema({
     default: Date.now
   },
   image: {
-    type: String,
+    type: {
+      id: String,
+      filename: String
+    },
     required: [true, 'Please add some image']
   },
   title: {

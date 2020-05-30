@@ -1,16 +1,17 @@
 import React, { useState, useRef } from 'react';
 
+import { withPostService } from '../../../HOC';
 import QuillEditor from '../QuillEditor';
 import imagePlaceholder from '../../../../assets/blog/blog-image-placeholder.png';
 
 const PostForm = () => {
-  const postImage = useRef(null);
+  const postImagePlaceholder = useRef();
   const [textFields, setTextFields] = useState({
     postTags: '',
     postTitle: ''
   });
   const [content, setContent] = useState('');
-  const [image, setImage] = useState('');
+  const [postImage, setPostImage] = useState(null);
 
   const handleChangeText = event => {
     const { name, value } = event.target;
@@ -18,25 +19,19 @@ const PostForm = () => {
     setTextFields({ ...textFields, [name]: value });
   };
 
-  const handleChangeFile = event => {
+  const handleChangeImage = event => {
     const { target } = event;
 
     if (target && target.files && target.files.length > 0) {
-      const file = event.target.files[0];
-      const fileReader = new FileReader();
-      const formData = new FormData();
+      const image = event.target.files[0];
 
-      fileReader.onload = event => {
-        if (!event.target.result) return;
+      const src = URL.createObjectURL(image);
+      const { name } = image;
 
-        postImage.current.src = event.target.result;
-      };
+      postImagePlaceholder.current.src = src;
+      postImagePlaceholder.current.alt = name;
 
-      fileReader.readAsDataURL(file);
-
-      formData.append('file', file);
-
-      setImage(formData);
+      setPostImage(image);
     }
   };
 
@@ -44,19 +39,41 @@ const PostForm = () => {
     setContent(value);
   };
 
+  const resetForm = () => {
+    setTextFields({
+      postTags: '',
+      postTitle: ''
+    });
+    setContent('');
+    setPostImage(null);
+    postImagePlaceholder.current.src = imagePlaceholder;
+    postImagePlaceholder.current.alt = 'Placeholder';
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
+
+    const data = {
+      tags: textFields.postTags,
+      title: textFields.postTitle,
+      content
+    };
+    const image = new FormData();
+
+    image.append('image', postImage);
+
+    resetForm();
   };
 
   return (
     <form className="post-form" onSubmit={handleSubmit}>
       <div className="post-image-container">
         <img
-          ref={postImage}
+          ref={postImagePlaceholder}
           src={imagePlaceholder}
           alt="Placeholder"
           className={`image-placeholder ${
-            image ? '' : 'hide-placeholder'
+            postImage ? '' : 'hide-placeholder'
           }`}
         />
         <label
@@ -67,10 +84,11 @@ const PostForm = () => {
         </label>
         <input
           type="file"
+          accept="image/*"
           name="postImage"
           className="post-image-input"
           id="post-image"
-          onChange={handleChangeFile}
+          onChange={handleChangeImage}
         />
       </div>
       <div className="container">
@@ -112,4 +130,4 @@ const PostForm = () => {
   );
 };
 
-export default PostForm;
+export default withPostService()(PostForm);

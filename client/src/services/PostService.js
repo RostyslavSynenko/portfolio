@@ -1,20 +1,24 @@
 import axios from 'axios';
 
 export default class PostService {
-  _apiUrl = '/api/posts';
-  _config = {
+  _apiPost = '/api/posts';
+  _apiImage = '/api/images';
+  _configPost = {
     headers: { 'Content-Type': 'application/json' }
+  };
+  _configImage = {
+    headers: { 'Content-Type': 'multipart/form-data' }
   };
 
   getPosts = async () => {
-    const response = await axios.get(this._apiUrl);
+    const response = await axios.get(this._apiPost);
 
     return response;
   };
 
   getPost = async id => {
     const response = await axios.get(
-      `${this._apiUrl}${id}`
+      `${this._apiPost}/${id}`
     );
 
     return response;
@@ -22,9 +26,9 @@ export default class PostService {
 
   createPost = async post => {
     const response = await axios.post(
-      this._apiUrl,
+      this._apiPost,
       post,
-      this._config
+      this._configPost
     );
 
     return response;
@@ -32,9 +36,9 @@ export default class PostService {
 
   updatePost = async (id, data) => {
     const response = await axios.put(
-      `${this._apiUrl}${id}`,
+      `${this._apiPost}/${id}`,
       data,
-      this._config
+      this._configPost
     );
 
     return response;
@@ -42,7 +46,33 @@ export default class PostService {
 
   deletePost = async id => {
     const response = await axios.delete(
-      `${this._apiUrl}${id}`
+      `${this._apiPost}/${id}`
+    );
+
+    return response;
+  };
+
+  getImage = async name => {
+    const response = await axios.get(
+      `${this._apiImages}/${name}`
+    );
+
+    return response;
+  };
+
+  createImage = async post => {
+    const response = await axios.post(
+      this._apiImages,
+      post,
+      this._configImage
+    );
+
+    return response;
+  };
+
+  deleteImage = async name => {
+    const response = await axios.delete(
+      `${this._apiImages}/${name}`
     );
 
     return response;

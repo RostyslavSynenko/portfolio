@@ -3,11 +3,7 @@ import ReactQuill from 'react-quill';
 
 import 'react-quill/dist/quill.snow.css';
 
-const QuillEditor = ({
-  handleChange,
-  content,
-  placeholder
-}) => {
+const QuillEditor = ({ handleChange, content }) => {
   const reactQuill = useRef(null);
 
   const modules = {
@@ -54,7 +50,7 @@ const QuillEditor = ({
         theme="snow"
         modules={modules}
         formats={formats}
-        placeholder={placeholder ? placeholder : ''}
+        placeholder={'Write your awesome text :)'}
         value={content}
         onChange={handleChange}
         className="quill-editor"

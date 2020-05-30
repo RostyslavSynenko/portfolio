@@ -4,20 +4,28 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { withPostService } from '../../HOC';
-import { fetchPosts } from '../../../actions';
+import { fetchPosts, deletePost } from '../../../actions';
 import PostItem from './PostItem';
 import OverlayButton from '../../../shared/OverlayButton';
 import { mockArticles } from '../../../configs';
 
-const Blog = ({ fetchPosts }) => {
+const Blog = ({ fetchPosts, deletePost }) => {
   const history = useHistory();
 
   const handleClickCreate = () => {
     history.push('/blog/create-post');
   };
 
+  const handleClickDelete = id => {
+    deletePost(id);
+  };
+
   const articles = mockArticles.map(article => (
-    <PostItem {...article} key={article._id} />
+    <PostItem
+      {...article}
+      key={article._id}
+      handleDelete={handleClickDelete}
+    />
   ));
 
   useEffect(() => {
@@ -56,7 +64,10 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch, { postService }) =>
   bindActionCreators(
-    { fetchPosts: fetchPosts(postService) },
+    {
+      fetchPosts: fetchPosts(postService),
+      deletePost: deletePost(postService)
+    },
     dispatch
   );
 

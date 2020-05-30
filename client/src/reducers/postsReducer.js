@@ -5,9 +5,15 @@ import {
   FETCH_POST_REQUEST,
   FETCH_POST_SUCCESS,
   FETCH_POST_ERROR,
-  CREATE_POST,
-  UPDATE_POST,
-  DELETE_POST
+  CREATE_POST_REQUEST,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_ERROR,
+  UPDATE_POST_REQUEST,
+  UPDATE_POST_SUCCESS,
+  UPDATE_POST_ERROR,
+  DELETE_POST_REQUEST,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_ERROR
 } from '../actions/actionTypes';
 
 const updateItem = (posts, id, updatedPost) => {
@@ -35,6 +41,7 @@ const deleteItem = (posts, id) => {
 
 const initialState = {
   loading: false,
+  crudLoading: false,
   error: null,
   posts: [],
   post: null
@@ -83,25 +90,64 @@ const postsReducer = (
         loading: false,
         error: payload
       };
-    case CREATE_POST:
+    case CREATE_POST_REQUEST:
       return {
         ...state,
+        crudLoading: true,
+        error: null
+      };
+    case CREATE_POST_SUCCESS:
+      return {
+        ...state,
+        crudLoading: false,
         error: null,
         posts: [payload, ...state.posts]
       };
-    case UPDATE_POST:
+    case CREATE_POST_ERROR:
+      return {
+        ...state,
+        crudLoading: false,
+        error: payload
+      };
+    case UPDATE_POST_REQUEST:
+      return {
+        ...state,
+        crudLoading: true,
+        error: null
+      };
+    case UPDATE_POST_SUCCESS:
       const { id, data } = payload;
 
       return {
         ...state,
-        posts: updateItem(state.posts, id, data),
-        error: null
+        crudLoading: false,
+        error: null,
+        posts: updateItem(state.posts, id, data)
       };
-    case DELETE_POST:
+    case UPDATE_POST_ERROR:
       return {
         ...state,
-        posts: deleteItem(state.posts, payload),
+        crudLoading: false,
+        error: payload
+      };
+    case DELETE_POST_REQUEST:
+      return {
+        ...state,
+        crudLoading: true,
         error: null
+      };
+    case DELETE_POST_SUCCESS:
+      return {
+        ...state,
+        crudLoading: false,
+        error: null,
+        posts: deleteItem(state.posts, payload)
+      };
+    case DELETE_POST_ERROR:
+      return {
+        ...state,
+        crudLoading: false,
+        error: payload
       };
     default:
       return state;
