@@ -35,12 +35,13 @@ const getPost = async (req, res, next) => {
 // @access  Private
 const createPost = async (req, res, next) => {
   try {
-    const { tags, title, imageUrl } = req.body;
+    const { tags, title, content, image } = req.body;
 
     const post = await Post.create({
       tags,
       title,
-      imageUrl
+      content,
+      image
     });
 
     return res

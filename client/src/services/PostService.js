@@ -54,7 +54,7 @@ export default class PostService {
 
   getImage = async name => {
     const response = await axios.get(
-      `${this._apiImages}/${name}`
+      `${this._apiImage}/${name}`
     );
 
     return response;
@@ -62,7 +62,7 @@ export default class PostService {
 
   createImage = async post => {
     const response = await axios.post(
-      this._apiImages,
+      this._apiImage,
       post,
       this._configImage
     );
@@ -72,7 +72,7 @@ export default class PostService {
 
   deleteImage = async name => {
     const response = await axios.delete(
-      `${this._apiImages}/${name}`
+      `${this._apiImage}/${name}`
     );
 
     return response;

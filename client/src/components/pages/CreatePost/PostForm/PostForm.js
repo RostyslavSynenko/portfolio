@@ -1,10 +1,13 @@
 import React, { useState, useRef } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { withPostService } from '../../../HOC';
 import QuillEditor from '../QuillEditor';
 import imagePlaceholder from '../../../../assets/blog/blog-image-placeholder.png';
+import { createPost } from '../../../../actions';
 
-const PostForm = () => {
+const PostForm = ({ createPost }) => {
   const postImagePlaceholder = useRef();
   const [textFields, setTextFields] = useState({
     postTags: '',
@@ -50,19 +53,30 @@ const PostForm = () => {
     postImagePlaceholder.current.alt = 'Placeholder';
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-
+  const prepareData = () => {
     const data = {
       tags: textFields.postTags,
       title: textFields.postTitle,
       content
     };
     const image = new FormData();
-
     image.append('image', postImage);
 
-    resetForm();
+    return { data, image };
+  };
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+
+    try {
+      const data = prepareData();
+
+      await createPost(data);
+
+      resetForm();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -130,4 +144,11 @@ const PostForm = () => {
   );
 };
 
-export default withPostService()(PostForm);
+const mapDispatchToProps = (dispatch, { postService }) =>
+  bindActionCreators({
+    createPost: createPost(postService)
+  });
+
+export default withPostService()(
+  connect(null, mapDispatchToProps)(PostForm)
+);
