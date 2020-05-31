@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { loaderLetters } from '../../configs';
 
@@ -12,13 +12,6 @@ const PageLoader = () => {
       {letter}
     </span>
   ));
-
-  useEffect(() => {
-    document.body.classList.add('overflow-hidden');
-
-    return () =>
-      document.body.classList.remove('overflow-hidden');
-  });
 
   return (
     <div className="wave-loader-container">

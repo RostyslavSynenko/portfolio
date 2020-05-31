@@ -7,9 +7,14 @@ import { withPostService } from '../../HOC';
 import { fetchPosts, deletePost } from '../../../actions';
 import PostItem from './PostItem';
 import OverlayButton from '../../../shared/OverlayButton';
-import { mockArticles } from '../../../configs';
+import PageLoader from '../../PageLoader';
 
-const Blog = ({ fetchPosts, deletePost }) => {
+const Blog = ({
+  fetchPosts,
+  deletePost,
+  posts,
+  loading
+}) => {
   const history = useHistory();
 
   const handleClickCreate = () => {
@@ -20,10 +25,10 @@ const Blog = ({ fetchPosts, deletePost }) => {
     deletePost(id);
   };
 
-  const articles = mockArticles.map(article => (
+  const blogPosts = posts.map(post => (
     <PostItem
-      {...article}
-      key={article._id}
+      {...post}
+      key={post._id}
       handleDelete={handleClickDelete}
     />
   ));
@@ -51,7 +56,17 @@ const Blog = ({ fetchPosts, deletePost }) => {
               </OverlayButton>
             </div>
           </div>
-          {articles}
+          {loading && <PageLoader />}
+          {!loading &&
+            (posts.length ? (
+              blogPosts
+            ) : (
+              <div className="no-posts">
+                <p className="text-block">
+                  Sorry... There're no posts yet...
+                </p>
+              </div>
+            ))}
         </section>
       </div>
     </div>

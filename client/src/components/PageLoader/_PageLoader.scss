@@ -1,15 +1,12 @@
 .wave-loader-container {
-  position: fixed;
+  position: absolute;
+  left: 50%;
+  top: calc(50% + #{$header-height});
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  padding-top: $header-height;
-  background-color: lighten(map-get($colors, primary), 5%);
-  z-index: 100;
+  background-color: map-get($colors, secondary-light);
 
   .wave-loader {
     position: relative;
@@ -19,7 +16,7 @@
     .wave-letter {
       position: relative;
       display: inline-block;
-      color: white;
+      color: map-get($colors, primary);
       font-size: 2rem;
       text-transform: uppercase;
       animation: wave 1s ease-in-out infinite;

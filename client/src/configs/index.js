@@ -1,7 +1,9 @@
-import articlePhoto1 from '../assets/blog/article_photo_1.jpeg';
 import defibrillatorsMapUrl from '../assets/projects/defibrillators-map.png';
 import barcelonaUrl from '../assets/projects/barcelona-fan-website.jpg';
 import portfolioVer1Url from '../assets/projects/my-portfolio-v1.jpg';
+
+export const baseImageUrl =
+  'http://localhost:5000/api/images';
 
 export const navLinks = [
   { path: '/', title: 'Home', exact: true },
@@ -9,19 +11,6 @@ export const navLinks = [
   { path: '/projects', title: 'Projects' },
   { path: '/contacts', title: 'Contacts' },
   { path: '/blog', title: 'Blog' }
-];
-
-export const mockArticles = [
-  {
-    _id: 1,
-    tags: ['thoughts', 'about me'],
-    date: new Date(2019, 11, 19),
-    title: 'My road to the Web Development',
-    text:
-      "Hello, awesome! I'm Rostyslav Synenko - Front-End Developer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n" +
-      ' Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    imageUrl: articlePhoto1
-  }
 ];
 
 export const socialMedia = [

@@ -22,9 +22,23 @@ const getPosts = async (req, res, next) => {
 // @access  Public
 const getPost = async (req, res, next) => {
   try {
-    return res.status(200).send({});
+    const { id } = req.params;
+
+    const post = await Post.findById(id);
+
+    if (!post) {
+      return res
+        .status(404)
+        .send({ success: false, error: 'Post not found' });
+    }
+
+    return res
+      .status(200)
+      .send({ success: true, data: post });
   } catch (error) {
-    return res.status(500).send({ error });
+    return res
+      .status(500)
+      .send({ success: false, error: 'Server Error' });
   }
 };
 

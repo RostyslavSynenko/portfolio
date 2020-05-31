@@ -125,7 +125,7 @@ const createPost = postService => post => async dispatch => {
     const {
       data: { data }
     } = await postService.createPost({
-      ...post.data,
+      ...post,
       image: {
         id: image.id,
         filename: image.filename

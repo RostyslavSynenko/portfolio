@@ -6,8 +6,12 @@ import { withPostService } from '../../../HOC';
 import QuillEditor from '../QuillEditor';
 import imagePlaceholder from '../../../../assets/blog/blog-image-placeholder.png';
 import { createPost } from '../../../../actions';
+import {
+  formateTags,
+  formateContent
+} from '../../../../utils/helpers';
 
-const PostForm = ({ createPost, postService }) => {
+const PostForm = ({ createPost }) => {
   const postImagePlaceholder = useRef();
   const [textFields, setTextFields] = useState({
     postTags: '',
@@ -54,19 +58,23 @@ const PostForm = ({ createPost, postService }) => {
   };
 
   const prepareData = () => {
+    const tags = formateTags(textFields.postTags);
+    const postContent = formateContent(content);
     const data = {
-      tags: textFields.postTags,
-      title: textFields.postTitle,
-      content
+      tags,
+      title: textFields.postTitle.trim(),
+      content: postContent
     };
     const image = new FormData();
+
     image.append('image', postImage);
 
-    return { data, image };
+    return { ...data, image };
   };
 
   const handleSubmit = async event => {
     event.preventDefault();
+    console.log(444);
 
     try {
       const data = prepareData();

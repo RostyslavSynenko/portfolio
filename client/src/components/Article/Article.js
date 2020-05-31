@@ -1,49 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import ReactHtmlParser from 'react-html-parser';
 
+import { withPostService } from '../HOC';
 import TagsDate from '../../shared/TagsDate';
 import PageLoader from '../PageLoader';
-import { mockArticles } from '../../configs';
+import { fetchPost } from '../../actions';
+import { formateContent } from '../../utils/helpers';
+import { baseImageUrl } from '../../configs';
 
-const Article = ({ match: { params } }) => {
-  const [article, setArticle] = useState(null);
-  let articleContent;
+const Article = ({
+  match: { params },
+  fetchPost,
+  post,
+  loading
+}) => {
+  let content;
 
-  if (article) {
-    articleContent = article.text
-      .split('\n')
-      .map((text, i) => (
-        <p className="text-block" key={i}>
-          {text}
-        </p>
-      ));
+  if (post) {
+    content = ReactHtmlParser(formateContent(post.content));
   }
 
   useEffect(() => {
-    // Only for test purpose
     const { id } = params;
-    const currArticle = mockArticles.find(
-      item => item._id === +id
-    );
 
-    const timeoutId = setTimeout(
-      () => setArticle(currArticle),
-      2000
-    );
-
-    return () => clearTimeout(timeoutId);
+    fetchPost(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [params]);
 
-  if (!article) {
-    return <PageLoader />;
+  if (loading || !post) {
+    return (
+      <div className="article">
+        <PageLoader />
+      </div>
+    );
   }
 
   return (
     <article className="article">
       <div className="article-image-container">
         <img
-          src={article.imageUrl}
+          src={`${baseImageUrl}/${post.image.filename}`}
           alt="Article"
           className="article-image"
         />
@@ -51,21 +50,32 @@ const Article = ({ match: { params } }) => {
       <div className="full-screen-container">
         <div className="container">
           <div className="article-header">
-            <TagsDate
-              tags={article.tags}
-              date={article.date}
-            />
-            <h1 className="article-title">
-              {article.title}
-            </h1>
+            <TagsDate tags={post.tags} date={post.date} />
+            <h1 className="article-title">{post.title}</h1>
           </div>
-          <div className="article-content">
-            {articleContent}
-          </div>
+          <div className="article-content">{content}</div>
         </div>
       </div>
     </article>
   );
 };
 
-export default withRouter(Article);
+const mapStateToProps = ({ posts: { post, loading } }) => ({
+  post,
+  loading
+});
+
+const mapDispatchToProps = (dispatch, { postService }) =>
+  bindActionCreators(
+    {
+      fetchPost: fetchPost(postService)
+    },
+    dispatch
+  );
+
+export default withPostService()(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withRouter(Article))
+);

@@ -1,4 +1,7 @@
 .article {
+  min-height: 100vh;
+  background-color: map-get($colors, secondary-light);
+
   .article-image-container {
     position: relative;
     height: calc(400px + #{$header-height});
