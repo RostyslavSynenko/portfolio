@@ -126,7 +126,10 @@ const createPost = postService => post => async dispatch => {
       data: { data }
     } = await postService.createPost({
       ...post.data,
-      image
+      image: {
+        id: image.id,
+        filename: image.filename
+      }
     });
 
     dispatch(postCreated(data));
@@ -167,9 +170,10 @@ const deletePost = postService => id => async dispatch => {
     const {
       data: { data }
     } = await postService.deletePost(id);
+
     const {
       data: { image }
-    } = await postService.deleteImage(data.image.filename);
+    } = await postService.deleteImage(data.image.id);
 
     dispatch(postDeleted(data._id));
 

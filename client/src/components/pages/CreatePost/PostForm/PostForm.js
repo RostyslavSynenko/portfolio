@@ -7,7 +7,7 @@ import QuillEditor from '../QuillEditor';
 import imagePlaceholder from '../../../../assets/blog/blog-image-placeholder.png';
 import { createPost } from '../../../../actions';
 
-const PostForm = ({ createPost }) => {
+const PostForm = ({ createPost, postService }) => {
   const postImagePlaceholder = useRef();
   const [textFields, setTextFields] = useState({
     postTags: '',
@@ -145,9 +145,12 @@ const PostForm = ({ createPost }) => {
 };
 
 const mapDispatchToProps = (dispatch, { postService }) =>
-  bindActionCreators({
-    createPost: createPost(postService)
-  });
+  bindActionCreators(
+    {
+      createPost: createPost(postService)
+    },
+    dispatch
+  );
 
 export default withPostService()(
   connect(null, mapDispatchToProps)(PostForm)

@@ -1,24 +1,30 @@
 const mongoose = require('mongoose');
+const Grid = require('gridfs-stream');
 
-const connectDB = async () => {
+let gfs;
+
+const connectDB = () => {
   try {
-    const conn = await mongoose.connect(
-      process.env.MONGO_URI,
-      {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true
-      }
-    );
+    mongoose.connect(process.env.MONGO_URI, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useCreateIndex: true
+    });
 
-    console.log(
-      `MongoDB connected: ${conn.connection.host}`
-    );
+    const conn = mongoose.connection;
+
+    conn.once('open', () => {
+      gfs = Grid(conn.db, mongoose.mongo);
+      gfs.collection('images');
+
+      console.log(`MongoDB connected.`);
+    });
   } catch (error) {
     console.log(`Error: ${error.message}`);
-
-    process.exit(1);
   }
 };
 
-module.exports = connectDB;
+const getGfs = () => gfs;
+
+module.exports = { connectDB, getGfs };

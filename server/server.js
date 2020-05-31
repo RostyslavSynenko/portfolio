@@ -1,13 +1,15 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const path = require('path');
 const morgan = require('morgan');
-const connectDB = require('./config/db');
+const { connectDB } = require('./config/db');
 
 dotenv.config({ path: './config/config.env' });
 
 connectDB();
 
 const postsRoute = require('./routes/postsRoute');
+const imageRoute = require('./routes/imageRoute');
 
 const app = express();
 
@@ -19,6 +21,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use('/api/posts', postsRoute);
+app.use('/api/images', imageRoute);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
