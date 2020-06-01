@@ -11,7 +11,9 @@ const PostSchema = new mongoose.Schema({
   image: {
     type: {
       id: String,
-      filename: String
+      filename: String,
+      originalname: String,
+      size: Number
     },
     required: [true, 'Please add some image']
   },

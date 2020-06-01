@@ -5,7 +5,7 @@ const Post = require('../models/Post');
 // @access  Public
 const getPosts = async (req, res, next) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().sort({ date: -1 });
 
     return res.status(200).send({
       success: true,
@@ -85,19 +85,19 @@ const createPost = async (req, res, next) => {
 const updatePost = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { post } = req.body;
 
     const updatedPost = await Post.findByIdAndUpdate(
       id,
-      post,
+      req.body,
       { new: true }
     );
 
-    return res
-      .status(204)
-      .send({ success: true, data: updatedPost });
+    res.status(200).send({
+      success: true,
+      data: updatedPost
+    });
   } catch (error) {
-    return res.status(500).send({ error });
+    return res.status(500).send({ error: 'Server Error' });
   }
 };
 

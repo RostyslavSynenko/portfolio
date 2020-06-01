@@ -1,0 +1,8 @@
+.full-screen-container {
+  background-color: map-get($colors, secondary-light);
+
+  .edit-post-page {
+    position: relative;
+    min-height: calc(100vh - #{$header-height});
+  }
+}

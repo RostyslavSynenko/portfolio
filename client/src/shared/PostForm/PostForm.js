@@ -1,24 +1,37 @@
-import React, { useState, useRef } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { useState, useRef, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { withPostService } from '../../../HOC';
-import QuillEditor from '../QuillEditor';
-import imagePlaceholder from '../../../../assets/blog/blog-image-placeholder.png';
-import { createPost } from '../../../../actions';
+import QuillEditor from './QuillEditor';
+import imagePlaceholder from '../../assets/blog/blog-image-placeholder.png';
 import {
   formateTags,
   formateContent
-} from '../../../../utils/helpers';
+} from '../../utils/helpers';
+import { baseImageUrl } from '../../configs';
 
-const PostForm = ({ createPost }) => {
+const PostForm = ({
+  initialValues,
+  submitAction,
+  isEditing
+}) => {
+  const {
+    tags,
+    title,
+    content,
+    image = null
+  } = initialValues;
+  const history = useHistory();
   const postImagePlaceholder = useRef();
   const [textFields, setTextFields] = useState({
-    postTags: '',
-    postTitle: ''
+    postTags: tags,
+    postTitle: title
   });
-  const [content, setContent] = useState('');
-  const [postImage, setPostImage] = useState(null);
+  const [postContent, setPostContent] = useState(content);
+  const [postImage, setPostImage] = useState(image);
+
+  const handleCancel = () => {
+    history.goBack();
+  };
 
   const handleChangeText = event => {
     const { name, value } = event.target;
@@ -33,6 +46,7 @@ const PostForm = ({ createPost }) => {
       const image = event.target.files[0];
 
       const src = URL.createObjectURL(image);
+
       const { name } = image;
 
       postImagePlaceholder.current.src = src;
@@ -43,7 +57,7 @@ const PostForm = ({ createPost }) => {
   };
 
   const handleEditorChange = value => {
-    setContent(value);
+    setPostContent(value);
   };
 
   const resetForm = () => {
@@ -51,35 +65,38 @@ const PostForm = ({ createPost }) => {
       postTags: '',
       postTitle: ''
     });
-    setContent('');
+    setPostContent('');
     setPostImage(null);
     postImagePlaceholder.current.src = imagePlaceholder;
     postImagePlaceholder.current.alt = 'Placeholder';
   };
 
-  const prepareData = () => {
-    const tags = formateTags(textFields.postTags);
-    const postContent = formateContent(content);
-    const data = {
-      tags,
-      title: textFields.postTitle.trim(),
-      content: postContent
-    };
-    const image = new FormData();
-
-    image.append('image', postImage);
-
-    return { ...data, image };
-  };
-
   const handleSubmit = async event => {
     event.preventDefault();
-    console.log(444);
 
     try {
-      const data = prepareData();
+      const tags = formateTags(textFields.postTags);
+      const content = formateContent(postContent);
+      const title = textFields.postTitle.trim();
+      const data = { tags, title, content };
 
-      await createPost(data);
+      if (
+        isEditing &&
+        postImage.size === image.size &&
+        (postImage.originalname ||
+          postImage.name === image.originalname)
+      ) {
+        await submitAction({ ...data, image });
+      } else {
+        const formData = new FormData();
+
+        formData.append('image', postImage);
+
+        await submitAction(
+          { ...data, image: formData },
+          image
+        );
+      }
 
       resetForm();
     } catch (error) {
@@ -87,12 +104,24 @@ const PostForm = ({ createPost }) => {
     }
   };
 
+  useEffect(() => {
+    document.title = isEditing
+      ? 'Edit post'
+      : 'Create new post';
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <form className="post-form" onSubmit={handleSubmit}>
       <div className="post-image-container">
         <img
           ref={postImagePlaceholder}
-          src={imagePlaceholder}
+          src={
+            image && image.filename
+              ? `${baseImageUrl}/${image.filename}`
+              : imagePlaceholder
+          }
           alt="Placeholder"
           className={`image-placeholder ${
             postImage ? '' : 'hide-placeholder'
@@ -139,27 +168,25 @@ const PostForm = ({ createPost }) => {
         </div>
         <QuillEditor
           handleChange={handleEditorChange}
-          content={content}
+          content={postContent}
         />
-        <button
-          type="submit"
-          className="button-primary create-button"
-        >
-          Create post
-        </button>
+        <div className="submit-cancel-container">
+          <button
+            type="submit"
+            className="button-primary submit-button"
+          >
+            {isEditing ? 'Update' : 'Create post'}
+          </button>
+          <button
+            className="button-primary cancel-button"
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </form>
   );
 };
 
-const mapDispatchToProps = (dispatch, { postService }) =>
-  bindActionCreators(
-    {
-      createPost: createPost(postService)
-    },
-    dispatch
-  );
-
-export default withPostService()(
-  connect(null, mapDispatchToProps)(PostForm)
-);
+export default PostForm;

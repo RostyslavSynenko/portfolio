@@ -122,42 +122,70 @@ const createPost = postService => post => async dispatch => {
     const {
       data: { image }
     } = await postService.createImage(post.image);
+
     const {
       data: { data }
     } = await postService.createPost({
       ...post,
       image: {
         id: image.id,
-        filename: image.filename
+        filename: image.filename,
+        originalname: image.originalname,
+        size: image.size
       }
     });
 
     dispatch(postCreated(data));
 
-    console.log(
-      `New post has been created: ${JSON.stringify(data)}`
-    );
+    console.log(`New post has been created: ${data.title}`);
   } catch (error) {
     dispatch(createPostError(error));
   }
 };
 
+const updateImage = async (postService, newImage, id) => {
+  await postService.deleteImage(id);
+
+  const {
+    data: { image }
+  } = await postService.createImage(newImage);
+
+  return {
+    id: image.id,
+    filename: image.filename,
+    originalname: image.originalname,
+    size: image.size
+  };
+};
+
 const updatePost = postService => (
   id,
-  updatedPost
+  updatedPost,
+  oldImage
 ) => async dispatch => {
   dispatch(updatePostRequest());
 
   try {
+    let newImage;
+
+    if (oldImage) {
+      newImage = await updateImage(
+        postService,
+        updatedPost.image,
+        oldImage.id
+      );
+    }
+
     const {
       data: { data }
-    } = await postService.updatePost(id, updatedPost);
+    } = await postService.updatePost(id, {
+      ...updatedPost,
+      image: newImage || updatedPost.image
+    });
 
     dispatch(postUpdated(data._id, data));
 
-    console.log(
-      `Post has been updated: ${JSON.stringify(data)}`
-    );
+    console.log(`Post has been updated: ${data.title}`);
   } catch (error) {
     dispatch(updatePostError(error));
   }
@@ -171,17 +199,11 @@ const deletePost = postService => id => async dispatch => {
       data: { data }
     } = await postService.deletePost(id);
 
-    const {
-      data: { image }
-    } = await postService.deleteImage(data.image.id);
+    await postService.deleteImage(data.image.id);
 
     dispatch(postDeleted(data._id));
 
-    console.log(
-      `Post has been deleted: ${JSON.stringify(
-        data
-      )}. Image: ${JSON.stringify(image)}`
-    );
+    console.log(`Post has been deleted: ${data.title}`);
   } catch (error) {
     dispatch(deletePostError(error));
   }

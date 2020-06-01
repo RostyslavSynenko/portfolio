@@ -10,7 +10,7 @@ const TagsList = ({ tags }) => {
     ),
     <li className="category-tag" key={tag}>
       <a
-        href={`/articles/category/${tag}`}
+        href={`/articles/category/${tag.trim()}`}
         rel="category tag"
       >
         {tag}

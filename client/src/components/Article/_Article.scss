@@ -21,6 +21,7 @@
     background-color: map-get($colors, secondary-light);
 
     .container {
+      position: relative;
       max-width: 960px;
       width: 100%;
 
@@ -36,6 +37,12 @@
         .text-block {
           margin-bottom: 1.5rem;
         }
+      }
+
+      .crud-buttons-container {
+        position: absolute;
+        top: 0;
+        right: 0;
       }
     }
   }

@@ -7,6 +7,7 @@ import About from '../pages/About';
 import Projects from '../pages/Projects';
 import Contacts from '../pages/Contacts';
 import CreatePost from '../pages/CreatePost';
+import EditPost from '../pages/EditPost';
 import Blog from '../pages/Blog';
 import Article from '../Article';
 import Footer from '../Footer';
@@ -29,6 +30,9 @@ const App = () => {
           </Route>
           <Route path="/contacts" exact>
             <Contacts />
+          </Route>
+          <Route path="/blog/edit-post/:id" exact>
+            <EditPost />
           </Route>
           <Route path="/blog/:title/:id" exact>
             <Article />

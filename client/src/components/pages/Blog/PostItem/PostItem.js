@@ -20,14 +20,15 @@ const PostItem = ({
   let postPreviewText;
 
   const getPreviewText = content => {
-    const idx = content.indexOf('</p>');
+    const startIdx = content.indexOf('>') + 1;
+    const endIdx = content.indexOf('</p>');
 
-    return content.slice(3, idx);
+    return content.slice(startIdx, endIdx);
   };
 
   postPreviewText = getPreviewText(content);
 
-  const handleClickEdit = id => {
+  const handleEdit = id => {
     history.push(`/blog/edit-post/${id}`);
   };
 
@@ -63,7 +64,7 @@ const PostItem = ({
         className="post-backgound-img"
       />
       <CrudButtons
-        handleEdit={() => handleClickEdit(_id)}
+        handleEdit={() => handleEdit(_id)}
         handleDelete={() => handleDelete(_id)}
       />
     </article>

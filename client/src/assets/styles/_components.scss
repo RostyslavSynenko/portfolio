@@ -12,9 +12,8 @@
 @import '../../components/pages/Contacts/ContactForm/ContactForm';
 @import '../../components/pages/Blog/Blog';
 @import '../../components/pages/Blog/PostItem/PostItem';
+@import '../../components/pages/EditPost/EditPost';
 @import '../../components/pages/CreatePost/CreatePost';
-@import '../../components/pages/CreatePost/PostForm/PostForm';
-@import '../../components/pages/CreatePost/QuillEditor/QuilEditor';
 @import '../../components/Article/Article';
 @import '../../components/Footer/Footer';
 @import '../../components/PageNotFound/PageNotFound';
@@ -24,3 +23,5 @@
 @import '../../shared/TagsDate/TagsDate';
 @import '../../shared/FlyInWelcome/FlyInWelcome';
 @import '../../shared/OverlayButton/OverlayButton';
+@import '../../shared/PostForm/PostForm';
+@import '../../shared/PostForm/QuillEditor/QuilEditor';

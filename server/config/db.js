@@ -18,6 +18,13 @@ const connectDB = () => {
       gfs = Grid(conn.db, mongoose.mongo);
       gfs.collection('images');
 
+      /*
+       *GridFsStream deprecated. Use instead.
+       *
+      gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+        bucketName: 'images'
+      });
+      */
       console.log(`MongoDB connected.`);
     });
   } catch (error) {

@@ -1,27 +1,38 @@
 import React, { useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReactHtmlParser from 'react-html-parser';
 
 import { withPostService } from '../HOC';
 import TagsDate from '../../shared/TagsDate';
+import CrudButtons from '../../shared/CrudButtons';
 import PageLoader from '../PageLoader';
-import { fetchPost } from '../../actions';
+import { fetchPost, deletePost } from '../../actions';
 import { formateContent } from '../../utils/helpers';
 import { baseImageUrl } from '../../configs';
 
 const Article = ({
   match: { params },
   fetchPost,
+  deletePost,
   post,
   loading
 }) => {
+  let history = useHistory();
   let content;
 
   if (post) {
     content = ReactHtmlParser(formateContent(post.content));
   }
+
+  const handleEdit = id => {
+    history.push(`/blog/edit-post/${id}`);
+  };
+
+  const handleDelete = async id => {
+    await deletePost(id);
+  };
 
   useEffect(() => {
     const { id } = params;
@@ -54,6 +65,10 @@ const Article = ({
             <h1 className="article-title">{post.title}</h1>
           </div>
           <div className="article-content">{content}</div>
+          <CrudButtons
+            handleEdit={() => handleEdit(post._id)}
+            handleDelete={() => handleDelete(post._id)}
+          />
         </div>
       </div>
     </article>
@@ -68,7 +83,8 @@ const mapStateToProps = ({ posts: { post, loading } }) => ({
 const mapDispatchToProps = (dispatch, { postService }) =>
   bindActionCreators(
     {
-      fetchPost: fetchPost(postService)
+      fetchPost: fetchPost(postService),
+      deletePost: deletePost(postService)
     },
     dispatch
   );
