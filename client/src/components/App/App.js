@@ -5,6 +5,8 @@ import Header from '../Header';
 import Home from '../pages/Home';
 import About from '../pages/About';
 import Projects from '../pages/Projects';
+import CreateProject from '../pages/CreateProject';
+import EditProject from '../pages/EditProject';
 import Contacts from '../pages/Contacts';
 import CreatePost from '../pages/CreatePost';
 import EditPost from '../pages/EditPost';
@@ -24,6 +26,12 @@ const App = () => {
           </Route>
           <Route path="/about" exact>
             <About />
+          </Route>
+          <Route path="/projects/edit-project/:id" exact>
+            <EditProject />
+          </Route>
+          <Route path="/projects/create-project" exact>
+            <CreateProject />
           </Route>
           <Route path="/projects" exact>
             <Projects />

@@ -110,7 +110,7 @@ export const projects = [
     description:
       'This is a volunteer health care project. We developed a service that could help people to find the nearest place with defibrillator.',
     imgUrl: defibrillatorsMapUrl,
-    gitHubUrl: 'https://github.com/LV-469/defibrillator',
+    githubLink: 'https://github.com/LV-469/defibrillator',
     projectLink: '',
     technologies: [
       'React',
@@ -136,7 +136,7 @@ export const projects = [
     title: 'Barcelona Fan Website',
     description: 'IT course web project with a few pages.',
     imgUrl: barcelonaUrl,
-    gitHubUrl:
+    githubLink:
       'https://github.com/RostyslavSynenko/Lv-469.NodeJS/tree/master/webtasks',
     projectLink: '',
     technologies: [
@@ -155,7 +155,7 @@ export const projects = [
     description:
       "My first site I've ever made. Remember where you started",
     imgUrl: portfolioVer1Url,
-    gitHubUrl:
+    githubLink:
       'https://github.com/RostyslavSynenko/my-project-portfolio',
     projectLink:
       'https://rostyslavsynenko.github.io/my-project-portfolio/',

@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-export default class PostService {
+export default class HttpService {
   _apiPost = '/api/posts';
+  _apiProject = '/api/projects';
   _apiImage = '/api/images';
-  _configPost = {
+  roject = {
     headers: { 'Content-Type': 'application/json' }
   };
   _configImage = {
@@ -28,7 +29,7 @@ export default class PostService {
     const response = await axios.post(
       this._apiPost,
       post,
-      this._configPost
+      this._configJSON
     );
 
     return response;
@@ -38,7 +39,7 @@ export default class PostService {
     const response = await axios.put(
       `${this._apiPost}/${id}`,
       data,
-      this._configPost
+      this._configJSON
     );
 
     return response;
@@ -47,6 +48,48 @@ export default class PostService {
   deletePost = async id => {
     const response = await axios.delete(
       `${this._apiPost}/${id}`
+    );
+
+    return response;
+  };
+
+  getProjects = async () => {
+    const response = await axios.get(this._apiProject);
+
+    return response;
+  };
+
+  getProject = async id => {
+    const response = await axios.get(
+      `${this._apiProject}/${id}`
+    );
+
+    return response;
+  };
+
+  createProject = async post => {
+    const response = await axios.post(
+      this._apiProject,
+      post,
+      this._configJSON
+    );
+
+    return response;
+  };
+
+  updateProject = async (id, data) => {
+    const response = await axios.put(
+      `${this._apiProject}/${id}`,
+      data,
+      this._configJSON
+    );
+
+    return response;
+  };
+
+  deleteProject = async id => {
+    const response = await axios.delete(
+      `${this._apiProject}/${id}`
     );
 
     return response;

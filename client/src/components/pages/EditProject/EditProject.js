@@ -5,46 +5,49 @@ import { bindActionCreators } from 'redux';
 
 import { withHttpService } from '../../HOC';
 import PageLoader from '../../PageLoader';
-import PostForm from '../../../shared/PostForm';
-import { fetchPost, updatePost } from '../../../actions';
+import ProjectForm from '../../../shared/ProjectForm';
+import {
+  fetchProject,
+  updateProject
+} from '../../../actions';
 
-const EditPost = ({
-  fetchPost,
-  updatePost,
-  post,
-  loading,
-  match: { params }
+const EditProject = ({
+  match: { params },
+  fetchProject,
+  updateProject,
+  project,
+  loading
 }) => {
   let initialValues;
 
-  if (post) {
+  if (project) {
     initialValues = {
-      ...post,
-      tags: post.tags.join(', ')
+      ...project,
+      technologies: project.technologies.join(', ')
     };
   }
 
   const submitAction = async (data, oldImage) => {
-    await updatePost(post._id, data, oldImage);
+    await updateProject(project._id, data, oldImage);
   };
 
   useEffect(() => {
     const { id } = params;
 
-    fetchPost(id);
+    fetchProject(id);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="full-screen-container">
-      <div className="edit-post-page">
-        {loading || !post ? (
+      <div className="edit-project-page">
+        {loading || !project ? (
           <PageLoader />
         ) : (
-          <PostForm
-            submitAction={submitAction}
+          <ProjectForm
             initialValues={initialValues}
+            submitAction={submitAction}
             isEditing
           />
         )}
@@ -53,16 +56,18 @@ const EditPost = ({
   );
 };
 
-const mapStateToProps = ({ posts: { post, loading } }) => ({
-  post,
+const mapStateToProps = ({
+  projects: { project, loading }
+}) => ({
+  project,
   loading
 });
 
 const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(
     {
-      fetchPost: fetchPost(httpService),
-      updatePost: updatePost(httpService)
+      fetchProject: fetchProject(httpService),
+      updateProject: updateProject(httpService)
     },
     dispatch
   );
@@ -71,5 +76,5 @@ export default withHttpService()(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(withRouter(EditPost))
+  )(withRouter(EditProject))
 );

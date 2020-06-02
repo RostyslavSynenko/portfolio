@@ -1,3 +1,3 @@
-import withPostService from './withPostService';
+import withHttpService from './withHttptService';
 
-export { withPostService };
+export { withHttpService };

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { withPostService } from '../../HOC';
+import { withHttpService } from '../../HOC';
 import { fetchPosts, deletePost } from '../../../actions';
 import PostItem from './PostItem';
 import OverlayButton from '../../../shared/OverlayButton';
@@ -77,15 +77,15 @@ const mapStateToProps = ({
   posts: { posts, loading, error }
 }) => ({ posts, loading, error });
 
-const mapDispatchToProps = (dispatch, { postService }) =>
+const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(
     {
-      fetchPosts: fetchPosts(postService),
-      deletePost: deletePost(postService)
+      fetchPosts: fetchPosts(httpService),
+      deletePost: deletePost(httpService)
     },
     dispatch
   );
 
-export default withPostService()(
+export default withHttpService()(
   connect(mapStateToProps, mapDispatchToProps)(Blog)
 );

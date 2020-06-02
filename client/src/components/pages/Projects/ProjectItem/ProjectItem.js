@@ -8,14 +8,14 @@ const ProjectItem = ({
   title,
   description,
   imgUrl,
-  gitHubUrl,
+  githubLink,
   projectLink,
   technologies
 }) => {
   const history = useHistory();
 
   const handleClickEdit = () => {
-    history.push('/edit-project');
+    history.push(`/projects/edit-project/${':id'}`);
   };
 
   const techList = technologies.map(tech => (
@@ -40,7 +40,7 @@ const ProjectItem = ({
         </div>
         <div className="image-container">
           <a
-            href={projectLink || gitHubUrl}
+            href={projectLink || githubLink}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -53,7 +53,7 @@ const ProjectItem = ({
         </div>
       </div>
       <ItemLinks
-        gitHubUrl={gitHubUrl}
+        githubLink={githubLink}
         projectLink={projectLink}
       />
       <CrudButtons handleEdit={handleClickEdit} />

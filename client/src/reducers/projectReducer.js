@@ -1,149 +1,130 @@
 import {
-  FETCH_POSTS_REQUEST,
-  FETCH_POSTS_SUCCESS,
-  FETCH_POSTS_ERROR,
-  FETCH_POST_REQUEST,
-  FETCH_POST_SUCCESS,
-  FETCH_POST_ERROR,
-  CREATE_POST_REQUEST,
-  CREATE_POST_SUCCESS,
-  CREATE_POST_ERROR,
-  UPDATE_POST_REQUEST,
-  UPDATE_POST_SUCCESS,
-  UPDATE_POST_ERROR,
-  DELETE_POST_REQUEST,
-  DELETE_POST_SUCCESS,
-  DELETE_POST_ERROR
+  FETCH_PROJECTS_REQUEST,
+  FETCH_PROJECTS_SUCCESS,
+  FETCH_PROJECTS_ERROR,
+  FETCH_PROJECT_REQUEST,
+  FETCH_PROJECT_SUCCESS,
+  FETCH_PROJECT_ERROR,
+  CREATE_PROJECT_REQUEST,
+  CREATE_PROJECT_SUCCESS,
+  CREATE_PROJECT_ERROR,
+  UPDATE_PROJECT_REQUEST,
+  UPDATE_PROJECT_SUCCESS,
+  UPDATE_PROJECT_ERROR,
+  DELETE_PROJECT_REQUEST,
+  DELETE_PROJECT_SUCCESS,
+  DELETE_PROJECT_ERROR
 } from '../actions/actionTypes';
-
-const updateItem = (posts, id, updatedPost) => {
-  const idx = posts.findIndex(post => post._id === id);
-
-  const newArray = [
-    ...posts.slice(0, idx),
-    updatedPost,
-    ...posts.slice(idx + 1)
-  ];
-
-  return newArray;
-};
-
-const deleteItem = (posts, id) => {
-  const idx = posts.findIndex(post => post._id === id);
-
-  const newArray = [
-    ...posts.slice(0, idx),
-    ...posts.slice(idx + 1)
-  ];
-
-  return newArray;
-};
+import {
+  deleteItem,
+  updateItem
+} from '../utils/reducerHelpers';
 
 const initialState = {
   loading: false,
   crudLoading: false,
   error: null,
-  posts: [],
-  post: null
+  projects: [],
+  project: null
 };
 
-const postsReducer = (
+const projectReducer = (
   state = initialState,
   { type, payload }
 ) => {
   switch (type) {
-    case FETCH_POSTS_REQUEST:
+    case FETCH_PROJECTS_REQUEST:
       return {
         ...state,
         loading: true,
         error: null
       };
-    case FETCH_POSTS_SUCCESS:
+    case FETCH_PROJECTS_SUCCESS:
       return {
         ...state,
         loading: false,
         error: null,
-        posts: payload
+        projects: payload
       };
-    case FETCH_POSTS_ERROR:
+    case FETCH_PROJECTS_ERROR:
       return {
         ...state,
         loading: false,
         error: payload
       };
-    case FETCH_POST_REQUEST:
+    case FETCH_PROJECT_REQUEST:
       return {
         ...state,
         loading: true,
         error: null
       };
-    case FETCH_POST_SUCCESS:
+    case FETCH_PROJECT_SUCCESS:
       return {
         ...state,
         loading: false,
         error: null,
-        post: payload
+        project: payload
       };
-    case FETCH_POST_ERROR:
+    case FETCH_PROJECT_ERROR:
       return {
         ...state,
         loading: false,
         error: payload
       };
-    case CREATE_POST_REQUEST:
+    case CREATE_PROJECT_REQUEST:
       return {
         ...state,
         crudLoading: true,
         error: null
       };
-    case CREATE_POST_SUCCESS:
+    case CREATE_PROJECT_SUCCESS:
       return {
         ...state,
         crudLoading: false,
         error: null,
-        posts: [payload, ...state.posts]
+        projects: [payload, ...state.projects]
       };
-    case CREATE_POST_ERROR:
+    case CREATE_PROJECT_ERROR:
       return {
         ...state,
         crudLoading: false,
         error: payload
       };
-    case UPDATE_POST_REQUEST:
+    case UPDATE_PROJECT_REQUEST:
       return {
         ...state,
         crudLoading: true,
         error: null
       };
-    case UPDATE_POST_SUCCESS:
+    case UPDATE_PROJECT_SUCCESS:
       const { id, data } = payload;
 
       return {
         ...state,
         crudLoading: false,
         error: null,
-        posts: updateItem(state.posts, id, data)
+        projects: updateItem(state.projects, id, data)
       };
-    case UPDATE_POST_ERROR:
+    case UPDATE_PROJECT_ERROR:
       return {
         ...state,
         crudLoading: false,
         error: payload
       };
-    case DELETE_POST_REQUEST:
+    case DELETE_PROJECT_REQUEST:
       return {
         ...state,
         crudLoading: true,
         error: null
       };
-    case DELETE_POST_SUCCESS:
+    case DELETE_PROJECT_SUCCESS:
       return {
         ...state,
         crudLoading: false,
         error: null,
-        posts: deleteItem(state.posts, payload)
+        projects: deleteItem(state.projects, payload)
       };
-    case DELETE_POST_ERROR:
+    case DELETE_PROJECT_ERROR:
       return {
         ...state,
         crudLoading: false,
@@ -154,4 +135,4 @@ const postsReducer = (
   }
 };
 
-export default postsReducer;
+export default projectReducer;

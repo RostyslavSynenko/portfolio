@@ -87,13 +87,13 @@ const deletePostError = error => ({
   payload: error
 });
 
-const fetchPosts = postService => () => async dispatch => {
+const fetchPosts = httpService => () => async dispatch => {
   dispatch(postsRequest());
 
   try {
     const {
       data: { data }
-    } = await postService.getPosts();
+    } = await httpService.getPosts();
 
     dispatch(postsLoaded(data));
   } catch (error) {
@@ -101,13 +101,13 @@ const fetchPosts = postService => () => async dispatch => {
   }
 };
 
-const fetchPost = postService => id => async dispatch => {
+const fetchPost = httpService => id => async dispatch => {
   dispatch(postRequest());
 
   try {
     const {
       data: { data }
-    } = await postService.getPost(id);
+    } = await httpService.getPost(id);
 
     dispatch(postLoaded(data));
   } catch (error) {
@@ -115,17 +115,17 @@ const fetchPost = postService => id => async dispatch => {
   }
 };
 
-const createPost = postService => post => async dispatch => {
+const createPost = httpService => post => async dispatch => {
   dispatch(createPostRequest());
 
   try {
     const {
       data: { image }
-    } = await postService.createImage(post.image);
+    } = await httpService.createImage(post.image);
 
     const {
       data: { data }
-    } = await postService.createPost({
+    } = await httpService.createPost({
       ...post,
       image: {
         id: image.id,
@@ -143,12 +143,12 @@ const createPost = postService => post => async dispatch => {
   }
 };
 
-const updateImage = async (postService, newImage, id) => {
-  await postService.deleteImage(id);
+const updateImage = async (httpService, newImage, id) => {
+  await httpService.deleteImage(id);
 
   const {
     data: { image }
-  } = await postService.createImage(newImage);
+  } = await httpService.createImage(newImage);
 
   return {
     id: image.id,
@@ -158,7 +158,7 @@ const updateImage = async (postService, newImage, id) => {
   };
 };
 
-const updatePost = postService => (
+const updatePost = httpService => (
   id,
   updatedPost,
   oldImage
@@ -170,7 +170,7 @@ const updatePost = postService => (
 
     if (oldImage) {
       newImage = await updateImage(
-        postService,
+        httpService,
         updatedPost.image,
         oldImage.id
       );
@@ -178,7 +178,7 @@ const updatePost = postService => (
 
     const {
       data: { data }
-    } = await postService.updatePost(id, {
+    } = await httpService.updatePost(id, {
       ...updatedPost,
       image: newImage || updatedPost.image
     });
@@ -191,15 +191,15 @@ const updatePost = postService => (
   }
 };
 
-const deletePost = postService => id => async dispatch => {
+const deletePost = httpService => id => async dispatch => {
   dispatch(deletePostRequest());
 
   try {
     const {
       data: { data }
-    } = await postService.deletePost(id);
+    } = await httpService.deletePost(id);
 
-    await postService.deleteImage(data.image.id);
+    await httpService.deleteImage(data.image.id);
 
     dispatch(postDeleted(data._id));
 

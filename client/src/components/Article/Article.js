@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReactHtmlParser from 'react-html-parser';
 
-import { withPostService } from '../HOC';
+import { withHttpService } from '../HOC';
 import TagsDate from '../../shared/TagsDate';
 import CrudButtons from '../../shared/CrudButtons';
 import PageLoader from '../PageLoader';
@@ -80,16 +80,16 @@ const mapStateToProps = ({ posts: { post, loading } }) => ({
   loading
 });
 
-const mapDispatchToProps = (dispatch, { postService }) =>
+const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(
     {
-      fetchPost: fetchPost(postService),
-      deletePost: deletePost(postService)
+      fetchPost: fetchPost(httpService),
+      deletePost: deletePost(httpService)
     },
     dispatch
   );
 
-export default withPostService()(
+export default withHttpService()(
   connect(
     mapStateToProps,
     mapDispatchToProps

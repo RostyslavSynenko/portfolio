@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { withPostService } from '../../HOC';
+import { withHttpService } from '../../HOC';
 import PostForm from '../../../shared/PostForm';
 import { createPost } from '../../../actions';
 
@@ -29,12 +29,12 @@ const CreatePost = ({ createPost }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch, { postService }) =>
+const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(
-    { createPost: createPost(postService) },
+    { createPost: createPost(httpService) },
     dispatch
   );
 
-export default withPostService()(
+export default withHttpService()(
   connect(null, mapDispatchToProps)(CreatePost)
 );

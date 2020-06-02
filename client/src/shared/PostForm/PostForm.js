@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import QuillEditor from './QuillEditor';
-import imagePlaceholder from '../../assets/blog/blog-image-placeholder.png';
+import imagePlaceholder from '../../assets/image-placeholder.png';
 import {
   formateTags,
   formateContent

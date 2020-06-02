@@ -13,7 +13,7 @@ const Projects = () => {
   ));
 
   const handleClickCreate = () => {
-    history.push('/add-project');
+    history.push('/projects/create-project');
   };
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const Projects = () => {
             <h2 className="projects-title">Projects</h2>
             <div className="add-post">
               <OverlayButton
-                label="Add project"
+                label="Create project"
                 handleClick={handleClickCreate}
               >
                 <i className="fas fa-plus add-icon"></i>

@@ -27,6 +27,10 @@ const connectDB = () => {
       */
       console.log(`MongoDB connected.`);
     });
+
+    conn.on('error', error =>
+      console.error(`MongoDB connection error: ${error}`)
+    );
   } catch (error) {
     console.log(`Error: ${error.message}`);
   }
