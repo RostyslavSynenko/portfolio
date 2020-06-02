@@ -140,7 +140,7 @@ const ProjectForm = ({
         <img
           ref={projectImagePlaceholder}
           src={
-            fields.image
+            fields.image && fields.image.filename
               ? `${baseImageUrl}/${fields.image.filename}`
               : imagePlaceholder
           }

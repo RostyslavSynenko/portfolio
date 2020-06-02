@@ -13,7 +13,10 @@ const getPosts = async (req, res, next) => {
       data: posts
     });
   } catch (error) {
-    return res.status(500).send({ success: false, error });
+    return res.status(500).send({
+      success: false,
+      error: { message: 'Server Error', error }
+    });
   }
 };
 
@@ -36,9 +39,10 @@ const getPost = async (req, res, next) => {
       .status(200)
       .send({ success: true, data: post });
   } catch (error) {
-    return res
-      .status(500)
-      .send({ success: false, error: 'Server Error' });
+    return res.status(500).send({
+      success: false,
+      error: { message: 'Server Error', error }
+    });
   }
 };
 
@@ -72,9 +76,10 @@ const createPost = async (req, res, next) => {
         .status(400)
         .send({ success: false, error: errors });
     } else {
-      return res
-        .status(500)
-        .send({ error: 'Server Error' });
+      return res.status(500).send({
+        success: false,
+        error: { message: 'Server Error', error }
+      });
     }
   }
 };
@@ -92,12 +97,15 @@ const updatePost = async (req, res, next) => {
       { new: true }
     );
 
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       data: updatedPost
     });
   } catch (error) {
-    return res.status(500).send({ error: 'Server Error' });
+    return res.status(500).send({
+      success: false,
+      error: { message: 'Server Error', error }
+    });
   }
 };
 
@@ -122,7 +130,10 @@ const deletePost = async (req, res, next) => {
       .status(200)
       .send({ success: true, data: post });
   } catch (error) {
-    return res.status(500).send({ error: 'Server Error' });
+    return res.status(500).send({
+      success: false,
+      error: { message: 'Server Error', error }
+    });
   }
 };
 

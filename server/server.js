@@ -8,7 +8,8 @@ dotenv.config({ path: './config/config.env' });
 
 connectDB();
 
-const postsRoute = require('./routes/postsRoute');
+const postRoute = require('./routes/postRoute');
+const projectRoute = require('./routes/projectRoute');
 const imageRoute = require('./routes/imageRoute');
 
 const app = express();
@@ -20,7 +21,8 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.use('/api/posts', postsRoute);
+app.use('/api/posts', postRoute);
+app.use('./api/projects', projectRoute);
 app.use('/api/images', imageRoute);
 
 if (process.env.NODE_ENV === 'production') {

@@ -12,7 +12,8 @@ const CreateProject = ({ createProject }) => {
     description: '',
     technologies: '',
     githubLink: '',
-    projectLink: ''
+    projectLink: '',
+    image: null
   };
 
   const submitAction = async data => {
