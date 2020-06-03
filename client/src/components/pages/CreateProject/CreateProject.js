@@ -22,11 +22,13 @@ const CreateProject = ({ createProject }) => {
 
   return (
     <div className="full-screen-container">
-      <div className="create-project-page">
-        <ProjectForm
-          initialValues={initialValues}
-          submitAction={submitAction}
-        />
+      <div className="container">
+        <div className="create-project-page">
+          <ProjectForm
+            initialValues={initialValues}
+            submitAction={submitAction}
+          />
+        </div>
       </div>
     </div>
   );

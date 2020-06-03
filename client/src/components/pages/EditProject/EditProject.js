@@ -41,16 +41,18 @@ const EditProject = ({
 
   return (
     <div className="full-screen-container">
-      <div className="edit-project-page">
-        {loading || !project ? (
-          <PageLoader />
-        ) : (
-          <ProjectForm
-            initialValues={initialValues}
-            submitAction={submitAction}
-            isEditing
-          />
-        )}
+      <div className="container">
+        <div className="edit-project-page">
+          {loading || !project ? (
+            <PageLoader />
+          ) : (
+            <ProjectForm
+              initialValues={initialValues}
+              submitAction={submitAction}
+              isEditing
+            />
+          )}
+        </div>
       </div>
     </div>
   );
