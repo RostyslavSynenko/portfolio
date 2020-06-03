@@ -79,7 +79,7 @@ const ProjectForm = ({
       }
 
       if (!isEditing) {
-        event.target.reset();
+        setFields(initialValues);
       }
     } catch (error) {
       console.log(error);

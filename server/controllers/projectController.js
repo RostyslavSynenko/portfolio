@@ -56,7 +56,7 @@ const createProject = async (req, res, next) => {
       title,
       description,
       technologies,
-      gihubLink,
+      githubLink,
       projectLink,
       image
     } = req.body;
@@ -65,7 +65,7 @@ const createProject = async (req, res, next) => {
       title,
       description,
       technologies,
-      gihubLink,
+      githubLink,
       projectLink,
       image
     });
@@ -124,7 +124,7 @@ const deleteProject = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const project = Project.findById(id);
+    const project = await Project.findById(id);
 
     if (!project) {
       return res.status(404).send({

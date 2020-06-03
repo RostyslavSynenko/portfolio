@@ -1,5 +1,6 @@
 .container {
   .projects-page {
+    min-height: calc(100vh - #{$header-height});
     padding-top: $header-height;
 
     .projects-page-header {
@@ -11,7 +12,21 @@
         font-size: 2.5rem;
       }
     }
+
+    .projects-container {
+      .wave-loader-container {
+        background-color: transparent;
+      }
+
+      .no-projects {
+        position: absolute;
+        top: calc(50% + #{$header-height});
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
+
   @include md-screen {
     .projects-page {
       .projects-page-header {

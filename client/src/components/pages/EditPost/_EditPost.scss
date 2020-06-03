@@ -1,8 +1,12 @@
 .full-screen-container {
-  background-color: map-get($colors, secondary-light);
+  .container {
+    padding-top: 0;
 
-  .edit-post-page {
-    position: relative;
-    min-height: calc(100vh - #{$header-height});
+    .edit-project-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - #{$header-height});
+    }
   }
 }

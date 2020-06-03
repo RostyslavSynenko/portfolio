@@ -42,7 +42,6 @@ const mapDispatchToProps = (dispatch, { httpService }) =>
     dispatch
   );
 
-export default withHttpService(
-  null,
-  mapDispatchToProps
-)(connect()(CreateProject));
+export default withHttpService()(
+  connect(null, mapDispatchToProps)(CreateProject)
+);

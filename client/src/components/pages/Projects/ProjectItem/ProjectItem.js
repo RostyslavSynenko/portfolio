@@ -1,21 +1,32 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { withHttpService } from '../../../HOC';
+import { deleteProject } from '../../../../actions';
 import ItemLinks from './ItemLinks';
 import CrudButtons from '../../../../shared/CrudButtons';
+import { baseImageUrl } from '../../../../configs';
 
 const ProjectItem = ({
+  _id,
   title,
   description,
-  imgUrl,
   githubLink,
   projectLink,
-  technologies
+  technologies,
+  image,
+  deleteProject
 }) => {
   const history = useHistory();
 
-  const handleClickEdit = () => {
-    history.push(`/projects/edit-project/${':id'}`);
+  const handleEdit = id => {
+    history.push(`/projects/edit-project/${id}`);
+  };
+
+  const handleDelete = async id => {
+    await deleteProject(id);
   };
 
   const techList = technologies.map(tech => (
@@ -46,7 +57,7 @@ const ProjectItem = ({
           >
             <img
               className="project-image"
-              src={imgUrl}
+              src={`${baseImageUrl}/${image.filename}`}
               alt={title}
             />
           </a>
@@ -56,9 +67,20 @@ const ProjectItem = ({
         githubLink={githubLink}
         projectLink={projectLink}
       />
-      <CrudButtons handleEdit={handleClickEdit} />
+      <CrudButtons
+        handleEdit={() => handleEdit(_id)}
+        handleDelete={() => handleDelete(_id)}
+      />
     </div>
   );
 };
 
-export default ProjectItem;
+const mapDispatchToProps = (dispatch, { httpService }) =>
+  bindActionCreators(
+    { deleteProject: deleteProject(httpService) },
+    dispatch
+  );
+
+export default withHttpService()(
+  connect(null, mapDispatchToProps)(ProjectItem)
+);

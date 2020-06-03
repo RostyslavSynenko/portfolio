@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use('/api/posts', postRoute);
-app.use('./api/projects', projectRoute);
+app.use('/api/projects', projectRoute);
 app.use('/api/images', imageRoute);
 
 if (process.env.NODE_ENV === 'production') {

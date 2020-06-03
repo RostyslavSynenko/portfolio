@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { withHttpService } from '../../../HOC';
+import { deletePost } from '../../../../actions';
 import TagsDate from '../../../../shared/TagsDate';
 import CrudButtons from '../../../../shared/CrudButtons';
 import { createLink } from '../../../../utils/helpers';
@@ -13,7 +17,7 @@ const PostItem = ({
   title,
   content,
   image,
-  handleDelete
+  deletePost
 }) => {
   const history = useHistory();
   const articleLink = createLink(title);
@@ -30,6 +34,10 @@ const PostItem = ({
 
   const handleEdit = id => {
     history.push(`/blog/edit-post/${id}`);
+  };
+
+  const handleDelete = async id => {
+    await deletePost(id);
   };
 
   return (
@@ -71,4 +79,14 @@ const PostItem = ({
   );
 };
 
-export default PostItem;
+const mapDispatchToProps = (dispatch, { httpService }) =>
+  bindActionCreators(
+    {
+      deletePost: deletePost(httpService)
+    },
+    dispatch
+  );
+
+export default withHttpService()(
+  connect(null, mapDispatchToProps)(PostItem)
+);

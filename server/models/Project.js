@@ -24,6 +24,15 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  image: {
+    type: {
+      id: String,
+      filename: String,
+      originalname: String,
+      size: Number
+    },
+    required: [true, 'Please add some image']
+  },
   date: {
     type: Date,
     default: Date.now
