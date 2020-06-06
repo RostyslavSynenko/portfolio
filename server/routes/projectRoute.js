@@ -1,5 +1,7 @@
 const express = require('express');
 
+const auth = require('../middleware/auth');
+
 const {
   getProjects,
   getProject,
@@ -10,12 +12,12 @@ const {
 
 const router = express.Router();
 
-router.route('/').get(getProjects).post(createProject);
+router.get('/', getProjects);
+router.post('/', auth, createProject);
 
 router
-  .route('/:id')
-  .get(getProject)
-  .put(updateProject)
-  .delete(deleteProject);
+  .get('/:id', getProject)
+  .put('/:id', auth, updateProject)
+  .delete('/:id', auth, deleteProject);
 
 module.exports = router;

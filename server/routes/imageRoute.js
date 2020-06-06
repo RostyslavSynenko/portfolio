@@ -1,5 +1,7 @@
 const express = require('express');
 
+const auth = require('../middleware/auth');
+
 const {
   getFiles,
   getFile,
@@ -11,10 +13,15 @@ const {
 
 const router = express.Router();
 
-router.route('/files').get(getFiles);
-router.route('/files/:id').delete(deleteImage);
-router.route('/files/:filename').get(getFile);
-router.post('/files', upload.single('image'), createImage);
+router.get('/files', getFiles);
+router.delete('/files/:id', auth, deleteImage);
+router.get('/files/:filename', getFile);
+router.post(
+  '/files',
+  auth,
+  upload.single('image'),
+  createImage
+);
 
 router.route('/:filename').get(getImage);
 

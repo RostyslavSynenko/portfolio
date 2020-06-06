@@ -32,7 +32,7 @@ const getProject = async (req, res, next) => {
     if (!project) {
       return res.status(404).send({
         success: false,
-        error: 'Project not found'
+        error: { message: 'Project not found' }
       });
     }
 
@@ -129,7 +129,7 @@ const deleteProject = async (req, res, next) => {
     if (!project) {
       return res.status(404).send({
         success: false,
-        error: 'No project found'
+        error: { message: 'No project found' }
       });
     }
 

@@ -30,9 +30,10 @@ const getPost = async (req, res, next) => {
     const post = await Post.findById(id);
 
     if (!post) {
-      return res
-        .status(404)
-        .send({ success: false, error: 'Post not found' });
+      return res.status(404).send({
+        success: false,
+        error: { message: 'Post not found' }
+      });
     }
 
     return res
@@ -121,7 +122,10 @@ const deletePost = async (req, res, next) => {
     if (!post) {
       return res
         .status(404)
-        .send({ success: false, error: 'No post found' });
+        .send({
+          success: false,
+          error: { message: 'No post found' }
+        });
     }
 
     await post.remove();
