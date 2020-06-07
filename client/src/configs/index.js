@@ -6,10 +6,11 @@ export const cvUrl =
 
 export const navLinks = [
   { path: '/', title: 'Home', exact: true },
-  { path: '/about', title: 'About' },
-  { path: '/projects', title: 'Projects' },
-  { path: '/contacts', title: 'Contacts' },
-  { path: '/blog', title: 'Blog' }
+  { path: '/about', title: 'About', exact: true },
+  { path: '/projects', title: 'Projects', exact: true },
+  { path: '/contacts', title: 'Contacts', exact: true },
+  { path: '/blog', title: 'Blog', exact: true },
+  { path: '/auth', title: 'SignIn/Up', exact: true }
 ];
 
 export const socialMedia = [

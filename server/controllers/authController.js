@@ -81,6 +81,10 @@ const validateUser = async (req, res, next) => {
       '-password'
     );
 
+    if (!user) {
+      throw Error('User Does not exist');
+    }
+
     return res
       .status(200)
       .send({ success: true, data: user });

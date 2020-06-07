@@ -96,7 +96,11 @@ const fetchPosts = httpService => () => async dispatch => {
     } = await httpService.getPosts();
 
     dispatch(postsLoaded(data));
-  } catch (error) {
+  } catch (err) {
+    const {
+      data: { error }
+    } = err.response;
+
     dispatch(postsError(error));
   }
 };
@@ -110,7 +114,11 @@ const fetchPost = httpService => id => async dispatch => {
     } = await httpService.getPost(id);
 
     dispatch(postLoaded(data));
-  } catch (error) {
+  } catch (err) {
+    const {
+      data: { error }
+    } = err.response;
+
     dispatch(postError(error));
   }
 };
@@ -138,7 +146,11 @@ const createPost = httpService => post => async dispatch => {
     dispatch(postCreated(data));
 
     console.log(`New post has been created: ${data.title}`);
-  } catch (error) {
+  } catch (err) {
+    const {
+      data: { error }
+    } = err.response;
+
     dispatch(createPostError(error));
   }
 };
@@ -186,7 +198,11 @@ const updatePost = httpService => (
     dispatch(postUpdated(data._id, data));
 
     console.log(`Post has been updated: ${data.title}`);
-  } catch (error) {
+  } catch (err) {
+    const {
+      data: { error }
+    } = err.response;
+
     dispatch(updatePostError(error));
   }
 };
@@ -204,7 +220,11 @@ const deletePost = httpService => id => async dispatch => {
     dispatch(postDeleted(data._id));
 
     console.log(`Post has been deleted: ${data.title}`);
-  } catch (error) {
+  } catch (err) {
+    const {
+      data: { error }
+    } = err.response;
+
     dispatch(deletePostError(error));
   }
 };

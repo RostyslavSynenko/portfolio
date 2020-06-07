@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { withHttpService } from '../HOC';
 import Header from '../Header';
 import Home from '../pages/Home';
 import About from '../pages/About';
@@ -11,11 +14,19 @@ import Contacts from '../pages/Contacts';
 import CreatePost from '../pages/CreatePost';
 import EditPost from '../pages/EditPost';
 import Blog from '../pages/Blog';
+import Auth from '../Auth';
 import Article from '../Article';
 import Footer from '../Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import { loadUser } from '../../actions/authActions';
 
-const App = () => {
+const App = ({ loadUser }) => {
+  useEffect(() => {
+    loadUser();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
       <Header />
@@ -51,6 +62,9 @@ const App = () => {
           <Route path="/blog" exact>
             <Blog />
           </Route>
+          <Route path="/auth" exact>
+            <Auth />
+          </Route>
           <Route path="*">
             <PageNotFound />
           </Route>
@@ -61,4 +75,12 @@ const App = () => {
   );
 };
 
-export default App;
+const mapDispatchToProps = (dispatch, { httpService }) =>
+  bindActionCreators(
+    { loadUser: loadUser(httpService) },
+    dispatch
+  );
+
+export default withHttpService()(
+  connect(null, mapDispatchToProps)(App)
+);

@@ -36,7 +36,7 @@ body {
   font-weight: 700;
   cursor: pointer;
   outline: none;
-  transition: all 0.3s;
+  transition: all 0.1s;
 
   &:hover {
     color: white;
@@ -54,6 +54,29 @@ body {
       border: 1px solid map-get($colors, secondary-dark);
       box-shadow: none;
       cursor: default;
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.filled {
+    background-color: map-get($colors, primary);
+    color: white;
+
+    &:hover {
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    &:disabled {
+      color: white;
+      background-color: map-get($colors, secondary-dark);
+      border: 1px solid map-get($colors, secondary-dark);
+
+      &:hover {
+        box-shadow: none;
+      }
     }
   }
 }

@@ -34,30 +34,21 @@ const projectReducer = (
 ) => {
   switch (type) {
     case FETCH_PROJECTS_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: null
-      };
-    case FETCH_PROJECTS_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        error: null,
-        projects: payload
-      };
-    case FETCH_PROJECTS_ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: payload
-      };
     case FETCH_PROJECT_REQUEST:
       return {
         ...state,
         loading: true,
         error: null
       };
+    case CREATE_PROJECT_REQUEST:
+    case UPDATE_PROJECT_REQUEST:
+    case DELETE_PROJECT_REQUEST:
+      return {
+        ...state,
+        crudLoading: true,
+        error: null
+      };
+    case FETCH_PROJECTS_SUCCESS:
     case FETCH_PROJECT_SUCCESS:
       return {
         ...state,
@@ -65,36 +56,12 @@ const projectReducer = (
         error: null,
         project: payload
       };
-    case FETCH_PROJECT_ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: payload
-      };
-    case CREATE_PROJECT_REQUEST:
-      return {
-        ...state,
-        crudLoading: true,
-        error: null
-      };
     case CREATE_PROJECT_SUCCESS:
       return {
         ...state,
         crudLoading: false,
         error: null,
         projects: [payload, ...state.projects]
-      };
-    case CREATE_PROJECT_ERROR:
-      return {
-        ...state,
-        crudLoading: false,
-        error: payload
-      };
-    case UPDATE_PROJECT_REQUEST:
-      return {
-        ...state,
-        crudLoading: true,
-        error: null
       };
     case UPDATE_PROJECT_SUCCESS:
       const { id, data } = payload;
@@ -105,18 +72,7 @@ const projectReducer = (
         error: null,
         projects: updateItem(state.projects, id, data)
       };
-    case UPDATE_PROJECT_ERROR:
-      return {
-        ...state,
-        crudLoading: false,
-        error: payload
-      };
-    case DELETE_PROJECT_REQUEST:
-      return {
-        ...state,
-        crudLoading: true,
-        error: null
-      };
+
     case DELETE_PROJECT_SUCCESS:
       return {
         ...state,
@@ -124,6 +80,15 @@ const projectReducer = (
         error: null,
         projects: deleteItem(state.projects, payload)
       };
+    case FETCH_PROJECTS_ERROR:
+    case FETCH_PROJECT_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: payload
+      };
+    case CREATE_PROJECT_ERROR:
+    case UPDATE_PROJECT_ERROR:
     case DELETE_PROJECT_ERROR:
       return {
         ...state,

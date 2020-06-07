@@ -96,7 +96,11 @@ const fetchProjects = httpService => () => async dispatch => {
     } = await httpService.getProjects();
 
     dispatch(projectsLoaded(data));
-  } catch (error) {
+  } catch (err) {
+    const {
+      data: { error }
+    } = err.response;
+
     dispatch(projectsError(error));
   }
 };
@@ -110,7 +114,11 @@ const fetchProject = httpService => id => async dispatch => {
     } = await httpService.getProject(id);
 
     dispatch(projectLoaded(data));
-  } catch (error) {
+  } catch (err) {
+    const {
+      data: { error }
+    } = err.response;
+
     dispatch(projectError(error));
   }
 };
@@ -140,7 +148,11 @@ const createProject = httpService => project => async dispatch => {
     console.log(
       `New project has been created: ${data.title}`
     );
-  } catch (error) {
+  } catch (err) {
+    const {
+      data: { error }
+    } = err.response;
+
     dispatch(createProjectError(error));
   }
 };
@@ -188,7 +200,11 @@ const updateProject = httpService => (
     dispatch(projectUpdated(data._id, data));
 
     console.log(`Project has been updated: ${data.title}`);
-  } catch (error) {
+  } catch (err) {
+    const {
+      data: { error }
+    } = err.response;
+
     dispatch(updateProjectError(error));
   }
 };
@@ -206,7 +222,11 @@ const deleteProject = httpService => id => async dispatch => {
     dispatch(projectDeleted(data._id));
 
     console.log(`Project has been deleted: ${data.title}`);
-  } catch (error) {
+  } catch (err) {
+    const {
+      data: { error }
+    } = err.response;
+
     dispatch(deleteProjectError(error));
   }
 };
