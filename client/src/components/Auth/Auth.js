@@ -5,19 +5,28 @@ import { bindActionCreators } from 'redux';
 import { withHttpService } from '../HOC';
 import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
+import { clearErrors } from '../../actions';
 
-const Auth = () => {
+const Auth = ({ clearErrors, error }) => {
   const [rightPanel, setRightPanel] = useState(false);
 
   const handleRightPanelActive = () => {
     if (!rightPanel) {
       setRightPanel(true);
+
+      if (error.message) {
+        clearErrors();
+      }
     }
   };
 
   const handleRightPanelPassive = () => {
     if (rightPanel) {
       setRightPanel(false);
+
+      if (error.message) {
+        clearErrors();
+      }
     }
   };
 
@@ -37,7 +46,7 @@ const Auth = () => {
                 <div className="overlay-panel overlay-left">
                   <h1 className="title">Welcome Back!</h1>
                   <p className="text-block">
-                    To keep connected with us please login
+                    To keep connected with me please login
                     with your personal info
                   </p>
                   <button
@@ -51,7 +60,7 @@ const Auth = () => {
                   <h1 className="title">Hello, Friend!</h1>
                   <p className="text-block">
                     Enter your personal details and start
-                    journey with us
+                    journey with me
                   </p>
                   <button
                     className="button-primary sign-toggle"
@@ -72,8 +81,9 @@ const Auth = () => {
 const mapStateToProps = ({ error }) => ({
   error
 });
+
 const mapDispatchToProps = (dispatch, { httpService }) =>
-  bindActionCreators({}, dispatch);
+  bindActionCreators({ clearErrors }, dispatch);
 
 export default withHttpService()(
   connect(mapStateToProps, mapDispatchToProps)(Auth)

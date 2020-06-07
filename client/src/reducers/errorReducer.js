@@ -4,7 +4,7 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  message: {},
+  message: null,
   status: null,
   id: null
 };
@@ -23,7 +23,7 @@ const errorReducer = (
     case CLEAR_ERRORS:
       return {
         ...state,
-        message: {},
+        message: null,
         status: null,
         id: null
       };

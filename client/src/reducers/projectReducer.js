@@ -49,6 +49,12 @@ const projectReducer = (
         error: null
       };
     case FETCH_PROJECTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        projects: payload
+      };
     case FETCH_PROJECT_SUCCESS:
       return {
         ...state,

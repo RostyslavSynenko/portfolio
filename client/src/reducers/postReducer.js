@@ -49,6 +49,12 @@ const postReducer = (
         error: null
       };
     case FETCH_POSTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        posts: payload
+      };
     case FETCH_POST_SUCCESS:
       return {
         ...state,

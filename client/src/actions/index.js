@@ -1,3 +1,4 @@
+import { loadUser, registerUser } from './authActions';
 import {
   fetchPosts,
   fetchPost,
@@ -12,8 +13,11 @@ import {
   updateProject,
   deleteProject
 } from './projectActions';
+import { returnErrors, clearErrors } from './errorActions';
 
 export {
+  loadUser,
+  registerUser,
   fetchPosts,
   fetchPost,
   createPost,
@@ -23,5 +27,7 @@ export {
   fetchProject,
   createProject,
   updateProject,
-  deleteProject
+  deleteProject,
+  returnErrors,
+  clearErrors
 };

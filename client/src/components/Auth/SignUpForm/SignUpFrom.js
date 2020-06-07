@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-const SignUpForm = () => {
+import { withHttpService } from '../../HOC';
+import { registerUser } from '../../../actions';
+
+const SignUpForm = ({ registerUser, error }) => {
+  const [errorMessage, setErrorMessage] = useState(null);
   const [fields, setFields] = useState({
     name: '',
     email: '',
@@ -13,13 +19,47 @@ const SignUpForm = () => {
     setFields({ ...fields, [name]: value });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
+
+    try {
+      const newUser = await registerUser(fields);
+
+      if (newUser) {
+        setFields({
+          name: '',
+          email: '',
+          password: ''
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const checkErrorMessage = () => {
+    if (errorMessage !== error.message) {
+      if (error.id === 'REGISTER_FAIL') {
+        setErrorMessage(error.message);
+      } else {
+        setErrorMessage(null);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (error.message) {
+      checkErrorMessage();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error.message]);
 
   return (
     <div className="form-container sign-up-container">
-      <form className="sign-up-form">
+      <form
+        className="sign-up-form"
+        onSubmit={handleSubmit}
+      >
         <h1 className="form-title">Create Account</h1>
         <div className="field-wrapper">
           <input
@@ -68,4 +108,16 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+const mapStateToProps = ({ error }) => ({
+  error
+});
+
+const mapDispatchToProps = (dispatch, { httpService }) =>
+  bindActionCreators(
+    { registerUser: registerUser(httpService) },
+    dispatch
+  );
+
+export default withHttpService()(
+  connect(mapStateToProps, mapDispatchToProps)(SignUpForm)
+);

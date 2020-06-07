@@ -8,7 +8,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL
 } from './actionTypes';
-import { returnErrors, clearErrors } from './errorActions';
+import { returnErrors } from './errorActions';
 
 const userLoading = () => ({ type: USER_LOADING });
 
@@ -58,7 +58,7 @@ const registerUser = httpService => ({
   try {
     const {
       data: { data }
-    } = httpService.registerUser({
+    } = await httpService.registerUser({
       name,
       email,
       password
@@ -68,10 +68,12 @@ const registerUser = httpService => ({
     console.log(
       `New user has been created: ${data.user.email}`
     );
+
+    return data;
   } catch (error) {
     dispatch(registerFail());
     dispatch(returnErrors(error, 'REGISTER_FAIL'));
   }
 };
 
-export { loadUser };
+export { loadUser, registerUser };

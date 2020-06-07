@@ -18,11 +18,15 @@ import Auth from '../Auth';
 import Article from '../Article';
 import Footer from '../Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import { loadUser } from '../../actions/authActions';
+import { loadUser, clearErrors } from '../../actions';
 
-const App = ({ loadUser }) => {
+const App = ({ loadUser, clearErrors }) => {
   useEffect(() => {
-    loadUser();
+    (async () => {
+      await loadUser();
+
+      clearErrors();
+    })();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -77,7 +81,7 @@ const App = ({ loadUser }) => {
 
 const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(
-    { loadUser: loadUser(httpService) },
+    { loadUser: loadUser(httpService), clearErrors },
     dispatch
   );
 

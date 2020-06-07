@@ -10,7 +10,7 @@ export const navLinks = [
   { path: '/projects', title: 'Projects', exact: true },
   { path: '/contacts', title: 'Contacts', exact: true },
   { path: '/blog', title: 'Blog', exact: true },
-  { path: '/auth', title: 'SignIn/Up', exact: true }
+  { path: '/auth', title: 'Login', exact: true }
 ];
 
 export const socialMedia = [

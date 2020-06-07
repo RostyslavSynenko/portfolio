@@ -11,7 +11,7 @@
 
       .auth-container {
         position: relative;
-        width: 768px;
+        width: 992px;
         max-width: 100%;
         min-height: 480px;
         margin-top: 20px;
@@ -44,6 +44,7 @@
 
             .field-wrapper {
               position: relative;
+              width: 90%;
               margin-bottom: 30px;
 
               input {
@@ -136,7 +137,7 @@
           z-index: 100;
 
           .overlay {
-            background-image: url('../../assets/pexels-photo-3162828.jpeg');
+            background-image: url('../../assets/auth-background.jpeg');
             background-size: cover;
             background-position: center;
             position: relative;
