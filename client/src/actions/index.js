@@ -1,4 +1,9 @@
-import { loadUser, registerUser } from './authActions';
+import {
+  loadUser,
+  registerUser,
+  logout,
+  login
+} from './authActions';
 import {
   fetchPosts,
   fetchPost,
@@ -18,6 +23,8 @@ import { returnErrors, clearErrors } from './errorActions';
 export {
   loadUser,
   registerUser,
+  logout,
+  login,
   fetchPosts,
   fetchPost,
   createPost,

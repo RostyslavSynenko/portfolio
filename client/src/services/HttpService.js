@@ -45,6 +45,16 @@ export default class HttpService {
     return response;
   };
 
+  login = async user => {
+    const response = await axios.post(
+      this._apiAuth,
+      user,
+      this._configJSON
+    );
+
+    return response;
+  };
+
   getPosts = async () => {
     const response = await axios.get(this._apiPost);
 
@@ -60,28 +70,35 @@ export default class HttpService {
   };
 
   createPost = async post => {
+    const config = this._tokenConfig();
+
     const response = await axios.post(
       this._apiPost,
       post,
-      this._configJSON
+      config
     );
 
     return response;
   };
 
   updatePost = async (id, data) => {
+    const config = this._tokenConfig();
+
     const response = await axios.put(
       `${this._apiPost}/${id}`,
       data,
-      this._configJSON
+      config
     );
 
     return response;
   };
 
   deletePost = async id => {
+    const config = this._tokenConfig();
+
     const response = await axios.delete(
-      `${this._apiPost}/${id}`
+      `${this._apiPost}/${id}`,
+      config
     );
 
     return response;
@@ -102,28 +119,35 @@ export default class HttpService {
   };
 
   createProject = async post => {
+    const config = this._tokenConfig();
+
     const response = await axios.post(
       this._apiProject,
       post,
-      this._configJSON
+      config
     );
 
     return response;
   };
 
   updateProject = async (id, data) => {
+    const config = this._tokenConfig();
+
     const response = await axios.put(
       `${this._apiProject}/${id}`,
       data,
-      this._configJSON
+      config
     );
 
     return response;
   };
 
   deleteProject = async id => {
+    const config = this._tokenConfig();
+
     const response = await axios.delete(
-      `${this._apiProject}/${id}`
+      `${this._apiProject}/${id}`,
+      config
     );
 
     return response;
@@ -138,18 +162,23 @@ export default class HttpService {
   };
 
   createImage = async post => {
+    const config = this._tokenConfig();
+
     const response = await axios.post(
       `${this._apiImage}/files`,
       post,
-      this._configImage
+      config
     );
 
     return response;
   };
 
   deleteImage = async id => {
+    const config = this._tokenConfig();
+
     const response = await axios.delete(
-      `${this._apiImage}/files/${id}`
+      `${this._apiImage}/files/${id}`,
+      config
     );
 
     return response;

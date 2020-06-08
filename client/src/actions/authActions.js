@@ -31,7 +31,7 @@ const registerSuccess = ({ token, user }) => ({
 
 const loginFail = () => ({ type: LOGIN_FAIL });
 
-const logoutSuccess = () => ({ type: LOGOUT_SUCCESS });
+const logout = () => ({ type: LOGOUT_SUCCESS });
 
 const registerFail = () => ({ type: REGISTER_FAIL });
 
@@ -76,4 +76,27 @@ const registerUser = httpService => ({
   }
 };
 
-export { loadUser, registerUser };
+const login = httpService => ({
+  email,
+  password
+}) => async dispatch => {
+  try {
+    dispatch(userLoading());
+
+    const {
+      data: { data }
+    } = await httpService.login({
+      email,
+      password
+    });
+
+    dispatch(loginSuccess(data));
+
+    return data;
+  } catch (error) {
+    dispatch(loginFail());
+    dispatch(returnErrors(error, 'LOGIN_FAIL'));
+  }
+};
+
+export { loadUser, registerUser, logout, login };

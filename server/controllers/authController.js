@@ -1,8 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const auth = require('../middleware/auth');
-
 const User = require('../models/User');
 
 // @desc    Auth a user
@@ -45,7 +43,7 @@ const authUser = async (req, res, next) => {
     const token = jwt.sign(
       { id: user._id },
       process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRE || 3600 }
+      { expiresIn: Number(process.env.JWT_EXPIRE) || 3600 }
     );
 
     return res.status(200).send({
@@ -77,7 +75,9 @@ const authUser = async (req, res, next) => {
 // @access  Private
 const validateUser = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user._id).select(
+    console.log(req.user);
+
+    const user = await User.findById(req.user.id).select(
       '-password'
     );
 

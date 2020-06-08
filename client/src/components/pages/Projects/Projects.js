@@ -9,7 +9,12 @@ import OverlayButton from '../../../shared/OverlayButton';
 import PageLoader from '../../PageLoader';
 import { fetchProjects } from '../../../actions';
 
-const Projects = ({ fetchProjects, projects, loading }) => {
+const Projects = ({
+  isAuthenticated,
+  fetchProjects,
+  projects,
+  loading
+}) => {
   const history = useHistory();
 
   const projectsElements = projects.map(project => (
@@ -34,14 +39,16 @@ const Projects = ({ fetchProjects, projects, loading }) => {
         <section className="projects">
           <div className="projects-page-header">
             <h2 className="projects-title">Projects</h2>
-            <div className="add-post">
-              <OverlayButton
-                label="Create project"
-                handleClick={handleCreate}
-              >
-                <i className="fas fa-plus add-icon"></i>
-              </OverlayButton>
-            </div>
+            {isAuthenticated && (
+              <div className="add-post">
+                <OverlayButton
+                  label="Create project"
+                  handleClick={handleCreate}
+                >
+                  <i className="fas fa-plus add-icon"></i>
+                </OverlayButton>
+              </div>
+            )}
           </div>
           <div className="projects-container">
             {loading && <PageLoader />}
@@ -63,8 +70,9 @@ const Projects = ({ fetchProjects, projects, loading }) => {
 };
 
 const mapStateToProps = ({
+  auth: { isAuthenticated },
   projects: { projects, loading }
-}) => ({ projects, loading });
+}) => ({ isAuthenticated, projects, loading });
 
 const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(

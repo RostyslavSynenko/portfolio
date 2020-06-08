@@ -9,7 +9,12 @@ import PostItem from './PostItem';
 import OverlayButton from '../../../shared/OverlayButton';
 import PageLoader from '../../PageLoader';
 
-const Blog = ({ fetchPosts, posts, loading }) => {
+const Blog = ({
+  isAuthenticated,
+  fetchPosts,
+  posts,
+  loading
+}) => {
   const history = useHistory();
 
   const handleClickCreate = () => {
@@ -34,14 +39,16 @@ const Blog = ({ fetchPosts, posts, loading }) => {
         <section className="blog-page">
           <div className="blog-page-header">
             <h2 className="blog-page-title">Blog</h2>
-            <div className="create-post">
-              <OverlayButton
-                label="Create post"
-                handleClick={handleClickCreate}
-              >
-                <i className="fas fa-plus add-icon"></i>
-              </OverlayButton>
-            </div>
+            {isAuthenticated && (
+              <div className="create-post">
+                <OverlayButton
+                  label="Create post"
+                  handleClick={handleClickCreate}
+                >
+                  <i className="fas fa-plus add-icon"></i>
+                </OverlayButton>
+              </div>
+            )}
           </div>
           {loading && <PageLoader />}
           {!loading &&
@@ -61,8 +68,9 @@ const Blog = ({ fetchPosts, posts, loading }) => {
 };
 
 const mapStateToProps = ({
+  auth: { isAuthenticated },
   posts: { posts, loading, error }
-}) => ({ posts, loading, error });
+}) => ({ isAuthenticated, posts, loading, error });
 
 const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(

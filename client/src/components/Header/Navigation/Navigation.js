@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import MenuLink from './MenuLink';
+import Logout from './Logout';
 import { navLinks } from '../../../configs';
 
-const Navigation = () => {
+const Navigation = ({ isAuthenticated }) => {
   const [openMenu, setOpenMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -44,13 +46,24 @@ const Navigation = () => {
   return (
     <nav className={openMenu ? 'open' : ''}>
       <ul className="navigation-links">
-        {navLinks.map(link => (
-          <MenuLink
-            {...link}
-            key={link.title}
-            handlerClick={closeMenu}
-          />
-        ))}
+        {navLinks.map(link => {
+          const token = localStorage.getItem('token');
+
+          if (
+            (token || isAuthenticated) &&
+            link.title === 'Login'
+          ) {
+            return <Logout key="Logout" />;
+          }
+
+          return (
+            <MenuLink
+              {...link}
+              key={link.title}
+              handlerClick={closeMenu}
+            />
+          );
+        })}
       </ul>
       <div
         className="burger-menu"
@@ -60,4 +73,8 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+const mapStateToProps = ({
+  auth: { isAuthenticated }
+}) => ({ isAuthenticated });
+
+export default connect(mapStateToProps, null)(Navigation);

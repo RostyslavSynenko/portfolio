@@ -17,7 +17,8 @@ const PostItem = ({
   title,
   content,
   image,
-  deletePost
+  deletePost,
+  isAuthenticated
 }) => {
   const history = useHistory();
   const articleLink = createLink(title);
@@ -71,13 +72,19 @@ const PostItem = ({
         alt="Post background"
         className="post-backgound-img"
       />
-      <CrudButtons
-        handleEdit={() => handleEdit(_id)}
-        handleDelete={() => handleDelete(_id)}
-      />
+      {isAuthenticated && (
+        <CrudButtons
+          handleEdit={() => handleEdit(_id)}
+          handleDelete={() => handleDelete(_id)}
+        />
+      )}
     </article>
   );
 };
+
+const mapStateToProps = ({
+  auth: { isAuthenticated }
+}) => ({ isAuthenticated });
 
 const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(
@@ -88,5 +95,5 @@ const mapDispatchToProps = (dispatch, { httpService }) =>
   );
 
 export default withHttpService()(
-  connect(null, mapDispatchToProps)(PostItem)
+  connect(mapStateToProps, mapDispatchToProps)(PostItem)
 );

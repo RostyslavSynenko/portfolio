@@ -17,7 +17,8 @@ const ProjectItem = ({
   projectLink,
   technologies,
   image,
-  deleteProject
+  deleteProject,
+  isAuthenticated
 }) => {
   const history = useHistory();
 
@@ -67,13 +68,19 @@ const ProjectItem = ({
         githubLink={githubLink}
         projectLink={projectLink}
       />
-      <CrudButtons
-        handleEdit={() => handleEdit(_id)}
-        handleDelete={() => handleDelete(_id)}
-      />
+      {isAuthenticated && (
+        <CrudButtons
+          handleEdit={() => handleEdit(_id)}
+          handleDelete={() => handleDelete(_id)}
+        />
+      )}
     </div>
   );
 };
+
+const mapStateToProps = ({
+  auth: { isAuthenticated }
+}) => ({ isAuthenticated });
 
 const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(
@@ -82,5 +89,5 @@ const mapDispatchToProps = (dispatch, { httpService }) =>
   );
 
 export default withHttpService()(
-  connect(null, mapDispatchToProps)(ProjectItem)
+  connect(mapStateToProps, mapDispatchToProps)(ProjectItem)
 );
