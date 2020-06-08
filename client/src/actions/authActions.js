@@ -72,7 +72,7 @@ const registerUser = httpService => ({
     return data;
   } catch (error) {
     dispatch(registerFail());
-    dispatch(returnErrors(error, 'REGISTER_FAIL'));
+    dispatch(returnErrors(error, REGISTER_FAIL));
   }
 };
 
@@ -95,7 +95,7 @@ const login = httpService => ({
     return data;
   } catch (error) {
     dispatch(loginFail());
-    dispatch(returnErrors(error, 'LOGIN_FAIL'));
+    dispatch(returnErrors(error, LOGIN_FAIL));
   }
 };
 

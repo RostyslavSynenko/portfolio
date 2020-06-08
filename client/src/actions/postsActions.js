@@ -15,6 +15,7 @@ import {
   DELETE_POST_SUCCESS,
   DELETE_POST_ERROR
 } from './actionTypes';
+import { returnErrors } from './errorActions';
 
 const postsRequest = () => ({
   type: FETCH_POSTS_REQUEST
@@ -25,9 +26,8 @@ const postsLoaded = posts => ({
   payload: posts
 });
 
-const postsError = error => ({
-  type: FETCH_POSTS_ERROR,
-  payload: error
+const postsError = () => ({
+  type: FETCH_POSTS_ERROR
 });
 
 const postRequest = id => ({
@@ -40,9 +40,8 @@ const postLoaded = post => ({
   payload: post
 });
 
-const postError = error => ({
-  type: FETCH_POST_ERROR,
-  payload: error
+const postError = () => ({
+  type: FETCH_POST_ERROR
 });
 
 const createPostRequest = () => ({
@@ -54,9 +53,8 @@ const postCreated = newPost => ({
   payload: newPost
 });
 
-const createPostError = error => ({
-  type: CREATE_POST_ERROR,
-  payload: error
+const createPostError = () => ({
+  type: CREATE_POST_ERROR
 });
 
 const updatePostRequest = () => ({
@@ -68,9 +66,8 @@ const postUpdated = (id, data) => ({
   payload: { id, data }
 });
 
-const updatePostError = error => ({
-  type: UPDATE_POST_ERROR,
-  payload: error
+const updatePostError = () => ({
+  type: UPDATE_POST_ERROR
 });
 
 const deletePostRequest = () => ({
@@ -82,9 +79,8 @@ const postDeleted = id => ({
   payload: id
 });
 
-const deletePostError = error => ({
-  type: DELETE_POST_ERROR,
-  payload: error
+const deletePostError = () => ({
+  type: DELETE_POST_ERROR
 });
 
 const fetchPosts = httpService => () => async dispatch => {
@@ -96,12 +92,9 @@ const fetchPosts = httpService => () => async dispatch => {
     } = await httpService.getPosts();
 
     dispatch(postsLoaded(data));
-  } catch (err) {
-    const {
-      data: { error }
-    } = err.response;
-
-    dispatch(postsError(error));
+  } catch (error) {
+    dispatch(postsError());
+    dispatch(returnErrors(error));
   }
 };
 
@@ -114,12 +107,9 @@ const fetchPost = httpService => id => async dispatch => {
     } = await httpService.getPost(id);
 
     dispatch(postLoaded(data));
-  } catch (err) {
-    const {
-      data: { error }
-    } = err.response;
-
-    dispatch(postError(error));
+  } catch (error) {
+    dispatch(postError());
+    dispatch(returnErrors(error));
   }
 };
 
@@ -145,13 +135,10 @@ const createPost = httpService => post => async dispatch => {
 
     dispatch(postCreated(data));
 
-    console.log(`New post has been created: ${data.title}`);
-  } catch (err) {
-    const {
-      data: { error }
-    } = err.response;
-
-    dispatch(createPostError(error));
+    return data;
+  } catch (error) {
+    dispatch(createPostError());
+    dispatch(returnErrors(error, CREATE_POST_ERROR));
   }
 };
 
@@ -197,13 +184,10 @@ const updatePost = httpService => (
 
     dispatch(postUpdated(data._id, data));
 
-    console.log(`Post has been updated: ${data.title}`);
-  } catch (err) {
-    const {
-      data: { error }
-    } = err.response;
-
-    dispatch(updatePostError(error));
+    return data;
+  } catch (error) {
+    dispatch(updatePostError());
+    dispatch(returnErrors(error, UPDATE_POST_ERROR));
   }
 };
 
@@ -219,13 +203,10 @@ const deletePost = httpService => id => async dispatch => {
 
     dispatch(postDeleted(data._id));
 
-    console.log(`Post has been deleted: ${data.title}`);
-  } catch (err) {
-    const {
-      data: { error }
-    } = err.response;
-
-    dispatch(deletePostError(error));
+    return data;
+  } catch (error) {
+    dispatch(deletePostError());
+    dispatch(returnErrors(error, DELETE_POST_ERROR));
   }
 };
 

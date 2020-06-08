@@ -18,7 +18,8 @@ const PostItem = ({
   content,
   image,
   deletePost,
-  isAuthenticated
+  isAuthenticated,
+  user
 }) => {
   const history = useHistory();
   const articleLink = createLink(title);
@@ -72,7 +73,7 @@ const PostItem = ({
         alt="Post background"
         className="post-backgound-img"
       />
-      {isAuthenticated && (
+      {isAuthenticated && user.role === 'admin' && (
         <CrudButtons
           handleEdit={() => handleEdit(_id)}
           handleDelete={() => handleDelete(_id)}
@@ -83,8 +84,8 @@ const PostItem = ({
 };
 
 const mapStateToProps = ({
-  auth: { isAuthenticated }
-}) => ({ isAuthenticated });
+  auth: { isAuthenticated, user }
+}) => ({ isAuthenticated, user });
 
 const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(

@@ -23,7 +23,6 @@ import {
 const initialState = {
   loading: false,
   crudLoading: false,
-  error: null,
   projects: [],
   project: null
 };
@@ -37,36 +36,31 @@ const projectReducer = (
     case FETCH_PROJECT_REQUEST:
       return {
         ...state,
-        loading: true,
-        error: null
+        loading: true
       };
     case CREATE_PROJECT_REQUEST:
     case UPDATE_PROJECT_REQUEST:
     case DELETE_PROJECT_REQUEST:
       return {
         ...state,
-        crudLoading: true,
-        error: null
+        crudLoading: true
       };
     case FETCH_PROJECTS_SUCCESS:
       return {
         ...state,
         loading: false,
-        error: null,
         projects: payload
       };
     case FETCH_PROJECT_SUCCESS:
       return {
         ...state,
         loading: false,
-        error: null,
         project: payload
       };
     case CREATE_PROJECT_SUCCESS:
       return {
         ...state,
         crudLoading: false,
-        error: null,
         projects: [payload, ...state.projects]
       };
     case UPDATE_PROJECT_SUCCESS:
@@ -75,7 +69,6 @@ const projectReducer = (
       return {
         ...state,
         crudLoading: false,
-        error: null,
         projects: updateItem(state.projects, id, data)
       };
 
@@ -83,23 +76,20 @@ const projectReducer = (
       return {
         ...state,
         crudLoading: false,
-        error: null,
         projects: deleteItem(state.projects, payload)
       };
     case FETCH_PROJECTS_ERROR:
     case FETCH_PROJECT_ERROR:
       return {
         ...state,
-        loading: false,
-        error: payload
+        loading: false
       };
     case CREATE_PROJECT_ERROR:
     case UPDATE_PROJECT_ERROR:
     case DELETE_PROJECT_ERROR:
       return {
         ...state,
-        crudLoading: false,
-        error: payload
+        crudLoading: false
       };
     default:
       return state;

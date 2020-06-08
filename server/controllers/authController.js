@@ -53,7 +53,8 @@ const authUser = async (req, res, next) => {
         user: {
           _id: user._id,
           name: user.name,
-          email: user.email
+          email: user.email,
+          role: user.role
         }
       }
     });
@@ -75,8 +76,6 @@ const authUser = async (req, res, next) => {
 // @access  Private
 const validateUser = async (req, res, next) => {
   try {
-    console.log(req.user);
-
     const user = await User.findById(req.user.id).select(
       '-password'
     );

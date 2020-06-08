@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { withHttpService } from '../HOC';
+import { withHttpService } from '../../HOC';
 import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
-import { clearErrors } from '../../actions';
+import { clearErrors } from '../../../actions';
 
 const Auth = ({ clearErrors, error }) => {
   const [rightPanel, setRightPanel] = useState(false);

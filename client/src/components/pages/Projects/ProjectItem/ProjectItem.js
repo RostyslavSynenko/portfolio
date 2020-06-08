@@ -18,7 +18,8 @@ const ProjectItem = ({
   technologies,
   image,
   deleteProject,
-  isAuthenticated
+  isAuthenticated,
+  user
 }) => {
   const history = useHistory();
 
@@ -68,7 +69,7 @@ const ProjectItem = ({
         githubLink={githubLink}
         projectLink={projectLink}
       />
-      {isAuthenticated && (
+      {isAuthenticated && user.role === 'admin' && (
         <CrudButtons
           handleEdit={() => handleEdit(_id)}
           handleDelete={() => handleDelete(_id)}
@@ -79,8 +80,8 @@ const ProjectItem = ({
 };
 
 const mapStateToProps = ({
-  auth: { isAuthenticated }
-}) => ({ isAuthenticated });
+  auth: { isAuthenticated, user }
+}) => ({ isAuthenticated, user });
 
 const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(

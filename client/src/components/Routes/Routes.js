@@ -11,7 +11,7 @@ import Contacts from '../pages/Contacts';
 import CreatePost from '../pages/CreatePost';
 import EditPost from '../pages/EditPost';
 import Blog from '../pages/Blog';
-import Auth from '../Auth';
+import Auth from '../pages/Auth';
 import Article from '../Article';
 import PageNotFound from '../PageNotFound/PageNotFound';
 

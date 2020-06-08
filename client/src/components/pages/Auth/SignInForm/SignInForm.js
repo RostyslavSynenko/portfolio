@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { withHttpService } from '../../HOC';
-import { login } from '../../../actions';
+import { withHttpService } from '../../../HOC';
+import { login } from '../../../../actions';
 
 const SignInForm = ({ login, error }) => {
   const history = useHistory();
@@ -63,29 +63,33 @@ const SignInForm = ({ login, error }) => {
         onSubmit={handleSubmit}
       >
         <h1 className="form-title">Sign in</h1>
-        <div className="field-wrapper">
-          <input
-            type="email"
-            name="email"
-            id="sign-in-email"
-            autoComplete="email"
-            required
-            value={fields.email}
-            onChange={handleChange}
-          />
-          <label htmlFor="sign-in-email">Email</label>
-        </div>
-        <div className="field-wrapper">
-          <input
-            type="password"
-            name="password"
-            id="sign-in-password"
-            autoComplete="current-password"
-            required
-            value={fields.password}
-            onChange={handleChange}
-          />
-          <label htmlFor="sign-in-password">Password</label>
+        <div className="fields-container">
+          <div className="field-wrapper">
+            <input
+              type="email"
+              name="email"
+              id="sign-in-email"
+              autoComplete="email"
+              required
+              value={fields.email}
+              onChange={handleChange}
+            />
+            <label htmlFor="sign-in-email">Email</label>
+          </div>
+          <div className="field-wrapper">
+            <input
+              type="password"
+              name="password"
+              id="sign-in-password"
+              autoComplete="current-password"
+              required
+              value={fields.password}
+              onChange={handleChange}
+            />
+            <label htmlFor="sign-in-password">
+              Password
+            </label>
+          </div>
         </div>
         <button
           type="submit"

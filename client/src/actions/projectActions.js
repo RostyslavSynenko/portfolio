@@ -15,6 +15,7 @@ import {
   DELETE_PROJECT_SUCCESS,
   DELETE_PROJECT_ERROR
 } from './actionTypes';
+import { returnErrors } from './errorActions';
 
 const projectsRequest = () => ({
   type: FETCH_PROJECTS_REQUEST
@@ -25,9 +26,8 @@ const projectsLoaded = projects => ({
   payload: projects
 });
 
-const projectsError = error => ({
-  type: FETCH_PROJECTS_ERROR,
-  payload: error
+const projectsError = () => ({
+  type: FETCH_PROJECTS_ERROR
 });
 
 const projectRequest = id => ({
@@ -40,9 +40,8 @@ const projectLoaded = project => ({
   payload: project
 });
 
-const projectError = error => ({
-  type: FETCH_PROJECT_ERROR,
-  payload: error
+const projectError = () => ({
+  type: FETCH_PROJECT_ERROR
 });
 
 const createProjectRequest = () => ({
@@ -54,9 +53,8 @@ const projectCreated = newProject => ({
   payload: newProject
 });
 
-const createProjectError = error => ({
-  type: CREATE_PROJECT_ERROR,
-  payload: error
+const createProjectError = () => ({
+  type: CREATE_PROJECT_ERROR
 });
 
 const updateProjectRequest = () => ({
@@ -68,9 +66,8 @@ const projectUpdated = (id, data) => ({
   payload: { id, data }
 });
 
-const updateProjectError = error => ({
-  type: UPDATE_PROJECT_ERROR,
-  payload: error
+const updateProjectError = () => ({
+  type: UPDATE_PROJECT_ERROR
 });
 
 const deleteProjectRequest = () => ({
@@ -82,9 +79,8 @@ const projectDeleted = id => ({
   payload: id
 });
 
-const deleteProjectError = error => ({
-  type: DELETE_PROJECT_ERROR,
-  payload: error
+const deleteProjectError = () => ({
+  type: DELETE_PROJECT_ERROR
 });
 
 const fetchProjects = httpService => () => async dispatch => {
@@ -96,12 +92,9 @@ const fetchProjects = httpService => () => async dispatch => {
     } = await httpService.getProjects();
 
     dispatch(projectsLoaded(data));
-  } catch (err) {
-    const {
-      data: { error }
-    } = err.response;
-
-    dispatch(projectsError(error));
+  } catch (error) {
+    dispatch(projectsError());
+    dispatch(returnErrors(error));
   }
 };
 
@@ -114,12 +107,9 @@ const fetchProject = httpService => id => async dispatch => {
     } = await httpService.getProject(id);
 
     dispatch(projectLoaded(data));
-  } catch (err) {
-    const {
-      data: { error }
-    } = err.response;
-
-    dispatch(projectError(error));
+  } catch (error) {
+    dispatch(projectError());
+    dispatch(returnErrors(error));
   }
 };
 
@@ -145,15 +135,10 @@ const createProject = httpService => project => async dispatch => {
 
     dispatch(projectCreated(data));
 
-    console.log(
-      `New project has been created: ${data.title}`
-    );
-  } catch (err) {
-    const {
-      data: { error }
-    } = err.response;
-
-    dispatch(createProjectError(error));
+    return data;
+  } catch (error) {
+    dispatch(createProjectError());
+    dispatch(returnErrors(error));
   }
 };
 
@@ -199,13 +184,10 @@ const updateProject = httpService => (
 
     dispatch(projectUpdated(data._id, data));
 
-    console.log(`Project has been updated: ${data.title}`);
-  } catch (err) {
-    const {
-      data: { error }
-    } = err.response;
-
-    dispatch(updateProjectError(error));
+    return data;
+  } catch (error) {
+    dispatch(updateProjectError());
+    dispatch(returnErrors(error));
   }
 };
 
@@ -221,13 +203,10 @@ const deleteProject = httpService => id => async dispatch => {
 
     dispatch(projectDeleted(data._id));
 
-    console.log(`Project has been deleted: ${data.title}`);
-  } catch (err) {
-    const {
-      data: { error }
-    } = err.response;
-
-    dispatch(deleteProjectError(error));
+    return data;
+  } catch (error) {
+    dispatch(deleteProjectError());
+    dispatch(returnErrors(error));
   }
 };
 
