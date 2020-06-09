@@ -1,5 +1,4 @@
-export const baseImageUrl =
-  'http://localhost:5000/api/images';
+export const baseImageUrl = '/api/images';
 
 export const cvUrl =
   'https://drive.google.com/file/d/1oTZ6Zdk7SnT8xYrXkzD0xJWbBUMDobI2/view';

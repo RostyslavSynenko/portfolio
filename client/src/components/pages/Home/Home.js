@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import FlyInWelcome from '../../../shared/FlyInWelcome';
-import avatarImage from '../../../assets/avatar-photo.jpg';
+import avatarImage from '../../../assets/images/avatar-photo.jpg';
 
 const Home = () => {
   const startSection = useRef(null);
@@ -16,7 +16,7 @@ const Home = () => {
 
       startSection.current.style.transform = `translate(0, ${
         scrollTop / 2.2
-      }px`;
+      }px)`;
     };
 
     window.addEventListener('scroll', horizontalParalax);

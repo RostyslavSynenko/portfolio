@@ -19,7 +19,7 @@ ReactDOM.render(
     <Provider store={store}>
       <ErrorBoundry>
         <HttpServiceProvider value={httpService}>
-          <Router basename="/portfolio/">
+          <Router>
             <App />
           </Router>
         </HttpServiceProvider>

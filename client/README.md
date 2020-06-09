@@ -1,2 +1,2 @@
 Rostyslav Synenko Portfolio
-https://rostyslavsynenko.github.io/portfolio/
+https://rostyslavsynenko.herokuapp.com

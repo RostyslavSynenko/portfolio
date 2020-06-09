@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import imagePlaceholder from '../../assets/image-placeholder.png';
+import imagePlaceholder from '../../assets/images/image-placeholder.png';
 import { formateTags } from '../../utils/helpers';
 import { baseImageUrl } from '../../configs';
 

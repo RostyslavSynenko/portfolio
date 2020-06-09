@@ -17,7 +17,9 @@ const Article = ({
   fetchPost,
   deletePost,
   post,
-  loading
+  loading,
+  isAuthenticated,
+  user
 }) => {
   let history = useHistory();
   let content;
@@ -65,19 +67,26 @@ const Article = ({
             <h1 className="article-title">{post.title}</h1>
           </div>
           <div className="article-content">{content}</div>
-          <CrudButtons
-            handleEdit={() => handleEdit(post._id)}
-            handleDelete={() => handleDelete(post._id)}
-          />
+          {isAuthenticated && user.role === 'admin' && (
+            <CrudButtons
+              handleEdit={() => handleEdit(post._id)}
+              handleDelete={() => handleDelete(post._id)}
+            />
+          )}
         </div>
       </div>
     </article>
   );
 };
 
-const mapStateToProps = ({ posts: { post, loading } }) => ({
+const mapStateToProps = ({
+  auth: { isAuthenticated, user },
+  posts: { post, loading }
+}) => ({
   post,
-  loading
+  loading,
+  isAuthenticated,
+  user
 });
 
 const mapDispatchToProps = (dispatch, { httpService }) =>
