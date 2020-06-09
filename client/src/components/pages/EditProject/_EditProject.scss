@@ -1,10 +1,15 @@
-.full-screen-container {
+.edit-project-page {
+  min-height: calc(100vh - #{$header-height});
+  padding-top: $header-height;
+  background-color: map-get($colors, secondary-light);
+
   .container {
     padding-top: 0;
 
-    .edit-project-page {
-      min-height: calc(100vh - #{$header-height});
-      padding-top: $header-height;
+    .edit-project {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

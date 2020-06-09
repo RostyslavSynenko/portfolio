@@ -19,7 +19,7 @@ const Routes = () => (
   <Switch>
     <Route path="/" component={Home} exact />
     <Route path="/about" component={About} exact />
-    <Route
+    <PrivateRoute
       path="/projects/edit-project/:id"
       component={EditProject}
       exact
@@ -31,7 +31,7 @@ const Routes = () => (
     />
     <Route path="/projects" component={Projects} exact />
     <Route path="/contacts" component={Contacts} exact />
-    <Route
+    <PrivateRoute
       path="/blog/edit-post/:id"
       component={EditPost}
       exact

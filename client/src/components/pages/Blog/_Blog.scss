@@ -1,14 +1,10 @@
-.full-screen-container {
+.blog-page {
+  min-height: calc(100vh - #{$header-height});
+  padding-top: $header-height;
   background-color: map-get($colors, secondary-light);
 
   .container {
-    padding-top: 15px;
-
-    .blog-page {
-      position: relative;
-      padding-top: $header-height;
-      min-height: calc(100vh - #{$header-height});
-
+    .blog {
       .blog-page-header {
         display: flex;
         justify-content: space-between;
@@ -21,7 +17,7 @@
 
       .no-posts {
         position: absolute;
-        top: calc(50% + #{$header-height});
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
       }

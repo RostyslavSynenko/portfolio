@@ -60,20 +60,19 @@ const Article = ({
           className="article-image"
         />
       </div>
-      <div className="full-screen-container">
-        <div className="container">
-          <div className="article-header">
-            <TagsDate tags={post.tags} date={post.date} />
-            <h1 className="article-title">{post.title}</h1>
-          </div>
-          <div className="article-content">{content}</div>
-          {isAuthenticated && user.role === 'admin' && (
-            <CrudButtons
-              handleEdit={() => handleEdit(post._id)}
-              handleDelete={() => handleDelete(post._id)}
-            />
-          )}
+
+      <div className="container">
+        <div className="article-header">
+          <TagsDate tags={post.tags} date={post.date} />
+          <h1 className="article-title">{post.title}</h1>
         </div>
+        <div className="article-content">{content}</div>
+        {isAuthenticated && user.role === 'admin' && (
+          <CrudButtons
+            handleEdit={() => handleEdit(post._id)}
+            handleDelete={() => handleDelete(post._id)}
+          />
+        )}
       </div>
     </article>
   );

@@ -21,9 +21,9 @@ const CreateProject = ({ createProject }) => {
   };
 
   return (
-    <div className="full-screen-container">
+    <div className="create-project-page">
       <div className="container">
-        <div className="create-project-page">
+        <div className="create-project">
           <ProjectForm
             initialValues={initialValues}
             submitAction={submitAction}

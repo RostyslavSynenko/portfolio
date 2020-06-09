@@ -1,7 +1,7 @@
 .wave-loader-container {
   position: absolute;
   left: 50%;
-  top: calc(50% + #{$header-height});
+  top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
   display: flex;

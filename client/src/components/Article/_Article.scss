@@ -1,5 +1,5 @@
 .article {
-  min-height: 100vh;
+  min-height: calc(100vh - #{$header-height});
   background-color: map-get($colors, secondary-light);
 
   .article-image-container {
@@ -17,77 +17,67 @@
     }
   }
 
-  .full-screen-container {
-    background-color: map-get($colors, secondary-light);
+  .container {
+    position: relative;
+    max-width: 960px;
+    width: 100%;
 
-    .container {
-      position: relative;
-      max-width: 960px;
-      width: 100%;
+    .article-header {
+      margin: 100px 0 30px 0;
 
-      .article-header {
-        margin: 100px 0 30px 0;
-
-        .article-title {
-          font-size: 3.5rem;
-        }
+      .article-title {
+        font-size: 3.5rem;
       }
+    }
 
-      .article-content {
-        .text-block {
-          margin-bottom: 1.5rem;
-        }
+    .article-content {
+      .text-block {
+        margin-bottom: 1.5rem;
       }
+    }
 
-      .crud-buttons-container {
-        position: absolute;
-        top: 0;
-        right: 0;
-      }
+    .crud-buttons-container {
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   }
 
   @include lg-screen {
-    .full-screen-container {
-      .container {
-        padding: 40px 70px;
-      }
+    .container {
+      padding: 40px 70px;
     }
 
     @include md-screen {
-      .full-screen-container {
-        .container {
-          padding: 40px 70px;
+      .container {
+        padding: 40px 70px;
 
-          .article-header {
-            .article-title {
-              font-size: 3rem;
-            }
+        .article-header {
+          .article-title {
+            font-size: 3rem;
           }
         }
       }
     }
 
     @include md-screen {
-      .full-screen-container {
-        .container {
-          padding: 15px;
-          .article-header {
-            margin: 50px 0;
+      .container {
+        padding: 15px;
+        .article-header {
+          margin: 50px 0;
 
-            .tags-date {
-              flex-direction: column;
-              align-items: center;
+          .tags-date {
+            flex-direction: column;
+            align-items: center;
 
-              .sep {
-                display: none;
-              }
+            .sep {
+              display: none;
             }
+          }
 
-            .article-title {
-              text-align: center;
-              font-size: 2rem;
-            }
+          .article-title {
+            text-align: center;
+            font-size: 2rem;
           }
         }
       }

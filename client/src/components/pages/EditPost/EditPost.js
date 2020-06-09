@@ -37,19 +37,17 @@ const EditPost = ({
   }, []);
 
   return (
-    <div className="full-screen-container">
-      <div className="container">
-        <div className="edit-post-page">
-          {loading || !post ? (
-            <PageLoader />
-          ) : (
-            <PostForm
-              submitAction={submitAction}
-              initialValues={initialValues}
-              isEditing
-            />
-          )}
-        </div>
+    <div className="edit-post-page">
+      <div className="edit-post">
+        {loading || !post ? (
+          <PageLoader />
+        ) : (
+          <PostForm
+            submitAction={submitAction}
+            initialValues={initialValues}
+            isEditing
+          />
+        )}
       </div>
     </div>
   );

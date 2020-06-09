@@ -38,11 +38,11 @@ const Auth = ({ clearErrors, error }) => {
   }, []);
 
   return (
-    <div className="full-screen-container">
+    <div className="auth-page">
       <div className="container">
-        <div className="auth-page">
+        <div className="auth">
           <div
-            className={`auth-container ${
+            className={`auth-forms-container ${
               rightPanel ? 'right-panel-active' : ''
             }`}
           >

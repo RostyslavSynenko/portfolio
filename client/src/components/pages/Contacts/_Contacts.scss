@@ -1,5 +1,5 @@
 .contacts-page {
-  .photo-container {
+  .contacts-start-page {
     position: relative;
     height: 100vh;
     padding-top: $header-height;
@@ -74,7 +74,7 @@
   }
 
   @include lg-screen {
-    .photo-container {
+    .contacts-start-page {
       .container {
         .contacts-description {
           .contacts-page-title {
@@ -96,7 +96,7 @@
   }
 
   @include md-screen {
-    .photo-container {
+    .contacts-start-page {
       .container {
         .contacts-description {
           .contacts-page-title {
@@ -129,7 +129,7 @@
   }
 
   @include md-screen {
-    .photo-container {
+    .contacts-start-page {
       .container {
         .contacts-description {
           top: 35%;
@@ -148,7 +148,7 @@
   }
 
   @include sm-screen {
-    .photo-container {
+    .contacts-start-page {
       .container {
         .contacts-description {
           left: 15px;

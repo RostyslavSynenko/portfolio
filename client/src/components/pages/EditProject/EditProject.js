@@ -40,9 +40,9 @@ const EditProject = ({
   }, []);
 
   return (
-    <div className="full-screen-container">
+    <div className="edit-project-page">
       <div className="container">
-        <div className="edit-project-page">
+        <div className="edit-project">
           {loading || !project ? (
             <PageLoader />
           ) : (

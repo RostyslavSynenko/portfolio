@@ -34,8 +34,8 @@ const Projects = ({
   }, []);
 
   return (
-    <div className="container">
-      <div className="projects-page">
+    <div className="projects-page">
+      <div className="container">
         <section className="projects">
           <div className="projects-page-header">
             <h2 className="projects-title">Projects</h2>

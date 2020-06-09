@@ -1,5 +1,5 @@
 .home-page {
-  .start-page {
+  .home-start-page {
     height: 100vh;
     padding-top: $header-height;
     background-image: url('../../../assets/images/start-logo.jpg');
@@ -97,7 +97,7 @@
   }
 
   @include lg-screen {
-    .start-page {
+    .home-start-page {
       .container {
         .start-section-container {
           .fly-in-text {
@@ -125,7 +125,7 @@
   }
 
   @include md-screen {
-    .start-page {
+    .home-start-page {
       .container {
         .start-section-container {
           .fly-in-text {
@@ -167,7 +167,7 @@
   }
 
   @include sm-screen {
-    .start-page {
+    .home-start-page {
       .container {
         .start-section-container {
           .fly-in-text {

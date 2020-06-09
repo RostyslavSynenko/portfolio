@@ -1,5 +1,4 @@
-.full-screen-container {
-  .create-post-page {
-    min-height: calc(100vh - #{$header-height});
-  }
+.create-post-page {
+  min-height: calc(100vh - #{$header-height});
+  background-color: map-get($colors, secondary-light);
 }

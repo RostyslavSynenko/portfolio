@@ -34,9 +34,9 @@ const Blog = ({
   }, []);
 
   return (
-    <div className="full-screen-container">
+    <div className="blog-page">
       <div className="container">
-        <section className="blog-page">
+        <section className="blog">
           <div className="blog-page-header">
             <h2 className="blog-page-title">Blog</h2>
             {isAuthenticated && (

@@ -18,13 +18,11 @@ const CreatePost = ({ createPost }) => {
   };
 
   return (
-    <div className="full-screen-container">
-      <div className="create-post-page">
-        <PostForm
-          submitAction={submitAction}
-          initialValues={initialValues}
-        />
-      </div>
+    <div className="create-post-page">
+      <PostForm
+        submitAction={submitAction}
+        initialValues={initialValues}
+      />
     </div>
   );
 };

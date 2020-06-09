@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <div className="start-page">
+      <div className="home-start-page">
         <div className="container">
           <div
             className="start-section-container"
