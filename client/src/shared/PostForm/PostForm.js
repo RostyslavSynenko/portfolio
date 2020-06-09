@@ -178,6 +178,7 @@ const PostForm = ({
             {isEditing ? 'Update' : 'Create post'}
           </button>
           <button
+            type="button"
             className="button-primary cancel-button"
             onClick={handleCancel}
           >

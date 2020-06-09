@@ -9,14 +9,16 @@ import {
   fetchPost,
   createPost,
   updatePost,
-  deletePost
+  deletePost,
+  clearPost
 } from './postsActions';
 import {
   fetchProjects,
   fetchProject,
   createProject,
   updateProject,
-  deleteProject
+  deleteProject,
+  clearProject
 } from './projectActions';
 import { returnErrors, clearErrors } from './errorActions';
 
@@ -30,11 +32,13 @@ export {
   createPost,
   updatePost,
   deletePost,
+  clearPost,
   fetchProjects,
   fetchProject,
   createProject,
   updateProject,
   deleteProject,
+  clearProject,
   returnErrors,
   clearErrors
 };

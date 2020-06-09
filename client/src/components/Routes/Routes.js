@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
-import Home from '../pages/Home';
-import About from '../pages/About';
-import Projects from '../pages/Projects';
-import CreateProject from '../pages/CreateProject';
-import EditProject from '../pages/EditProject';
-import Contacts from '../pages/Contacts';
-import CreatePost from '../pages/CreatePost';
-import EditPost from '../pages/EditPost';
-import Blog from '../pages/Blog';
-import Auth from '../pages/Auth';
-import Article from '../Article';
-import PageNotFound from '../PageNotFound/PageNotFound';
+
+const Home = lazy(() => import('../pages/Home'));
+const About = lazy(() => import('../pages/About'));
+const Projects = lazy(() => import('../pages/Projects'));
+const CreateProject = lazy(() =>
+  import('../pages/CreateProject')
+);
+const EditProject = lazy(() =>
+  import('../pages/EditProject')
+);
+const Contacts = lazy(() => import('../pages/Contacts'));
+const CreatePost = lazy(() =>
+  import('../pages/CreatePost')
+);
+const EditPost = lazy(() => import('../pages/EditPost'));
+const Blog = lazy(() => import('../pages/Blog'));
+const Auth = lazy(() => import('../pages/Auth'));
+const Article = lazy(() => import('../Article'));
+const PageNotFound = lazy(() =>
+  import('../PageNotFound/PageNotFound')
+);
 
 const Routes = () => (
   <Switch>

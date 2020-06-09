@@ -8,7 +8,11 @@ import { withHttpService } from '../HOC';
 import TagsDate from '../../shared/TagsDate';
 import CrudButtons from '../../shared/CrudButtons';
 import PageLoader from '../PageLoader';
-import { fetchPost, deletePost } from '../../actions';
+import {
+  fetchPost,
+  deletePost,
+  clearPost
+} from '../../actions';
 import { formateContent } from '../../utils/helpers';
 import { baseImageUrl } from '../../configs';
 
@@ -16,6 +20,7 @@ const Article = ({
   match: { params },
   fetchPost,
   deletePost,
+  clearPost,
   post,
   loading,
   isAuthenticated,
@@ -26,6 +31,7 @@ const Article = ({
 
   if (post) {
     content = ReactHtmlParser(formateContent(post.content));
+    document.title = post.title;
   }
 
   const handleEdit = id => {
@@ -37,9 +43,13 @@ const Article = ({
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     const { id } = params;
 
     fetchPost(id);
+
+    return () => clearPost();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
 
@@ -92,7 +102,8 @@ const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(
     {
       fetchPost: fetchPost(httpService),
-      deletePost: deletePost(httpService)
+      deletePost: deletePost(httpService),
+      clearPost
     },
     dispatch
   );

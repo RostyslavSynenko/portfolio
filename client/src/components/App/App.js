@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -6,6 +6,7 @@ import { withHttpService } from '../HOC';
 import Routes from '../Routes';
 import Header from '../Header';
 import Footer from '../Footer';
+import PageLoader from '../PageLoader';
 import { loadUser, clearErrors } from '../../actions';
 
 const App = ({ loadUser, clearErrors }) => {
@@ -23,7 +24,9 @@ const App = ({ loadUser, clearErrors }) => {
     <div>
       <Header />
       <main>
-        <Routes />
+        <Suspense fallback={<PageLoader />}>
+          <Routes />
+        </Suspense>
       </main>
       <Footer />
     </div>

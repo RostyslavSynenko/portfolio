@@ -13,7 +13,9 @@ import {
   UPDATE_POST_ERROR,
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
-  DELETE_POST_ERROR
+  DELETE_POST_ERROR,
+  CLEARE_POST,
+  CLEAR_POST
 } from './actionTypes';
 import { returnErrors } from './errorActions';
 
@@ -81,6 +83,10 @@ const postDeleted = id => ({
 
 const deletePostError = () => ({
   type: DELETE_POST_ERROR
+});
+
+const clearPost = () => ({
+  type: CLEAR_POST
 });
 
 const fetchPosts = httpService => () => async dispatch => {
@@ -215,5 +221,6 @@ export {
   fetchPost,
   createPost,
   updatePost,
-  deletePost
+  deletePost,
+  clearPost
 };

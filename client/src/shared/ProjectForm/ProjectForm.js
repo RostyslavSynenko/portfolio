@@ -202,6 +202,7 @@ const ProjectForm = ({
           {isEditing ? 'Update' : 'Create project'}
         </button>
         <button
+          type="button"
           className="button-primary cancel-button"
           onClick={handleCancel}
         >

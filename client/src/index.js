@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -15,7 +15,7 @@ import HttpService from './services/HttpService';
 const httpService = new HttpService();
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <Provider store={store}>
       <ErrorBoundry>
         <HttpServiceProvider value={httpService}>
@@ -25,6 +25,6 @@ ReactDOM.render(
         </HttpServiceProvider>
       </ErrorBoundry>
     </Provider>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById('root')
 );

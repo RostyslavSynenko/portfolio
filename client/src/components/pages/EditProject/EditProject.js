@@ -8,13 +8,15 @@ import PageLoader from '../../PageLoader';
 import ProjectForm from '../../../shared/ProjectForm';
 import {
   fetchProject,
-  updateProject
+  updateProject,
+  clearProject
 } from '../../../actions';
 
 const EditProject = ({
   match: { params },
   fetchProject,
   updateProject,
+  clearProject,
   project,
   loading
 }) => {
@@ -36,6 +38,7 @@ const EditProject = ({
 
     fetchProject(id);
 
+    return () => clearProject();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -69,7 +72,8 @@ const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(
     {
       fetchProject: fetchProject(httpService),
-      updateProject: updateProject(httpService)
+      updateProject: updateProject(httpService),
+      clearProject
     },
     dispatch
   );

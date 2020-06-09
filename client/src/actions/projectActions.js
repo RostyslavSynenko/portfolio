@@ -13,7 +13,8 @@ import {
   UPDATE_PROJECT_ERROR,
   DELETE_PROJECT_REQUEST,
   DELETE_PROJECT_SUCCESS,
-  DELETE_PROJECT_ERROR
+  DELETE_PROJECT_ERROR,
+  CLEAR_PROJECT
 } from './actionTypes';
 import { returnErrors } from './errorActions';
 
@@ -82,6 +83,8 @@ const projectDeleted = id => ({
 const deleteProjectError = () => ({
   type: DELETE_PROJECT_ERROR
 });
+
+const clearProject = () => ({ type: CLEAR_PROJECT });
 
 const fetchProjects = httpService => () => async dispatch => {
   dispatch(projectsRequest());
@@ -215,5 +218,6 @@ export {
   fetchProject,
   createProject,
   updateProject,
-  deleteProject
+  deleteProject,
+  clearProject
 };

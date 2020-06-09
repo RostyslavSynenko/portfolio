@@ -13,7 +13,8 @@ import {
   UPDATE_PROJECT_ERROR,
   DELETE_PROJECT_REQUEST,
   DELETE_PROJECT_SUCCESS,
-  DELETE_PROJECT_ERROR
+  DELETE_PROJECT_ERROR,
+  CLEAR_PROJECT
 } from '../actions/actionTypes';
 import {
   deleteItem,
@@ -90,6 +91,11 @@ const projectReducer = (
       return {
         ...state,
         crudLoading: false
+      };
+    case CLEAR_PROJECT:
+      return {
+        ...state,
+        project: null
       };
     default:
       return state;

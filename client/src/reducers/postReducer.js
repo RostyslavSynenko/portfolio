@@ -13,7 +13,8 @@ import {
   UPDATE_POST_ERROR,
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
-  DELETE_POST_ERROR
+  DELETE_POST_ERROR,
+  CLEAR_POST
 } from '../actions/actionTypes';
 import {
   deleteItem,
@@ -93,6 +94,11 @@ const postReducer = (
       return {
         ...state,
         crudLoading: false
+      };
+    case CLEAR_POST:
+      return {
+        ...state,
+        post: null
       };
     default:
       return state;
