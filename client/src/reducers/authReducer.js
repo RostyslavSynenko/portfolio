@@ -54,7 +54,7 @@ const authReducer = (
         token: null,
         user: null,
         isAuthenticated: false,
-        isLoading: false
+        loading: false
       };
     default:
       return state;

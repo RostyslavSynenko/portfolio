@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux';
 
 import { logout } from '../../../../actions';
 
-const Logout = ({ logout }) => {
+const Logout = ({ logout, handleClick }) => {
   const handleLogout = () => {
     logout();
+    handleClick();
   };
 
   return (

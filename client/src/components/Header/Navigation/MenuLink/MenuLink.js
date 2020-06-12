@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom';
 const MenuLink = ({
   title,
   path,
-  handlerClick,
+  handleClick,
   exact = false
 }) => {
   return (
-    <li className="nav-link-item" onClick={handlerClick}>
+    <li className="nav-link-item" onClick={handleClick}>
       <NavLink
         to={path}
         activeClassName="active"

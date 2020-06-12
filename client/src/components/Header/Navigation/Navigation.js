@@ -5,7 +5,7 @@ import MenuLink from './MenuLink';
 import Logout from './Logout';
 import { navLinks } from '../../../configs';
 
-const Navigation = ({ isAuthenticated }) => {
+const Navigation = ({ token, isAuthenticated }) => {
   const [openMenu, setOpenMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -47,20 +47,24 @@ const Navigation = ({ isAuthenticated }) => {
     <nav className={openMenu ? 'open' : ''}>
       <ul className="navigation-links">
         {navLinks.map(link => {
-          const token = localStorage.getItem('token');
-
           if (
-            (token || isAuthenticated) &&
+            token &&
+            isAuthenticated &&
             link.title === 'Login'
           ) {
-            return <Logout key="Logout" />;
+            return (
+              <Logout
+                key="Logout"
+                handleClick={closeMenu}
+              />
+            );
           }
 
           return (
             <MenuLink
               {...link}
               key={link.title}
-              handlerClick={closeMenu}
+              handleClick={closeMenu}
             />
           );
         })}
@@ -74,7 +78,7 @@ const Navigation = ({ isAuthenticated }) => {
 };
 
 const mapStateToProps = ({
-  auth: { isAuthenticated }
-}) => ({ isAuthenticated });
+  auth: { token, isAuthenticated }
+}) => ({ isAuthenticated, token });
 
 export default connect(mapStateToProps, null)(Navigation);

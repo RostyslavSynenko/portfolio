@@ -6,11 +6,16 @@ import { bindActionCreators } from 'redux';
 import { withHttpService } from '../../HOC';
 import PageLoader from '../../PageLoader';
 import PostForm from '../../../shared/PostForm';
-import { fetchPost, updatePost } from '../../../actions';
+import {
+  fetchPost,
+  updatePost,
+  clearPost
+} from '../../../actions';
 
 const EditPost = ({
   fetchPost,
   updatePost,
+  clearPost,
   post,
   loading,
   match: { params }
@@ -33,6 +38,7 @@ const EditPost = ({
 
     fetchPost(id);
 
+    return () => clearPost();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -62,7 +68,8 @@ const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(
     {
       fetchPost: fetchPost(httpService),
-      updatePost: updatePost(httpService)
+      updatePost: updatePost(httpService),
+      clearPost
     },
     dispatch
   );

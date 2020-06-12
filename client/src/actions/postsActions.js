@@ -14,7 +14,6 @@ import {
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
   DELETE_POST_ERROR,
-  CLEARE_POST,
   CLEAR_POST
 } from './actionTypes';
 import { returnErrors } from './errorActions';

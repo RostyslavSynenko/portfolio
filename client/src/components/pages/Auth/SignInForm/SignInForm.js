@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -8,6 +8,7 @@ import { login } from '../../../../actions';
 
 const SignInForm = ({ login, error }) => {
   const history = useHistory();
+  const location = useLocation();
   const [errorMessage, setErrorMessage] = useState(null);
   const [fields, setFields] = useState({
     email: '',
@@ -25,14 +26,16 @@ const SignInForm = ({ login, error }) => {
 
     try {
       const user = await login(fields);
+      history.push('/');
 
       if (user) {
-        setFields({
-          email: '',
-          password: ''
-        });
+        setTimeout(() => {
+          const { from } = location.state || {
+            from: { pathname: '/' }
+          };
 
-        setTimeout(() => history.push('/'), 500);
+          history.push(from.pathname);
+        }, 500);
       }
     } catch (error) {
       console.log(error);
@@ -53,6 +56,7 @@ const SignInForm = ({ login, error }) => {
     if (error.message) {
       checkErrorMessage();
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error.message]);
 

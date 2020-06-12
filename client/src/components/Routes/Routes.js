@@ -1,4 +1,5 @@
 import React, { lazy } from 'react';
+import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
@@ -24,41 +25,68 @@ const PageNotFound = lazy(() =>
   import('../PageNotFound/PageNotFound')
 );
 
-const Routes = () => (
-  <Switch>
-    <Route path="/" component={Home} exact />
-    <Route path="/about" component={About} exact />
-    <PrivateRoute
-      path="/projects/edit-project/:id"
-      component={EditProject}
-      exact
-    />
-    <PrivateRoute
-      path="/projects/create-project"
-      component={CreateProject}
-      exact
-    />
-    <Route path="/projects" component={Projects} exact />
-    <Route path="/contacts" component={Contacts} exact />
-    <PrivateRoute
-      path="/blog/edit-post/:id"
-      component={EditPost}
-      exact
-    />
-    <Route
-      path="/blog/:title/:id"
-      component={Article}
-      exact
-    />
-    <PrivateRoute
-      path="/blog/create-post"
-      component={CreatePost}
-      exact
-    />
-    <Route path="/blog" component={Blog} exact />
-    <Route path="/auth" component={Auth} exact />
-    <Route path="*" component={PageNotFound} />
-  </Switch>
-);
+const Routes = ({ token, isAuthenticated, user }) => {
+  const isAuth = (onlyAdmin = false) => {
+    if (onlyAdmin) {
+      return (
+        token &&
+        isAuthenticated &&
+        user &&
+        user.role === 'admin'
+      );
+    }
 
-export default Routes;
+    return token && isAuthenticated;
+  };
+
+  return (
+    <Switch>
+      <Route path="/" component={Home} exact />
+      <Route path="/about" component={About} exact />
+      <PrivateRoute
+        path="/projects/edit-project/:id"
+        component={EditProject}
+        isAuth={isAuth()}
+        exact
+      />
+      <PrivateRoute
+        path="/projects/create-project"
+        component={CreateProject}
+        isAuth={isAuth()}
+        exact
+      />
+      <Route path="/projects" component={Projects} exact />
+      <Route path="/contacts" component={Contacts} exact />
+      <PrivateRoute
+        path="/blog/edit-post/:id"
+        component={EditPost}
+        isAuth={isAuth()}
+        exact
+      />
+      <Route
+        path="/blog/:title/:id"
+        component={Article}
+        exact
+      />
+      <PrivateRoute
+        path="/blog/create-post"
+        component={CreatePost}
+        isAuth={isAuth()}
+        exact
+      />
+      <Route path="/blog" component={Blog} exact />
+      <Route
+        path="/auth"
+        render={() => <Auth isAuth={isAuth()} />}
+        exact
+      />
+      <Route path="*" component={PageNotFound} />
+    </Switch>
+  );
+};
+
+const mapStateToProps = ({
+  auth: { token, isAuthenticated, user }
+}) => ({ token, isAuthenticated, user });
+
+export default connect(mapStateToProps)(Routes);

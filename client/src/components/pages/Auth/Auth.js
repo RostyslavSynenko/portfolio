@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -7,7 +8,8 @@ import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
 import { clearErrors } from '../../../actions';
 
-const Auth = ({ clearErrors, error }) => {
+const Auth = ({ isAuth, clearErrors, error }) => {
+  const location = useLocation();
   const [rightPanel, setRightPanel] = useState(false);
 
   const handleRightPanelActive = () => {
@@ -36,6 +38,14 @@ const Auth = ({ clearErrors, error }) => {
     return () => clearErrors();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (isAuth) {
+    const { from } = location.state || {
+      from: { pathname: '/' }
+    };
+
+    return <Redirect to={from} />;
+  }
 
   return (
     <div className="auth-page">
@@ -89,7 +99,7 @@ const mapStateToProps = ({ error }) => ({
   error
 });
 
-const mapDispatchToProps = (dispatch, { httpService }) =>
+const mapDispatchToProps = dispatch =>
   bindActionCreators({ clearErrors }, dispatch);
 
 export default withHttpService()(
