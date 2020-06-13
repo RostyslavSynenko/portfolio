@@ -1,0 +1,39 @@
+.modal-status {
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
+
+  .status {
+    padding: 20px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+
+    &.success {
+      background-color: map-get($colors, success);
+    }
+
+    &.error {
+      background-color: map-get($colors, error);
+    }
+  }
+
+  .action-type {
+    color: map-get($colors, secondary-dark);
+    font-size: 1.2rem;
+  }
+
+  .status-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .cancel-button {
+    margin: 0 auto 20px;
+  }
+}

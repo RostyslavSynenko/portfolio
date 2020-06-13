@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
+import { checkPermission } from '../../utils/auth';
 
 const Home = lazy(() => import('../pages/Home'));
 const About = lazy(() => import('../pages/About'));
@@ -26,18 +27,11 @@ const PageNotFound = lazy(() =>
 );
 
 const Routes = ({ token, isAuthenticated, user }) => {
-  const isAuth = (onlyAdmin = false) => {
-    if (onlyAdmin) {
-      return (
-        token &&
-        isAuthenticated &&
-        user &&
-        user.role === 'admin'
-      );
-    }
-
-    return token && isAuthenticated;
-  };
+  const isAuth = checkPermission({
+    token,
+    isAuthenticated,
+    user
+  });
 
   return (
     <Switch>
@@ -46,13 +40,13 @@ const Routes = ({ token, isAuthenticated, user }) => {
       <PrivateRoute
         path="/projects/edit-project/:id"
         component={EditProject}
-        isAuth={isAuth()}
+        isAuth={isAuth}
         exact
       />
       <PrivateRoute
         path="/projects/create-project"
         component={CreateProject}
-        isAuth={isAuth()}
+        isAuth={isAuth}
         exact
       />
       <Route path="/projects" component={Projects} exact />
@@ -60,7 +54,7 @@ const Routes = ({ token, isAuthenticated, user }) => {
       <PrivateRoute
         path="/blog/edit-post/:id"
         component={EditPost}
-        isAuth={isAuth()}
+        isAuth={isAuth}
         exact
       />
       <Route
@@ -71,13 +65,13 @@ const Routes = ({ token, isAuthenticated, user }) => {
       <PrivateRoute
         path="/blog/create-post"
         component={CreatePost}
-        isAuth={isAuth()}
+        isAuth={isAuth}
         exact
       />
       <Route path="/blog" component={Blog} exact />
       <Route
         path="/auth"
-        render={() => <Auth isAuth={isAuth()} />}
+        render={() => <Auth isAuth={isAuth} />}
         exact
       />
       <Route path="*" component={PageNotFound} />

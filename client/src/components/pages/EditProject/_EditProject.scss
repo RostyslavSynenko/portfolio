@@ -1,5 +1,5 @@
 .edit-project-page {
-  min-height: calc(100vh - #{$header-height});
+  min-height: 100vh;
   padding-top: $header-height;
   background-color: map-get($colors, secondary-light);
 

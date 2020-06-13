@@ -80,6 +80,9 @@ const ProjectForm = ({
 
       if (!isEditing) {
         setFields(initialValues);
+
+        projectImagePlaceholder.current.src = imagePlaceholder;
+        projectImagePlaceholder.current.alt = 'Placeholder';
       }
     } catch (error) {
       console.log(error);
@@ -197,7 +200,7 @@ const ProjectForm = ({
       <div className="submit-cancel-container">
         <button
           type="submit"
-          className="button-primary submit-button"
+          className="button-primary filled submit-button"
         >
           {isEditing ? 'Update' : 'Create project'}
         </button>

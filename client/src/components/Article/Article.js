@@ -14,6 +14,7 @@ import {
   clearPost
 } from '../../actions';
 import { formateContent } from '../../utils/helpers';
+import { checkPermission } from '../../utils/auth';
 import { baseImageUrl } from '../../configs';
 
 const Article = ({
@@ -23,10 +24,15 @@ const Article = ({
   clearPost,
   post,
   loading,
+  token,
   isAuthenticated,
   user
 }) => {
-  let history = useHistory();
+  const history = useHistory();
+  const permission = checkPermission(
+    { token, isAuthenticated, user },
+    true
+  );
   let content;
 
   if (post) {
@@ -77,7 +83,7 @@ const Article = ({
           <h1 className="article-title">{post.title}</h1>
         </div>
         <div className="article-content">{content}</div>
-        {isAuthenticated && user.role === 'admin' && (
+        {permission && (
           <CrudButtons
             handleEdit={() => handleEdit(post._id)}
             handleDelete={() => handleDelete(post._id)}
@@ -89,11 +95,12 @@ const Article = ({
 };
 
 const mapStateToProps = ({
-  auth: { isAuthenticated, user },
+  auth: { token, isAuthenticated, user },
   posts: { post, loading }
 }) => ({
   post,
   loading,
+  token,
   isAuthenticated,
   user
 });

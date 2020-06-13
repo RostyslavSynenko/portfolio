@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import ReactHtmlParser from 'react-html-parser';
 
 import { withHttpService } from '../../../HOC';
-import { deletePost } from '../../../../actions';
 import TagsDate from '../../../../shared/TagsDate';
 import CrudButtons from '../../../../shared/CrudButtons';
 import { createLink } from '../../../../utils/helpers';
+import { checkPermission } from '../../../../utils/auth';
 import { baseImageUrl } from '../../../../configs';
 
 const PostItem = ({
@@ -17,29 +17,44 @@ const PostItem = ({
   title,
   content,
   image,
-  deletePost,
+  token,
   isAuthenticated,
-  user
+  user,
+  setModal,
+  setPostId
 }) => {
   const history = useHistory();
+  const permission = checkPermission(
+    { token, isAuthenticated, user },
+    true
+  );
   const articleLink = createLink(title);
   let postPreviewText;
 
   const getPreviewText = content => {
     const startIdx = content.indexOf('>') + 1;
     const endIdx = content.indexOf('</p>');
+    const text = content.slice(startIdx, endIdx);
+    const maxTextLength = 250;
 
-    return content.slice(startIdx, endIdx);
+    if (text.length > maxTextLength) {
+      return text.slice(0, maxTextLength) + '...';
+    }
+
+    return text;
   };
 
-  postPreviewText = getPreviewText(content);
+  postPreviewText = ReactHtmlParser(
+    getPreviewText(content)
+  );
 
   const handleEdit = id => {
     history.push(`/blog/edit-post/${id}`);
   };
 
-  const handleDelete = async id => {
-    await deletePost(id);
+  const openModal = () => {
+    setModal(true);
+    setPostId(_id);
   };
 
   return (
@@ -73,10 +88,10 @@ const PostItem = ({
         alt="Post background"
         className="post-backgound-img"
       />
-      {isAuthenticated && user.role === 'admin' && (
+      {permission && (
         <CrudButtons
           handleEdit={() => handleEdit(_id)}
-          handleDelete={() => handleDelete(_id)}
+          handleDelete={openModal}
         />
       )}
     </article>
@@ -84,17 +99,9 @@ const PostItem = ({
 };
 
 const mapStateToProps = ({
-  auth: { isAuthenticated, user }
-}) => ({ isAuthenticated, user });
-
-const mapDispatchToProps = (dispatch, { httpService }) =>
-  bindActionCreators(
-    {
-      deletePost: deletePost(httpService)
-    },
-    dispatch
-  );
+  auth: { token, isAuthenticated, user }
+}) => ({ token, isAuthenticated, user });
 
 export default withHttpService()(
-  connect(mapStateToProps, mapDispatchToProps)(PostItem)
+  connect(mapStateToProps)(PostItem)
 );

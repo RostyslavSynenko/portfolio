@@ -1,12 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import { withHttpService } from '../../../HOC';
-import { deleteProject } from '../../../../actions';
 import ItemLinks from './ItemLinks';
 import CrudButtons from '../../../../shared/CrudButtons';
+import { checkPermission } from '../../../../utils/auth';
 import { baseImageUrl } from '../../../../configs';
 
 const ProjectItem = ({
@@ -17,18 +16,30 @@ const ProjectItem = ({
   projectLink,
   technologies,
   image,
-  deleteProject,
+  token,
   isAuthenticated,
-  user
+  user,
+  setModal,
+  setProjectId
 }) => {
   const history = useHistory();
 
-  const handleEdit = id => {
-    history.push(`/projects/edit-project/${id}`);
+  const permission = checkPermission(
+    {
+      token,
+      isAuthenticated,
+      user
+    },
+    true
+  );
+
+  const openModal = () => {
+    setModal(true);
+    setProjectId(_id);
   };
 
-  const handleDelete = async id => {
-    await deleteProject(id);
+  const handleEdit = id => {
+    history.push(`/projects/edit-project/${id}`);
   };
 
   const techList = technologies.map(tech => (
@@ -69,10 +80,10 @@ const ProjectItem = ({
         githubLink={githubLink}
         projectLink={projectLink}
       />
-      {isAuthenticated && user.role === 'admin' && (
+      {permission && (
         <CrudButtons
           handleEdit={() => handleEdit(_id)}
-          handleDelete={() => handleDelete(_id)}
+          handleDelete={openModal}
         />
       )}
     </div>
@@ -80,15 +91,13 @@ const ProjectItem = ({
 };
 
 const mapStateToProps = ({
-  auth: { isAuthenticated, user }
-}) => ({ isAuthenticated, user });
-
-const mapDispatchToProps = (dispatch, { httpService }) =>
-  bindActionCreators(
-    { deleteProject: deleteProject(httpService) },
-    dispatch
-  );
+  auth: { token, isAuthenticated, user }
+}) => ({
+  token,
+  isAuthenticated,
+  user
+});
 
 export default withHttpService()(
-  connect(mapStateToProps, mapDispatchToProps)(ProjectItem)
+  connect(mapStateToProps)(ProjectItem)
 );

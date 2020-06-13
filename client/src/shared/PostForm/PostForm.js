@@ -173,7 +173,7 @@ const PostForm = ({
         <div className="submit-cancel-container">
           <button
             type="submit"
-            className="button-primary submit-button"
+            className="button-primary filled submit-button"
           >
             {isEditing ? 'Update' : 'Create post'}
           </button>

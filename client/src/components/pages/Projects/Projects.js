@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -7,23 +7,46 @@ import { withHttpService } from '../../HOC';
 import ProjectItem from './ProjectItem/ProjectItem';
 import OverlayButton from '../../../shared/OverlayButton';
 import PageLoader from '../../PageLoader';
-import { fetchProjects } from '../../../actions';
+import { ConfirmModal } from '../../../shared/Modals';
+import {
+  fetchProjects,
+  deleteProject
+} from '../../../actions';
+import { checkPermission } from '../../../utils/auth';
 
 const Projects = ({
+  error,
+  token,
   isAuthenticated,
   fetchProjects,
+  deleteProject,
   projects,
-  loading
+  loading,
+  crudLoading
 }) => {
   const history = useHistory();
+  const permission = checkPermission({
+    token,
+    isAuthenticated
+  });
+  const [modal, setModal] = useState(false);
+  const [projectId, setProjectId] = useState(null);
 
   const projectsElements = projects.map(project => (
-    <ProjectItem key={project._id} {...project} />
+    <ProjectItem
+      key={project._id}
+      {...project}
+      setModal={setModal}
+      setProjectId={setProjectId}
+    />
   ));
 
   const handleCreate = () => {
     history.push('/projects/create-project');
   };
+
+  const handleDelete = id => async () =>
+    await deleteProject(id);
 
   useEffect(() => {
     document.title = 'Projects';
@@ -39,7 +62,7 @@ const Projects = ({
         <section className="projects">
           <div className="projects-page-header">
             <h2 className="projects-title">Projects</h2>
-            {isAuthenticated && (
+            {permission && (
               <div className="add-post">
                 <OverlayButton
                   label="Create project"
@@ -65,19 +88,40 @@ const Projects = ({
           </div>
         </section>
       </div>
+      {modal && (
+        <ConfirmModal
+          loading={crudLoading}
+          error={error}
+          actionType="Deleting"
+          text="Are you sure?"
+          successMessage="Project has been deleted!"
+          label="Delete"
+          handleOk={handleDelete(projectId)}
+          handleCancel={() => setModal(false)}
+        />
+      )}
     </div>
   );
 };
 
 const mapStateToProps = ({
-  auth: { isAuthenticated },
-  projects: { projects, loading }
-}) => ({ isAuthenticated, projects, loading });
+  error,
+  auth: { token, isAuthenticated },
+  projects: { projects, loading, crudLoading }
+}) => ({
+  error,
+  token,
+  isAuthenticated,
+  projects,
+  loading,
+  crudLoading
+});
 
 const mapDispatchToProps = (dispatch, { httpService }) =>
   bindActionCreators(
     {
-      fetchProjects: fetchProjects(httpService)
+      fetchProjects: fetchProjects(httpService),
+      deleteProject: deleteProject(httpService)
     },
     dispatch
   );
