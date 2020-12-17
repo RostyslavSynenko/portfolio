@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -9,7 +9,6 @@ import SignInForm from './SignInForm';
 import { clearErrors } from '../../../actions';
 
 const Auth = ({ isAuth, clearErrors, error }) => {
-  const location = useLocation();
   const [rightPanel, setRightPanel] = useState(false);
 
   const handleRightPanelActive = () => {
@@ -40,11 +39,7 @@ const Auth = ({ isAuth, clearErrors, error }) => {
   }, []);
 
   if (isAuth) {
-    const { from } = location.state || {
-      from: { pathname: '/' }
-    };
-
-    return <Redirect to={from} />;
+    return <Redirect to="/" />;
   }
 
   return (
