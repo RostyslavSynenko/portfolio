@@ -1,0 +1,25 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.8.8
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: 'rostyslavsynenko'
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          healthcheck: 'https://rostyslavsynenko.herokuapp.com/api/health'
+          checkstring: 'ok'
+          delay: 60
+          rollbackonhealthcheckfailed: true
+        env:
+          HD_MONGO_URI: ${{secrets.MONGO_URI}}
+          HD_JWT_SECRET: ${{secrets.JWT_SECRET}}
+          HD_JWT_EXPIRE: ${{secrets.JWT_EXPIRE}}
