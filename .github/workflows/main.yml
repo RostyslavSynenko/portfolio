@@ -47,10 +47,6 @@ jobs:
           HD_MONGO_URI: ${{secrets.MONGO_URI}}
           HD_JWT_SECRET: ${{secrets.JWT_SECRET}}
           HD_JWT_EXPIRE: ${{secrets.JWT_EXPIRE}}
-
-  versioning:
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/checkout@v2
       - name: Bump version and push tag
         # Skip versioning if the commit message contains '#skip'
