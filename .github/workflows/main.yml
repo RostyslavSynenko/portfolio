@@ -32,7 +32,8 @@ jobs:
       #     start: npm run start-prod
       #     wait-on: http://localhost:5000
       - name: Deploy to Heroku
-        if: ${{ github.event_name == 'push' }}
+        # Skip deploy if the commit message contains '#skip'
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
         uses: akhileshns/heroku-deploy@v3.8.8
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
@@ -46,3 +47,16 @@ jobs:
           HD_MONGO_URI: ${{secrets.MONGO_URI}}
           HD_JWT_SECRET: ${{secrets.JWT_SECRET}}
           HD_JWT_EXPIRE: ${{secrets.JWT_EXPIRE}}
+
+  versioning:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Bump version and push tag
+        # Skip versioning if the commit message contains '#skip'
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
+        uses: anothrNick/github-tag-action@eca2b69f9e2c24be7decccd0f15fdb1ea5906598
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          DEFAULT_BUMP: 'patch'
