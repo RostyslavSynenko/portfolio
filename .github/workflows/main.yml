@@ -5,12 +5,35 @@ on:
     branches:
       - master
 
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+
 jobs:
-  build:
+  deployment_pipeline:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.8.8
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install packages
+        run: npm install && npm install --prefix client
+      # - name: Eslint
+      #   run: npm run lint
+      - name: Build
+        run: npm run build
+      # - name: Unit tests
+      #   run: npm run test
+      # - name: e2e tests
+      #   uses: cypress-io/github-action@v2
+      #   with:
+      #     command: npm run test:e2e
+      #     start: npm run start-prod
+      #     wait-on: http://localhost:5000
+      - name: Deploy to Heroku
+        if: ${{ github.event_name == 'push' }}
+        uses: akhileshns/heroku-deploy@v3.8.8
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'rostyslavsynenko'
