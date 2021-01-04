@@ -13,6 +13,7 @@ const authRoute = require('./routes/authRoute');
 const postRoute = require('./routes/postRoute');
 const projectRoute = require('./routes/projectRoute');
 const imageRoute = require('./routes/imageRoute');
+const getHealth = require('./routes/healthCheckRoute');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use('/api/auth', authRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/projects', projectRoute);
 app.use('/api/images', imageRoute);
+app.use('/api/health', getHealth);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
