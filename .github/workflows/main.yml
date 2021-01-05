@@ -19,8 +19,8 @@ jobs:
           node-version: '12.x'
       - name: Install packages
         run: npm install && npm install --prefix client
-      # - name: Eslint
-      #   run: npm run lint
+      - name: Eslint
+        run: npm run lint
       - name: Build
         run: npm run build
       # - name: Unit tests

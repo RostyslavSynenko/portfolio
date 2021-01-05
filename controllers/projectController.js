@@ -3,7 +3,7 @@ const Project = require('../models/Project');
 // @desc    Get all projects
 // @route   GET /api/projects
 // @access  Public
-const getProjects = async (req, res, next) => {
+const getProjects = async (req, res) => {
   try {
     const projects = await Project.find().sort({
       date: -1
@@ -23,7 +23,7 @@ const getProjects = async (req, res, next) => {
 // @desc    Get a project
 // @route   GET /api/projects/:id
 // @access  Public
-const getProject = async (req, res, next) => {
+const getProject = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -50,7 +50,7 @@ const getProject = async (req, res, next) => {
 // @desc    Create a project
 // @route   POST /api/projects
 // @access  Private
-const createProject = async (req, res, next) => {
+const createProject = async (req, res) => {
   try {
     const {
       title,
@@ -96,7 +96,7 @@ const createProject = async (req, res, next) => {
 // @desc    Update a project
 // @route   PUT /api/projects/:id
 // @access  Private
-const updateProject = async (req, res, next) => {
+const updateProject = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -120,7 +120,7 @@ const updateProject = async (req, res, next) => {
 // @desc    Delete a project
 // @route   DELETE /api/projects/:id
 // @access  Private
-const deleteProject = async (req, res, next) => {
+const deleteProject = async (req, res) => {
   try {
     const { id } = req.params;
 

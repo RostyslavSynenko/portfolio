@@ -6,7 +6,7 @@ const { USER } = require('../config/userRole');
 // @desc    Register a new user
 // @route   POST /api/users
 // @access  Public
-const registerUser = async (req, res, next) => {
+const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 

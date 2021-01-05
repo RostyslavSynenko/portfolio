@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const path = require('path');
@@ -35,7 +34,7 @@ const upload = multer({ storage });
 // @desc    Get all files
 // @route   GET /api/images/files
 // @access  Public
-const getFiles = (req, res, next) => {
+const getFiles = (req, res) => {
   try {
     const gfs = getGfs();
 
@@ -58,7 +57,7 @@ const getFiles = (req, res, next) => {
 // @desc    Get a file
 // @route   GET /api/images/files/:filename
 // @access  Public
-const getFile = (req, res, next) => {
+const getFile = (req, res) => {
   try {
     const gfs = getGfs();
 
@@ -84,7 +83,7 @@ const getFile = (req, res, next) => {
 // @desc    Get an image
 // @route   GET /api/images/:filename
 // @access  Public
-const getImage = (req, res, next) => {
+const getImage = (req, res) => {
   try {
     const gfs = getGfs();
 
@@ -117,7 +116,7 @@ const getImage = (req, res, next) => {
 // @desc    Create an image
 // @route   POST /api/images
 // @access  Private
-const createImage = (req, res, next) => {
+const createImage = (req, res) => {
   try {
     return res
       .status(201)
@@ -132,26 +131,25 @@ const createImage = (req, res, next) => {
 // @desc    Delete an image
 // @route   DELETE /api/images/:id
 // @access  Private
-const deleteImage = (req, res, next) => {
+const deleteImage = (req, res) => {
   try {
     const gfs = getGfs();
 
     const { id } = req.params;
 
-    gfs.remove(
-      { _id: id, root: 'images' },
-      (err, gridStore) => {
-        if (err) {
-          return res
-            .status(404)
-            .send({ success: false, error: err });
-        }
-
+    gfs.remove({ _id: id, root: 'images' }, (
+      err /*, gridStore*/
+    ) => {
+      if (err) {
         return res
-          .status(200)
-          .send({ success: true, image: id });
+          .status(404)
+          .send({ success: false, error: err });
       }
-    );
+
+      return res
+        .status(200)
+        .send({ success: true, image: id });
+    });
   } catch (error) {
     return res
       .status(500)
