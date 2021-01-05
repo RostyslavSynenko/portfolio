@@ -25,7 +25,7 @@ const connectDB = () => {
         bucketName: 'images'
       });
       */
-      console.log(`MongoDB connected.`);
+      console.log('MongoDB connected.');
     });
 
     conn.on('error', error =>

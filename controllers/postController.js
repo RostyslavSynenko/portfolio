@@ -3,7 +3,7 @@ const Post = require('../models/Post');
 // @desc    Get all posts
 // @route   GET /api/posts
 // @access  Public
-const getPosts = async (req, res, next) => {
+const getPosts = async (req, res) => {
   try {
     const posts = await Post.find().sort({ date: -1 });
 
@@ -23,7 +23,7 @@ const getPosts = async (req, res, next) => {
 // @desc    Get a post
 // @route   GET /api/post/:id
 // @access  Public
-const getPost = async (req, res, next) => {
+const getPost = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -50,7 +50,7 @@ const getPost = async (req, res, next) => {
 // @desc    Create a post
 // @route   POST /api/posts
 // @access  Private
-const createPost = async (req, res, next) => {
+const createPost = async (req, res) => {
   try {
     const { tags, title, content, image } = req.body;
 
@@ -88,7 +88,7 @@ const createPost = async (req, res, next) => {
 // @desc    Update a post
 // @route   PUT /api/posts/:id
 // @access  Private
-const updatePost = async (req, res, next) => {
+const updatePost = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -113,19 +113,17 @@ const updatePost = async (req, res, next) => {
 // @desc    Delete a post
 // @route   DELETE /api/posts/:id
 // @access  Private
-const deletePost = async (req, res, next) => {
+const deletePost = async (req, res) => {
   try {
     const { id } = req.params;
 
     const post = await Post.findById(id);
 
     if (!post) {
-      return res
-        .status(404)
-        .send({
-          success: false,
-          error: { message: 'No post found' }
-        });
+      return res.status(404).send({
+        success: false,
+        error: { message: 'No post found' }
+      });
     }
 
     await post.remove();

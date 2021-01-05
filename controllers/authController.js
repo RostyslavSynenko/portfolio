@@ -6,7 +6,7 @@ const User = require('../models/User');
 // @desc    Auth a user
 // @route   POST /api/auth
 // @access  Public
-const authUser = async (req, res, next) => {
+const authUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -74,7 +74,7 @@ const authUser = async (req, res, next) => {
 // @desc    Get user data
 // @route   GET /api/auth/user
 // @access  Private
-const validateUser = async (req, res, next) => {
+const validateUser = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select(
       '-password'
