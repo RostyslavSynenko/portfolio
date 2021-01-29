@@ -4,8 +4,9 @@
   "description": "Backend for Portfolio",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "server": "nodemon server",
+    "start": "cross-env NODE_ENV=production node server",
+    "start:test": "cross-env NODE_ENV=test node server",
+    "server": "cross-env NODE_ENV=development nodemon server",
     "client": "npm run start --prefix client",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client",
@@ -14,7 +15,11 @@
     "lint:fix-server": "eslint --fix",
     "lint:fix": "npm run lint:fix-server && npm run lint:fix --prefix client",
     "build": "npm run build --prefix client",
-    "test": "npm run test --prefix client"
+    "test": "npm run test --prefix client",
+    "cypress:open": "cypress open",
+    "cypress:open-dev": "CYPRESS_BASE_URL=http://localhost:3000 cypress open",
+    "test:e2e": "cypress run",
+    "test:e2e-dev": "CYPRESS_BASE_URL=http://localhost:3000 cypress run"
   },
   "repository": {
     "type": "git",
@@ -43,6 +48,8 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
+    "cross-env": "^7.0.3",
+    "cypress": "^6.2.1",
     "eslint": "^7.17.0",
     "nodemon": "^2.0.6"
   }

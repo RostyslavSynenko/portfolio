@@ -25,12 +25,12 @@ jobs:
         run: npm run build
       # - name: Unit tests
       #   run: npm run test
-      # - name: e2e tests
-      #   uses: cypress-io/github-action@v2
-      #   with:
-      #     command: npm run test:e2e
-      #     start: npm run start-prod
-      #     wait-on: http://localhost:5000
+      - name: e2e tests
+        uses: cypress-io/github-action@v2
+        with:
+          command: npm run test:e2e
+          start: npm run start
+          wait-on: http://localhost:5000
       - name: Deploy to Heroku
         # Skip deploy if the commit message contains '#skip'
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
