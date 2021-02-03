@@ -44,6 +44,7 @@ jobs:
           delay: 60
           rollbackonhealthcheckfailed: true
         env:
+          HD_NODE_ENV: production
           HD_MONGO_URI: ${{secrets.MONGO_URI}}
           HD_JWT_SECRET: ${{secrets.JWT_SECRET}}
           HD_JWT_EXPIRE: ${{secrets.JWT_EXPIRE}}
